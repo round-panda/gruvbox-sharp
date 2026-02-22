@@ -1,0 +1,627 @@
+/**
+ * @name          Gruvbox Sharp
+ * @version       1.0
+ * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
+ *                typography. Monospace UI chrome, IBM Plex Sans for chat.
+ *                Compatible with BetterDiscord and Vencord.
+ * @author        round-panda
+ * @authorLink    https://github.com/round-panda
+ * @source        https://github.com/round-panda/gruvbox-sharp
+ */
+
+/* IMPORTANT: Enable Discord's built-in Dark Mode before use.
+   ------------------------------------------------------------------ */
+
+
+/* ================================================================
+   0.  FONT IMPORT
+   ================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+
+/* ================================================================
+   1.  GRUVBOX PALETTE
+       All hex values live here; every rule below references a var.
+       To port to a different palette, edit only this block.
+
+       bg_hard  #1d2021   darkest surface — user panel, code bg
+       bg0_s    #32302f   primary chat surface
+       bg0      #282828   sidebar, input bg
+       bg1      #3c3836   elevated: popouts, modals, header
+       bg2      #504945   borders, selected state
+       bg3      #665c54   muted borders, interactive-muted
+       bg4      #7c6f64   placeholder-level muted
+       fg0      #f9f5d7   brightest text / headings
+       fg1      #ebdbb2   normal body text
+       fg2      #d5c4a1   hovered text
+       fg4      #a89984   muted / channel names
+       yellow   #d79921   accent / brand (replaces blurple)
+       y_bright #fabd2f   accent hover / brand-600
+       blue_b   #83a598   links
+       aqua_b   #8ec07c   speaking ring / positive accent
+       red      #cc241d   danger button fill
+       red_b    #fb4934   danger text / badges
+       green_b  #b8bb26   online status / positive text
+   ================================================================ */
+
+
+/* ================================================================
+   2.  ROOT — Discord token overrides + palette custom properties
+   ================================================================ */
+:root {
+    /* --- Palette refs (consumed throughout) -------------------- */
+    --grv-bg-hard:  #1d2021;
+    --grv-bg0-s:    #32302f;
+    --grv-bg0:      #282828;
+    --grv-bg1:      #3c3836;
+    --grv-bg2:      #504945;
+    --grv-bg3:      #665c54;
+    --grv-bg4:      #7c6f64;
+    --grv-fg0:      #f9f5d7;
+    --grv-fg1:      #ebdbb2;
+    --grv-fg2:      #d5c4a1;
+    --grv-fg4:      #a89984;
+    --grv-yellow:   #d79921;
+    --grv-y-bright: #fabd2f;
+    --grv-blue-b:   #83a598;
+    --grv-aqua-b:   #8ec07c;
+    --grv-red:      #cc241d;
+    --grv-red-b:    #fb4934;
+    --grv-green-b:  #b8bb26;
+
+    /* --- Discord semantic token overrides ---------------------- */
+    --background-primary:                var(--grv-bg0-s);
+    --background-secondary:              var(--grv-bg0);
+    --background-secondary-alt:          var(--grv-bg1);
+    --background-tertiary:               var(--grv-bg-hard);
+    --background-floating:               var(--grv-bg1);
+    --background-accent:                 var(--grv-bg0-s);
+    --background-modifier-hover:         rgba(80, 73, 69, 0.30);
+    --background-modifier-active:        rgba(80, 73, 69, 0.50);
+    --background-modifier-selected:      rgba(80, 73, 69, 0.60);
+    --background-modifier-accent:        var(--grv-bg2);
+    --background-mentioned:              rgba(215, 153, 33, 0.07);
+    --background-mentioned-hover:        rgba(215, 153, 33, 0.12);
+    --background-message-hover:          rgba(30, 25, 20, 0.08);
+
+    --header-primary:                    var(--grv-fg0);
+    --header-secondary:                  var(--grv-fg4);
+    --text-normal:                       var(--grv-fg1);
+    --text-muted:                        var(--grv-fg4);
+    --text-link:                         var(--grv-blue-b);
+    --text-positive:                     var(--grv-green-b);
+    --text-warning:                      var(--grv-y-bright);
+    --text-danger:                       var(--grv-red-b);
+
+    --interactive-normal:                var(--grv-fg4);
+    --interactive-hover:                 var(--grv-fg2);
+    --interactive-active:                var(--grv-fg0);
+    --interactive-muted:                 var(--grv-bg3);
+
+    --channels-default:                  var(--grv-fg4);
+    --channeltextarea-background:        var(--grv-bg0);
+    --userarea-background:               var(--grv-bg-hard);
+    --voice-color:                       var(--grv-yellow);
+    --activity-card-background:          var(--grv-bg0-s);
+
+    /* Brand: two distinct states, one shared value each */
+    --brand-experiment:                  var(--grv-yellow);
+    --brand-experiment-560:              var(--grv-yellow);
+    --brand-experiment-600:              var(--grv-y-bright);
+    --control-brand-foreground:          var(--grv-y-bright);
+    --control-brand-foreground-new:      var(--grv-y-bright);
+
+    --scrollbar-thin-thumb:              var(--grv-bg2);
+    --scrollbar-thin-track:              transparent;
+    --scrollbar-auto-thumb:              var(--grv-bg2);
+    --scrollbar-auto-track:              rgba(40, 40, 40, 0.3);
+    --scrollbar-auto-scrollbar-color-thumb: var(--grv-bg2);
+    --scrollbar-auto-scrollbar-color-track: rgba(40, 40, 40, 0.3);
+
+    --elevation-low:    0 1px 0 rgba(30, 25, 20, 0.3), 0 2px 0 rgba(30, 25, 20, 0.1);
+    --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.2);
+    --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.3);
+    --elevation-stroke: 0 0 0 1px rgba(30, 25, 20, 0.2);
+
+    /* Info panels */
+    --info-positive-text:    var(--grv-bg-hard);
+    --info-warning-text:     var(--grv-bg-hard);
+    --info-danger-text:      #ffffff;
+    --info-help-background:  rgba(131, 165, 152, 0.15);
+    --info-help-foreground:  var(--grv-blue-b);
+    --info-help-text:        var(--grv-fg1);
+    --status-warning-text:   var(--grv-bg-hard);
+    --textbox-markdown-syntax: var(--grv-bg4);
+
+    --logo-primary: var(--grv-fg0);
+
+    /* Geometry */
+    --border-radius: 0px;
+    --border-color:  var(--grv-bg2);
+    --divide-color:  var(--grv-yellow);
+
+    /* Deprecated tokens — retained for plugin compatibility */
+    --deprecated-panel-background:                 var(--grv-bg1);
+    --deprecated-card-bg:                          var(--grv-bg0);
+    --deprecated-card-editable-bg:                 var(--grv-bg0);
+    --deprecated-store-bg:                         var(--grv-bg1);
+    --deprecated-quickswitcher-input-background:   var(--grv-bg0);
+    --deprecated-quickswitcher-input-placeholder:  rgba(235, 219, 178, 0.3);
+    --deprecated-text-input-bg:                    var(--grv-bg0);
+    --deprecated-text-input-border:                var(--grv-bg2);
+    --deprecated-text-input-border-hover:          var(--grv-bg3);
+    --deprecated-text-input-border-disabled:       var(--grv-bg1);
+    --deprecated-text-input-prefix:                var(--grv-fg2);
+}
+
+
+/* ================================================================
+   3.  GLOBAL RESETS
+   ================================================================ */
+
+/* Sharp corners everywhere
+   Font assignment is NOT done here; that lives on the app shell
+   (section 4) so inheritance handles propagation without fighting
+   section 5's sans override. */
+* {
+    border-radius: 0 !important;
+}
+
+/* IBM Plex Mono on the app shell — inherits into all UI chrome.
+   letter-spacing tightens the monospace rhythm for dense sidebars. */
+#app-mount,
+[class*="app-"],
+[class*="layers-"] {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    letter-spacing: -0.01em;
+}
+
+/* Smooth transitions for interactive chrome elements */
+[class*="channel-"],
+[class*="listItem-"],
+[class*="item-"],
+[class*="button-"],
+[class*="reaction-"],
+[class*="message-"] {
+    transition:
+        background-color 0.12s ease,
+        color            0.12s ease,
+        border-color     0.12s ease,
+        box-shadow       0.12s ease !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar-thumb {
+    background-color: var(--grv-bg2) !important;
+    border-radius: 0 !important;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--grv-bg0) !important;
+    border-radius: 0 !important;
+}
+
+
+/* ================================================================
+   4.  TYPOGRAPHY
+   ================================================================ */
+
+/* — Chat body: IBM Plex Sans —
+   Scoped under #app-mount to beat the app-shell ID specificity
+   (1,1,0 vs 1,0,0) without resorting to !important on the font
+   declaration itself. The child * reset is necessary because
+   Discord injects inline-styled spans inside markup nodes. */
+#app-mount [class*="markup"],
+#app-mount [class*="markup"] *,
+#app-mount [class*="messageContent"],
+#app-mount [class*="messageContent"] * {
+    font-family: 'IBM Plex Sans', sans-serif;
+    letter-spacing: 0;
+}
+
+/* — Compose box: IBM Plex Sans —
+   Discord injects inline font-family on Slate editor nodes, so !important is required */
+[role="textbox"],
+[role="textbox"] *,
+[data-slate-editor],
+[data-slate-editor] *,
+[class*="placeholder"] {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    letter-spacing: 0 !important;
+}
+/* — Bottle left username and DM top username — */
+[class*="title_"] {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: -0.01em;
+}
+
+/* — Code blocks: re-pin to monospace after sans pass —
+   Must appear after the sans rules in source order. */
+#app-mount [class*="markup"] code,
+#app-mount [class*="markup"] pre,
+code,
+pre {
+    font-family: 'IBM Plex Mono', monospace !important;
+    background-color: var(--grv-bg-hard) !important;
+    border: 1px solid var(--grv-bg2) !important;
+}
+
+/* — Size scale — */
+[class*="message-"],
+[class*="markup-"],
+[class*="content-"] {
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+}
+
+[class*="title"],
+[class*="item"],
+[class*="channel"] {
+    font-size: 12.5px !important;
+}
+
+[class*="name"],
+[class*="username"] {
+    font-size: 15px !important;
+}
+
+[class*="headerText-"],
+[class*="header-"] h1,
+[class*="header-"] h2,
+[class*="header-"] h3 {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+
+/* ================================================================
+   5.  SVG GUILD ICON SHARPNESS
+       Discord renders guild icons inside SVG foreignObject elements
+       with mask attributes that CSS border-radius cannot reach.
+       Explicit mask removal + polygon clip-path is intentional
+       for the sharp aesthetic; the cutout preserves status badge
+       clarity at 32 px. The 80 px translation keeps the status
+       badge aligned after mask removal.
+   ================================================================ */
+
+/* Strip inherited masks from foreignObject shell */
+foreignObject[mask] {
+    mask: none !important;
+}
+
+/* 32 px guild icon — bottom-right notch for status badge legibility */
+foreignObject[mask="url(#svg-mask-avatar-status-round-32)"] {
+    mask: none !important;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 62%, 62% 62%, 62% 100%, 0% 100%) !important;
+}
+
+/* 80 px avatar — correct status rect position post-mask-removal */
+foreignObject[mask="url(#svg-mask-avatar-status-round-80)"] ~ g rect {
+    transform: translate(16px, 16px) !important;
+}
+
+/* Guild list icon containers — ensure no inherited clip from Discord */
+[class*="guilds-"] foreignObject {
+    mask: none !important;
+    width: 34px !important;
+    height: 34px !important;
+}
+
+/* Status dot border — stroked in bg-hard so it reads on all surfaces */
+rect[mask*="status"] {
+    stroke: var(--grv-bg-hard) !important;
+    stroke-width: 10px !important;
+    paint-order: stroke fill !important;
+}
+
+
+/* ================================================================
+   6.  APP SHELL & BACKGROUNDS
+   ================================================================ */
+#app-mount,
+[class*="app-"],
+[class*="layers-"],
+[class*="bg-"] {
+    background-color: var(--grv-bg0-s) !important;
+}
+
+[class*="chat-"],
+[class*="content-"],
+[class*="messagesWrapper-"],
+[class*="scroller-"] {
+    background-color: var(--grv-bg0-s) !important;
+}
+
+[class*="guilds-"],
+[class*="sidebar-"],
+[class*="members-"] {
+    background-color: var(--grv-bg0) !important;
+}
+
+[class*="header-"],
+[class*="toolbar-"] {
+    background-color: var(--grv-bg1) !important;
+}
+
+[class*="popout-"],
+[class*="modal-"],
+[class*="tooltip-"],
+[class*="menu-"],
+[class*="autocomplete-"],
+[class*="layer-"] {
+    background-color: var(--grv-bg1) !important;
+}
+
+[class*="textArea-"],
+[class*="input-"],
+[class*="channelTextArea-"] {
+    background-color: var(--grv-bg0) !important;
+    color: var(--grv-fg1) !important;
+}
+
+[class*="panels-"] {
+    background-color: var(--grv-bg-hard) !important;
+}
+
+
+/* ================================================================
+   7.  GUILD TAG & SERVER POPOUT SHARPNESS
+       The * rule handles CSS border-radius on DOM elements.
+       These additional rules ensure Discord's layer container and
+       guild folder surfaces use clip-path: inset(0) where the
+       browser or Discord's internal styles might otherwise apply
+       a radius via SVG, mask, or filter.
+   ================================================================ */
+
+/* Server name tooltip / popout that appears on guild icon hover */
+[class*="guilds-"] [class*="layerContainer-"],
+[class*="guilds-"] [class*="layer-"],
+[class*="guildTooltip-"],
+[class*="guildPopout-"] {
+    clip-path: inset(0) !important;
+    border: 1px solid var(--grv-bg2) !important;
+    background-color: var(--grv-bg1) !important;
+}
+
+/* Guild folder expand surface */
+[class*="folder-"],
+[class*="folderEndButton-"],
+[class*="folderPreview-"] {
+    clip-path: inset(0) !important;
+}
+
+/* Guild icon wrapper — prevents Discord applying its own squircle
+   shape through non-border-radius means */
+[class*="blobContainer-"],
+[class*="iconBadge-"] {
+    clip-path: inset(0) !important;
+}
+
+
+/* ================================================================
+   8.  BORDERS & DIVIDERS
+   ================================================================ */
+[class*="sidebar-"] {
+    border-left:  1px solid var(--grv-bg2) !important;
+    border-right: 1px solid var(--grv-bg2) !important;
+}
+
+[class*="members-"] {
+    border-left: 1px solid var(--grv-bg2) !important;
+}
+
+[class*="panels-"] {
+    border-top: 1px solid var(--grv-bg2) !important;
+}
+
+[class*="popout-"],
+[class*="menu-"],
+[class*="autocomplete-"] {
+    border: 1px solid var(--grv-bg2) !important;
+}
+
+[class*="divider-"] {
+    border-color:     var(--grv-bg2) !important;
+    background-color: var(--grv-bg2) !important;
+}
+
+[class*="searchBar-"],
+[class*="searchBox-"] {
+    background-color: var(--grv-bg-hard) !important;
+    border: 1px solid var(--grv-bg2) !important;
+}
+
+/* Remove focus ring — monochrome shell doesn't benefit from it */
+[role="textbox"]:focus-visible,
+[data-slate-editor]:focus-visible,
+[class*="textArea-"]:focus-visible,
+[class*="input-"]:focus-visible,
+[class*="channelTextArea-"]:focus-visible {
+    outline: none !important;
+}
+
+
+/* ================================================================
+   9.  INTERACTIVE STATES
+   ================================================================ */
+[class*="channel-"]:hover,
+[class*="listItem-"]:hover,
+[class*="item-"]:hover {
+    background-color: rgba(80, 73, 69, 0.40) !important;
+}
+
+[class*="selected-"],
+[class*="active-"][class*="channel-"] {
+    background-color: rgba(80, 73, 69, 0.60) !important;
+}
+
+[class*="message-"]:hover,
+[class*="messageListItem-"]:hover {
+    background-color: rgba(80, 73, 69, 0.15) !important;
+}
+
+
+/* ================================================================
+   10. TEXT COLOURS
+   ================================================================ */
+[class*="username-"],
+[class*="headerText-"],
+h1, h2, h3 {
+    color: var(--grv-fg0) !important;
+}
+
+[class*="colorStandard-"],
+[class*="defaultColor-"] {
+    color: var(--grv-fg1) !important;
+}
+
+[class*="colorMuted-"],
+[class*="muted-"] {
+    color: var(--grv-fg4) !important;
+}
+
+a,
+[class*="anchor-"] {
+    color: var(--grv-blue-b) !important;
+}
+
+
+/* ================================================================
+   11. BUTTONS
+   ================================================================ */
+
+/* Primary / brand */
+[class*="lookFilled-"][class*="colorBrand-"],
+[class*="button-"][class*="colorBrand-"] {
+    background-color: var(--grv-yellow) !important;
+    color: var(--grv-bg-hard) !important;
+}
+[class*="lookFilled-"][class*="colorBrand-"]:hover,
+[class*="button-"][class*="colorBrand-"]:hover {
+    background-color: var(--grv-y-bright) !important;
+}
+
+/* Secondary / grey */
+[class*="lookFilled-"][class*="colorGrey-"],
+[class*="button-"][class*="colorGrey-"] {
+    background-color: var(--grv-bg1) !important;
+    color: var(--grv-fg1) !important;
+}
+[class*="lookFilled-"][class*="colorGrey-"]:hover,
+[class*="button-"][class*="colorGrey-"]:hover {
+    background-color: var(--grv-bg2) !important;
+}
+
+/* Danger */
+[class*="lookFilled-"][class*="colorRed-"],
+[class*="button-"][class*="colorRed-"] {
+    background-color: var(--grv-red) !important;
+}
+[class*="lookFilled-"][class*="colorRed-"]:hover,
+[class*="button-"][class*="colorRed-"]:hover {
+    background-color: var(--grv-red-b) !important;
+}
+
+/* Active nav tabs */
+[class*="navButtonActive-"],
+[class*="tab-"][class*="active-"] {
+    border: 1px solid var(--grv-yellow) !important;
+    color: var(--grv-fg0) !important;
+}
+
+
+/* ================================================================
+   12. EMBEDS & REACTIONS
+   ================================================================ */
+[class*="embed-"] {
+    background-color: var(--grv-bg1) !important;
+    border-left: 3px solid var(--grv-yellow) !important;
+}
+
+[class*="reaction-"] {
+    background-color: var(--grv-bg1) !important;
+    border: 1px solid var(--grv-bg2) !important;
+}
+
+[class*="reactionMe-"] {
+    background-color: rgba(215, 153, 33, 0.20) !important;
+    border: 1px solid var(--grv-yellow) !important;
+}
+
+
+/* ================================================================
+   13. MENTIONS
+   ================================================================ */
+[class*="mentioned-"] {
+    background-color: rgba(215, 153, 33, 0.07) !important;
+}
+[class*="mentioned-"]::before {
+    background-color: var(--grv-yellow) !important;
+}
+
+
+/* ================================================================
+   14. BADGES & UNREAD PILLS
+   ================================================================ */
+[class*="numberBadge-"],
+[class*="badge-"] {
+    background-color: var(--grv-red-b) !important;
+}
+
+[class*="unread-"],
+[class*="pill-"] {
+    background-color: var(--grv-fg0) !important;
+}
+
+
+/* ================================================================
+   15. STATUS INDICATORS
+   ================================================================ */
+[class*="status-"][class*="online-"] { background-color: var(--grv-green-b) !important; }
+[class*="status-"][class*="idle-"]   { background-color: var(--grv-y-bright) !important; }
+[class*="status-"][class*="dnd-"]    { background-color: var(--grv-red-b)    !important; }
+
+
+/* ================================================================
+   16. VOICE — speaking ring
+   ================================================================ */
+[class*="speaking-"] {
+    box-shadow: inset 0 0 0 2px var(--grv-aqua-b) !important;
+}
+
+
+/* ================================================================
+   17. THEME CLASS OVERRIDES
+   ================================================================ */
+
+/* Dark mode — reinforce mention colours Discord may reset */
+.theme-dark {
+    --background-mentioned:       rgba(215, 153, 33, 0.07);
+    --background-mentioned-hover: rgba(215, 153, 33, 0.12);
+    --background-message-hover:   rgba(30, 25, 20, 0.08);
+}
+
+/* Light-mode guard — forces the dark Gruvbox palette if the user
+   switches without disabling the theme first. All values reference
+   --grv-* variables; no raw hex escapes this block. */
+.theme-light {
+    --background-primary:    var(--grv-bg0-s);
+    --background-secondary:  var(--grv-bg0);
+    --background-tertiary:   var(--grv-bg-hard);
+    --background-floating:   var(--grv-bg1);
+    --header-primary:        var(--grv-fg0);
+    --header-secondary:      var(--grv-fg4);
+    --text-normal:           var(--grv-fg1);
+    --deprecated-text-input-bg: var(--grv-bg0);
+}
+
+
+/* ================================================================
+   18. BETTERDISCORD UI
+   ================================================================ */
+.bd-addon-list .bd-addon-card {
+    border: 1px solid var(--grv-bg2) !important;
+    background-color: var(--grv-bg0-s) !important;
+    margin-bottom: 18px;
+}
