@@ -153,7 +153,6 @@
     --status-warning-background:         var(--grv-y-bright);
     --status-warning-text:               var(--grv-bg-hard);
     --status-danger:                     var(--grv-red-b);
-    --status-speaking:                   var(--grv-aqua-b) !important;
     --background-feedback-positive:      rgba(184, 187, 38, 0.15);
     --background-feedback-warning:       rgba(250, 189, 47, 0.15);
     --background-feedback-critical:      rgba(251, 73, 52, 0.15);
@@ -277,6 +276,7 @@
     --status-warning-background:         var(--grv-y-bright);
     --status-warning-text:               var(--grv-bg-hard);
     --status-danger:                     var(--grv-red-b);
+    --status-speaking:                   var(--grv-aqua-b);
     --checkbox-border-default:           var(--grv-bg3);
     --checkbox-icon-active:              var(--grv-bg-hard);
     --radio-thumb-background-active:     var(--grv-bg-hard);
