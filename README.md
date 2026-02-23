@@ -51,7 +51,7 @@ A BetterDiscord / Vencord theme built on the [Gruvbox](https://github.com/morhet
 2. Paste the following URL and press Enter:
 
 ```
-https://raw.githubusercontent.com/round-panda/retro-discord-sharp/main/GruvboxDarkSharp.theme.css
+https://raw.githubusercontent.com/round-panda/gruvbox-sharp/main/GruvboxSharp.theme.css
 ```
 
 ### Vencord (Local)
@@ -102,15 +102,3 @@ Please use the [issue tracker](https://github.com/round-panda/retro-discord-shar
 - Your BetterDiscord / Vencord / Vesktop version
 - A screenshot of the broken element
 - The class name of the element if possible (Ctrl + Shift + I)
-
----
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md).
-
----
-
-## Licence
-
-[MIT](LICENSE)
