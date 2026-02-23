@@ -258,9 +258,10 @@ rect[mask*="status"] {
 }
 
 /* ================================================================
-   5b. DYNAMIC MASK CLIP-PATHS
+   5b. DYNAMIC MASK CLIP-PATHS - for status icons
    ================================================================ */
-foreignObject[width="32"][height="32"]:has(~ g) {
+foreignObject[width="32"][height="32"]:has(~ g),
+foreignObject[width="40"][height="40"]:has(~ g) {
     clip-path: polygon(
         0% 0%, 100% 0%,
         100% 62%, 62% 62%,
@@ -268,7 +269,9 @@ foreignObject[width="32"][height="32"]:has(~ g) {
     ) !important;
 }
 
-foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+/* Mobile online icon variant */
+foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
+foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
     clip-path: polygon(
         0% 0%,    100% 0%,
         100% 46.875%, 62.5% 46.875%,
@@ -279,6 +282,8 @@ foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-o
 foreignObject[width="80"][height="80"][mask] ~ g rect {
     transform: translate(16px, 16px) !important;
 }
+
+/* Mobile online icon variant */
 foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
     clip-path: polygon(
         0%    0%,
