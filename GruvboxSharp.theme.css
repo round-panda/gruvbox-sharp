@@ -273,17 +273,6 @@ foreignObject[mask] {
     mask: none !important;
 }
 
-/* 32 px guild icon — bottom-right notch for status badge legibility */
-foreignObject[mask="url(#svg-mask-avatar-status-round-32)"] {
-    mask: none !important;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 62%, 62% 62%, 62% 100%, 0% 100%) !important;
-}
-
-/* 80 px avatar — correct status rect position post-mask-removal */
-foreignObject[mask="url(#svg-mask-avatar-status-round-80)"] ~ g rect {
-    transform: translate(16px, 16px) !important;
-}
-
 /* Guild list icon containers — ensure no inherited clip from Discord */
 [class*="guilds-"] foreignObject {
     mask: none !important;
@@ -298,6 +287,57 @@ rect[mask*="status"] {
     paint-order: stroke fill !important;
 }
 
+/* ================================================================
+   5b. DYNAMIC MASK CLIP-PATHS
+   ================================================================ */
+
+/* General case: 32px avatar with any status indicator
+   Notch at bottom-right for the circular dot (online/idle/dnd)
+   62% = ~19.8 px, matching the original svg-mask-avatar-status-round-32 shape */
+foreignObject[width="32"][height="32"]:has(~ g) {
+    clip-path: polygon(
+        0% 0%, 100% 0%,
+        100% 62%, 62% 62%,
+        62% 100%, 0% 100%
+    ) !important;
+}
+
+/* Mobile/phone override */
+foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+    clip-path: polygon(
+        0% 0%,    100% 0%,
+        100% 46.875%, 62.5% 46.875%,
+        62.5% 100%, 0% 100%
+    ) !important;
+}
+
+
+foreignObject[width="80"][height="80"][mask] ~ g rect {
+    transform: translate(16px, 16px) !important;
+}
+foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+    clip-path: polygon(
+        0%    0%,
+        100%  0%,
+        100%  90%,    /* 72px — top of notch (8px tall) */
+        95%   90%,    /* 76px — left edge of notch (4px wide) */
+        95%   100%,
+        0%    100%
+    ) !important;
+}
+foreignObject[width="120"][height="120"][mask] ~ g rect {
+    transform: translate(25px, 25px) !important;
+}
+foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+    clip-path: polygon(
+        0%    0%,
+        100%  0%,
+        100%  90%,    /* 72px — top of notch (8px tall) */
+        95%   90%,    /* 76px — left edge of notch (4px wide) */
+        95%   100%,
+        0%    100%
+    ) !important;
+}
 
 /* ================================================================
    6.  APP SHELL & BACKGROUNDS
