@@ -464,6 +464,12 @@ a,
     color: var(--grv-blue-b) !important;
 }
 
+h1[class*="defaultColor"],
+h2[class*="defaultColor"],
+h3[class*="defaultColor"] {
+    color: var(--grv-fg0) !important;
+}
+
 
 /* ================================================================
    11. BUTTONS
