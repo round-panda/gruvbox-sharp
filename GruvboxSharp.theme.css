@@ -259,13 +259,7 @@ pre {
 
 
 /* ================================================================
-   5.  SVG GUILD ICON SHARPNESS
-       Discord renders guild icons inside SVG foreignObject elements
-       with mask attributes that CSS border-radius cannot reach.
-       Explicit mask removal + polygon clip-path is intentional
-       for the sharp aesthetic; the cutout preserves status badge
-       clarity at 32 px. The 80 px translation keeps the status
-       outside the PFP after mask removal.
+   5.  SHARP SERVER AND USER ICONS
    ================================================================ */
 
 /* Strip inherited masks from foreignObject shell */
@@ -285,6 +279,12 @@ rect[mask*="status"] {
     stroke: var(--grv-bg-hard) !important;
     stroke-width: 10px !important;
     paint-order: stroke fill !important;
+}
+/* REMOVE STATUS SHADOW CIRCLE
+   Discord *sometimes* renders a black semi-transparent circle behind status dot. */
+[class*="mask__"] circle[fill="black"],
+[class*="svg__"] circle[fill="black"] {
+    display: none !important;
 }
 
 /* ================================================================
