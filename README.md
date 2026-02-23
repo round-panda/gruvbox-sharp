@@ -71,15 +71,6 @@ All palette values are CSS custom properties defined once in `:root`. To adjust 
     --grv-y-bright: #fe8019;
 }
 ```
-
----
-
-## Design Decisions
-
-**Sharp corners everywhere** — the global `* { border-radius: 0 !important; }` rule is intentional. Guild icons require additional SVG mask overrides (see sections 5 and 7 in the source) because Discord renders them via `<foreignObject>` elements that CSS `border-radius` cannot reach.
-
-**IBM Plex Mono UI, IBM Plex Sans chat** — The typeface split is load-order sensitive. The mono font is assigned on the `#app-mount` shell so it inherits normally into sidebars and toolbars. The sans override is then scoped to `[class*="markup"]` and `[role="textbox"]` with a higher specificity selector to win without `!important` on the font property itself (except for Slate editor nodes, where Discord injects inline `font-family` styles).
-
 ---
 
 ## Compatibility
