@@ -508,7 +508,6 @@ li[class*="listItem_"] {
     background-color: var(--grv-bg-hard) !important;
 }
 
-
 div[class*="overlay_"] {
     background-color: var(--grv-bg0) !important;
 }
