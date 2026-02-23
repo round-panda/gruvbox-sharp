@@ -412,7 +412,7 @@ foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status
 
 [class*="searchBar"],
 [class*="searchBox"] {
-    background-color: var(--grv-bg-hard) !important;
+    background-color: var(--grv-bg0) !important;
     border: 1px solid var(--grv-bg2) !important;
 }
 
