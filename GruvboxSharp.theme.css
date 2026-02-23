@@ -176,20 +176,6 @@
     letter-spacing: -0.01em;
 }
 
-/* Smooth transitions for interactive chrome elements */
-[class*="channel-"],
-[class*="listItem-"],
-[class*="item-"],
-[class*="button-"],
-[class*="reaction-"],
-[class*="message-"] {
-    transition:
-        background-color 0.12s ease,
-        color            0.12s ease,
-        border-color     0.12s ease,
-        box-shadow       0.12s ease !important;
-}
-
 /* Scrollbars */
 ::-webkit-scrollbar-thumb {
     background-color: var(--grv-bg2) !important;
@@ -228,11 +214,6 @@
     font-family: 'IBM Plex Sans', sans-serif !important;
     letter-spacing: 0 !important;
 }
-/* — Bottle left username and DM top username — */
-[class*="title_"] {
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: -0.01em;
-}
 
 /* — Code blocks: re-pin to monospace after sans pass —
    Must appear after the sans rules in source order. */
@@ -253,10 +234,15 @@ pre {
     line-height: 1.55 !important;
 }
 
-[class*="title"],
 [class*="item"],
 [class*="channel"] {
-    font-size: 12.5px !important;
+    font-size: 12.5px;
+}
+/* — Bottle left username and DM top username — */
+[class*="title"] {
+    font-size: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: -0.01em;
 }
 
 [class*="name"],
@@ -264,14 +250,11 @@ pre {
     font-size: 15px !important;
 }
 
-[class*="headerText-"],
-[class*="header-"] h1,
-[class*="header-"] h2,
-[class*="header-"] h3 {
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
+#app-mount h3[class*="header_"] div {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 
@@ -282,7 +265,7 @@ pre {
        Explicit mask removal + polygon clip-path is intentional
        for the sharp aesthetic; the cutout preserves status badge
        clarity at 32 px. The 80 px translation keeps the status
-       badge aligned after mask removal.
+       outside the PFP after mask removal.
    ================================================================ */
 
 /* Strip inherited masks from foreignObject shell */
@@ -432,13 +415,13 @@ rect[mask*="status"] {
     border: 1px solid var(--grv-bg2) !important;
 }
 
-/* Remove focus ring — monochrome shell doesn't benefit from it */
+/* Remove focus ring */
 [role="textbox"]:focus-visible,
 [data-slate-editor]:focus-visible,
 [class*="textArea-"]:focus-visible,
 [class*="input-"]:focus-visible,
 [class*="channelTextArea-"]:focus-visible {
-    outline: none !important;
+    outline: none;
 }
 
 
@@ -621,7 +604,7 @@ a,
    18. BETTERDISCORD UI
    ================================================================ */
 .bd-addon-list .bd-addon-card {
-    border: 1px solid var(--grv-bg2) !important;
-    background-color: var(--grv-bg0-s) !important;
+    border: 1px solid var(--grv-bg2);
+    background-color: var(--grv-bg0-s);
     margin-bottom: 18px;
 }
