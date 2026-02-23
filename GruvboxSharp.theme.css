@@ -509,6 +509,10 @@ li[class*="listItem_"] {
 }
 
 
+div[class*="overlay_"] {
+    background-color: var(--grv-bg0) !important;
+}
+
 .bd-addon-list .bd-addon-card {
     border: 1px solid var(--grv-bg2);
     background-color: var(--grv-bg0-s);
