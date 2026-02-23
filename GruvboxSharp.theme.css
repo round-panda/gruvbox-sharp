@@ -515,44 +515,35 @@ a,
    ================================================================ */
 
 /* Primary / brand */
-[class*="lookFilled-"][class*="colorBrand-"],
-[class*="button-"][class*="colorBrand-"] {
-    background-color: var(--grv-yellow) !important;
+[class*="lookFilled"][class*="colorBrand"],
+[class*="button-"][class*="colorBrand"] {
     color: var(--grv-bg-hard) !important;
 }
-[class*="lookFilled-"][class*="colorBrand-"]:hover,
-[class*="button-"][class*="colorBrand-"]:hover {
+[class*="lookFilled"][class*="colorBrand"]:hover,
+[class*="button-"][class*="colorBrand"]:hover {
     background-color: var(--grv-y-bright) !important;
 }
 
 /* Secondary / grey */
-[class*="lookFilled-"][class*="colorGrey-"],
+[class*="lookFilled"][class*="colorGrey-"],
 [class*="button-"][class*="colorGrey-"] {
     background-color: var(--grv-bg1) !important;
     color: var(--grv-fg1) !important;
 }
-[class*="lookFilled-"][class*="colorGrey-"]:hover,
+[class*="lookFilled"][class*="colorGrey-"]:hover,
 [class*="button-"][class*="colorGrey-"]:hover {
     background-color: var(--grv-bg2) !important;
 }
 
 /* Danger */
-[class*="lookFilled-"][class*="colorRed-"],
+[class*="lookFilled"][class*="colorRed-"],
 [class*="button-"][class*="colorRed-"] {
     background-color: var(--grv-red) !important;
 }
-[class*="lookFilled-"][class*="colorRed-"]:hover,
+[class*="lookFilled"][class*="colorRed-"]:hover,
 [class*="button-"][class*="colorRed-"]:hover {
     background-color: var(--grv-red-b) !important;
 }
-
-/* Active nav tabs */
-[class*="navButtonActive-"],
-[class*="tab-"][class*="active-"] {
-    border: 1px solid var(--grv-yellow) !important;
-    color: var(--grv-fg0) !important;
-}
-
 
 /* ================================================================
    12. EMBEDS & REACTIONS
