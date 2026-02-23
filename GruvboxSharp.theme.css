@@ -1,6 +1,6 @@
 /**
  * @name          Gruvbox Sharp
- * @version       1.0
+ * @version       1.5
  * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
  *                typography. Monospace UI chrome, IBM Plex Sans for chat.
  *                Compatible with BetterDiscord and Vencord.
@@ -9,45 +9,11 @@
  * @source        https://github.com/round-panda/gruvbox-sharp
  */
 
-/* IMPORTANT: Enable Discord's built-in Dark Mode before use.
-   ------------------------------------------------------------------ */
+/* IMPORTANT: Enable Discord's built-in Dark Mode before use. */
 
-
-/* ================================================================
-   0.  FONT IMPORT
-   ================================================================ */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 
-/* ================================================================
-   1.  GRUVBOX PALETTE
-       All hex values live here; every rule below references a var.
-       To port to a different palette, edit only this block.
-
-       bg_hard  #1d2021   darkest surface — user panel, code bg
-       bg0_s    #32302f   primary chat surface
-       bg0      #282828   sidebar, input bg
-       bg1      #3c3836   elevated: popouts, modals, header
-       bg2      #504945   borders, selected state
-       bg3      #665c54   muted borders, interactive-muted
-       bg4      #7c6f64   placeholder-level muted
-       fg0      #f9f5d7   brightest text / headings
-       fg1      #ebdbb2   normal body text
-       fg2      #d5c4a1   hovered text
-       fg4      #a89984   muted / channel names
-       yellow   #d79921   accent / brand (replaces blurple)
-       y_bright #fabd2f   accent hover / brand-600
-       blue_b   #83a598   links
-       aqua_b   #8ec07c   speaking ring / positive accent
-       red      #cc241d   danger button fill
-       red_b    #fb4934   danger text / badges
-       green_b  #b8bb26   online status / positive text
-   ================================================================ */
-
-
-/* ================================================================
-   2.  ROOT — Discord token overrides + palette custom properties
-   ================================================================ */
 :root {
     --grv-bg-hard:  #1d2021;
     --grv-bg0-s:    #32302f;
@@ -73,7 +39,7 @@
     --background-secondary-alt:          var(--grv-bg1);
     --background-tertiary:               var(--grv-bg-hard);
     --background-floating:               var(--grv-bg1);
-    --background-accent:                 var(--grv-bg0-s);
+    --background-accent:                 var(--grv-bg2);
     --background-modifier-hover:         rgba(80, 73, 69, 0.30);
     --background-modifier-active:        rgba(80, 73, 69, 0.50);
     --background-modifier-selected:      rgba(80, 73, 69, 0.60);
@@ -81,6 +47,43 @@
     --background-mentioned:              rgba(215, 153, 33, 0.07);
     --background-mentioned-hover:        rgba(215, 153, 33, 0.12);
     --background-message-hover:          rgba(30, 25, 20, 0.08);
+
+    --app-frame-background:              var(--grv-bg-hard);
+    --home-background:                   var(--grv-bg0-s);
+    --chat-background:                   var(--grv-bg0-s);
+    --chat-background-default:           var(--grv-bg0-s);
+    --chat-border:                       var(--grv-bg-hard);
+    --chat-text-muted:                   var(--grv-fg4);
+    --__header-bar-background:           var(--grv-bg1);
+    --bg-surface-raised:                 var(--grv-bg1);
+    --background-gradient-highest:       var(--grv-bg0-s);
+
+    --background-surface-high:           var(--grv-bg0-s);
+    --background-surface-higher:         var(--grv-bg1);
+    --background-surface-highest:        var(--grv-bg2);
+
+    --background-base-lowest:            var(--grv-bg-hard);
+    --background-base-lower:             var(--grv-bg0);
+    --background-base-low:               var(--grv-bg0-s);
+
+    --background-mod-muted:              rgba(80, 73, 69, 0.05);
+    --background-mod-normal:             rgba(80, 73, 69, 0.15);
+    --background-mod-subtle:             rgba(80, 73, 69, 0.25);
+    --background-mod-strong:             rgba(80, 73, 69, 0.45);
+
+    --card-background-default:           var(--grv-bg1);
+    --custom-channel-members-bg:         var(--grv-bg0);
+    --custom-status-bubble-background:   var(--grv-bg-hard);
+    --custom-status-bubble-background-color: var(--grv-bg0);
+
+    --border-subtle:                     var(--grv-bg0-s);
+    --border-muted:                      var(--grv-bg1);
+    --border-normal:                     var(--grv-bg-hard);
+    --border-strong:                     var(--grv-bg0);
+    --deprecated-text-input-border:      var(--grv-bg2);
+    --deprecated-text-input-border-hover: var(--grv-bg3);
+    --deprecated-text-input-border-disabled: var(--grv-bg1);
+    --deprecated-text-input-prefix:      var(--grv-fg2);
 
     --header-primary:                    var(--grv-fg0);
     --header-secondary:                  var(--grv-fg4);
@@ -90,6 +93,14 @@
     --text-positive:                     var(--grv-green-b);
     --text-warning:                      var(--grv-y-bright);
     --text-danger:                       var(--grv-red-b);
+    --text-default:                      var(--grv-fg1);
+    --text-strong:                       var(--grv-fg0);
+    --text-subtle:                       var(--grv-fg2);
+    --text-brand:                        var(--grv-yellow);
+    --text-feedback-positive:            var(--grv-green-b);
+    --text-feedback-critical:            var(--grv-red-b);
+    --text-feedback-warning:             var(--grv-y-bright);
+    --text-feedback-info:                var(--grv-blue-b);
 
     --interactive-normal:                var(--grv-fg4);
     --interactive-hover:                 var(--grv-fg2);
@@ -107,6 +118,38 @@
     --brand-experiment-600:              var(--grv-y-bright);
     --control-brand-foreground:          var(--grv-y-bright);
     --control-brand-foreground-new:      var(--grv-y-bright);
+    --brand-500:                         var(--grv-yellow);
+    --brand-560:                         var(--grv-yellow);
+    --brand-600:                         var(--grv-y-bright);
+
+    --control-primary-background-default: var(--grv-yellow);
+    --control-primary-background-hover:   var(--grv-y-bright);
+    --control-primary-background-active:  var(--grv-y-bright);
+    --control-secondary-background-default: var(--grv-bg2);
+    --control-secondary-background-hover:   var(--grv-bg3);
+    --control-secondary-background-active:  var(--grv-bg3);
+    --control-secondary-border-default:     var(--grv-bg2);
+    --control-secondary-text-default:       var(--grv-fg1);
+    --control-secondary-text-hover:         var(--grv-fg1);
+
+    --status-positive:                   var(--grv-green-b);
+    --status-positive-background:        var(--grv-green-b);
+    --status-positive-text:              var(--grv-bg-hard);
+    --status-warning:                    var(--grv-y-bright);
+    --status-warning-background:         var(--grv-y-bright);
+    --status-warning-text:               var(--grv-bg-hard);
+    --status-danger:                     var(--grv-red-b);
+    --background-feedback-positive:      rgba(184, 187, 38, 0.15);
+    --background-feedback-warning:       rgba(250, 189, 47, 0.15);
+    --background-feedback-critical:      rgba(251, 73, 52, 0.15);
+    --background-feedback-info:          rgba(131, 165, 152, 0.15);
+    --background-feedback-notification:  var(--grv-red-b);
+    --badge-notification-background:     var(--grv-red-b);
+    --icon-feedback-positive:            var(--grv-green-b);
+    --icon-feedback-warning:             var(--grv-y-bright);
+    --icon-feedback-critical:            var(--grv-red-b);
+    --icon-feedback-info:                var(--grv-blue-b);
+    --icon-feedback-notification:        var(--grv-red-b);
 
     --scrollbar-thin-thumb:              var(--grv-bg2);
     --scrollbar-thin-track:              transparent;
@@ -126,14 +169,14 @@
     --info-help-background:  rgba(131, 165, 152, 0.15);
     --info-help-foreground:  var(--grv-blue-b);
     --info-help-text:        var(--grv-fg1);
-    --status-warning-text:   var(--grv-bg-hard);
     --textbox-markdown-syntax: var(--grv-bg4);
 
-    --logo-primary: var(--grv-fg0);
-
-    --border-radius: 0px;
-    --border-color:  var(--grv-bg2);
-    --divide-color:  var(--grv-yellow);
+    --logo-primary:                      var(--grv-fg0);
+    --message-reacted-background-default: rgba(215, 153, 33, 0.30);
+    --message-reacted-text-default:       var(--grv-yellow);
+    --checkbox-border-default:            var(--grv-bg3);
+    --checkbox-icon-active:               var(--grv-bg-hard);
+    --radio-thumb-background-active:      var(--grv-bg-hard);
 
     --deprecated-panel-background:                 var(--grv-bg1);
     --deprecated-card-bg:                          var(--grv-bg0);
@@ -142,23 +185,94 @@
     --deprecated-quickswitcher-input-background:   var(--grv-bg0);
     --deprecated-quickswitcher-input-placeholder:  rgba(235, 219, 178, 0.3);
     --deprecated-text-input-bg:                    var(--grv-bg0);
-    --deprecated-text-input-border:                var(--grv-bg2);
-    --deprecated-text-input-border-hover:          var(--grv-bg3);
-    --deprecated-text-input-border-disabled:       var(--grv-bg1);
-    --deprecated-text-input-prefix:                var(--grv-fg2);
+
+    --border-radius: 0px;
+    --border-color:  var(--grv-bg2);
+    --divide-color:  var(--grv-yellow);
 }
 
 
-/* ================================================================
-   3.  GLOBAL RESETS
-   ================================================================ */
+.visual-refresh.theme-dark,
+.visual-refresh .theme-dark {
+    --app-frame-background:              var(--grv-bg-hard);
+    --home-background:                   var(--grv-bg0-s);
+    --chat-background:                   var(--grv-bg0-s);
+    --chat-background-default:           var(--grv-bg0-s);
+    --chat-border:                       var(--grv-bg-hard);
+    --__header-bar-background:           var(--grv-bg1) !important;
+    --bg-surface-raised:                 var(--grv-bg1);
+    --background-gradient-highest:       var(--grv-bg0-s);
+    --background-surface-high:           var(--grv-bg0-s) !important;
+    --background-surface-higher:         var(--grv-bg1) !important;
+    --background-surface-highest:        var(--grv-bg2) !important;
+    --background-base-lowest:            var(--grv-bg-hard) !important;
+    --background-base-lower:             var(--grv-bg0) !important;
+    --background-base-low:               var(--grv-bg0-s) !important;
+    --background-secondary-alt:          var(--grv-bg1) !important;
+    --background-accent:                 var(--grv-bg2) !important;
+    --background-mod-muted:              rgba(80, 73, 69, 0.05);
+    --background-mod-normal:             rgba(80, 73, 69, 0.15);
+    --background-mod-subtle:             rgba(80, 73, 69, 0.25) !important;
+    --background-mod-strong:             rgba(80, 73, 69, 0.45) !important;
+    --card-background-default:           var(--grv-bg1) !important;
+    --custom-channel-members-bg:         var(--grv-bg0);
+    --custom-status-bubble-background:   var(--grv-bg-hard) !important;
+    --custom-status-bubble-background-color: var(--grv-bg0) !important;
+    --border-subtle:                     var(--grv-bg0-s) !important;
+    --border-muted:                      var(--grv-bg1);
+    --border-normal:                     var(--grv-bg-hard);
+    --border-strong:                     var(--grv-bg0);
+    --text-default:                      var(--grv-fg1);
+    --text-muted:                        var(--grv-fg4) !important;
+    --text-link:                         var(--grv-blue-b) !important;
+    --text-strong:                       var(--grv-fg0) !important;
+    --text-subtle:                       var(--grv-fg2);
+    --text-brand:                        var(--grv-yellow);
+    --text-feedback-positive:            var(--grv-green-b);
+    --text-feedback-critical:            var(--grv-red-b);
+    --text-feedback-warning:             var(--grv-y-bright);
+    --text-feedback-info:                var(--grv-blue-b);
+    --message-reacted-background-default: rgba(215, 153, 33, 0.30) !important;
+    --message-reacted-text-default:       var(--grv-yellow);
+    --brand-500:                         var(--grv-yellow) !important;
+    --brand-530:                         var(--grv-yellow);
+    --brand-560:                         var(--grv-yellow);
+    --brand-600:                         var(--grv-y-bright);
+    --background-feedback-positive:      rgba(184, 187, 38, 0.15);
+    --background-feedback-warning:       rgba(250, 189, 47, 0.15);
+    --background-feedback-critical:      rgba(251, 73, 52, 0.15);
+    --background-feedback-info:          rgba(131, 165, 152, 0.15);
+    --background-feedback-notification:  var(--grv-red-b);
+    --badge-notification-background:     var(--grv-red-b);
+    --icon-feedback-positive:            var(--grv-green-b);
+    --icon-feedback-warning:             var(--grv-y-bright);
+    --icon-feedback-critical:            var(--grv-red-b);
+    --icon-feedback-notification:        var(--grv-red-b);
+    --status-positive:                   var(--grv-green-b);
+    --status-positive-background:        var(--grv-green-b);
+    --status-positive-text:              var(--grv-bg-hard);
+    --status-warning:                    var(--grv-y-bright);
+    --status-warning-background:         var(--grv-y-bright);
+    --status-warning-text:               var(--grv-bg-hard);
+    --status-danger:                     var(--grv-red-b);
+    --checkbox-border-default:           var(--grv-bg3);
+    --checkbox-icon-active:              var(--grv-bg-hard);
+    --radio-thumb-background-active:     var(--grv-bg-hard);
+    --control-primary-background-default: var(--grv-yellow);
+    --control-primary-background-hover:   var(--grv-y-bright);
+    --control-primary-background-active:  var(--grv-y-bright);
+    --control-secondary-background-default: var(--grv-bg2) !important;
+    --control-secondary-border-default:     var(--grv-bg2);
+    --control-secondary-text-default:       var(--grv-fg1) !important;
+    --control-secondary-text-hover:         var(--grv-fg1);
+}
+
+
 * {
     border-radius: 0 !important;
 }
 
-#app-mount,
-[class*="app-"],
-[class*="layers-"] {
+#app-mount {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     letter-spacing: -0.01em;
 }
@@ -173,9 +287,6 @@
 }
 
 
-/* ================================================================
-   4.  TYPOGRAPHY
-   ================================================================ */
 #app-mount [class*="markup"],
 #app-mount [class*="markup"] *,
 #app-mount [class*="messageContent"],
@@ -187,8 +298,7 @@
 [role="textbox"],
 [role="textbox"] *,
 [data-slate-editor],
-[data-slate-editor] *,
-[class*="placeholder"] {
+[data-slate-editor] * {
     font-family: 'IBM Plex Sans', sans-serif !important;
     letter-spacing: 0 !important;
 }
@@ -202,48 +312,14 @@ pre {
     border: 1px solid var(--grv-bg2) !important;
 }
 
-[class*="message-"],
-[class*="markup-"],
-[class*="content-"] {
-    font-size: 13.5px !important;
-    line-height: 1.55 !important;
-}
 
-[class*="item"],
-[class*="channel"] {
-    font-size: 12.5px;
-}
-
-[class*="title-"] {
-    font-size: 14px;
-    font-family: 'IBM Plex Mono', monospace;
-    letter-spacing: -0.01em;
-}
-
-[class*="name-"],
-[class*="username-"] {
-    font-size: 15px !important;
-}
-
-#app-mount h3[class*="header_"] div {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-
-/* ================================================================
-   5.  SHARP SERVER AND USER ICONS
-   ================================================================ */
 foreignObject[mask] {
     mask: none !important;
 }
 
-[class*="guilds-"] foreignObject {
-    mask: none !important;
-    width: 34px !important;
-    height: 34px !important;
+[class*="mask"] circle[fill="black"],
+[class*="svg"] circle[fill="black"] {
+    display: none !important;
 }
 
 rect[mask*="status"] {
@@ -252,14 +328,6 @@ rect[mask*="status"] {
     paint-order: stroke fill !important;
 }
 
-[class*="mask__"] circle[fill="black"],
-[class*="svg__"] circle[fill="black"] {
-    display: none !important;
-}
-
-/* ================================================================
-   5b. DYNAMIC MASK CLIP-PATHS - for status icons
-   ================================================================ */
 foreignObject[width="32"][height="32"]:has(~ g),
 foreignObject[width="40"][height="40"]:has(~ g) {
     clip-path: polygon(
@@ -269,7 +337,6 @@ foreignObject[width="40"][height="40"]:has(~ g) {
     ) !important;
 }
 
-/* Mobile online icon variant */
 foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
 foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
     clip-path: polygon(
@@ -282,8 +349,6 @@ foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-o
 foreignObject[width="80"][height="80"][mask] ~ g rect {
     transform: translate(16px, 16px) !important;
 }
-
-/* Mobile online icon variant */
 foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
     clip-path: polygon(
         0%    0%,
@@ -310,60 +375,8 @@ foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status
 }
 
 
-/* ================================================================
-   6.  APP SHELL & BACKGROUNDS
-   ================================================================ */
-#app-mount,
-[class*="app-"],
-[class*="layers-"],
-[class*="bg-"] {
-    background-color: var(--grv-bg0-s) !important;
-}
-
-[class*="chat-"],
-[class*="content-"],
-[class*="messagesWrapper-"],
-[class*="scroller-"] {
-    background-color: var(--grv-bg0-s) !important;
-}
-
-[class*="guilds-"],
-[class*="sidebar-"],
-[class*="members-"] {
-    background-color: var(--grv-bg0) !important;
-}
-
-[class*="header-"],
-[class*="toolbar-"] {
-    background-color: var(--grv-bg1) !important;
-}
-
-[class*="popout-"],
-[class*="modal-"],
-[class*="tooltip-"],
-[class*="menu-"],
-[class*="autocomplete-"],
-[class*="layer-"] {
-    background-color: var(--grv-bg1) !important;
-}
-
-[class*="textArea-"],
-[class*="input-"],
-[class*="channelTextArea-"] {
-    background-color: var(--grv-bg0) !important;
-    color: var(--grv-fg1) !important;
-}
-
-[class*="panels-"] {
-    background-color: var(--grv-bg-hard) !important;
-}
-
-
-/* ================================================================
-   7.  GUILD TAG & SERVER POPOUT SHARPNESS
-   ================================================================ */
-[class*="guilds-"] [class*="layerContainer"],
-[class*="guilds-"] [class*="layer-"],
+[class*="guilds"] [class*="layerContainer"],
+[class*="guilds"] [class*="layer"],
 [class*="guildTooltip"],
 [class*="guildPopout"] {
     clip-path: inset(0) !important;
@@ -371,210 +384,103 @@ foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status
     background-color: var(--grv-bg1) !important;
 }
 
-[class*="folder-"],
+[class*="folder"],
 [class*="folderEndButton"],
-[class*="folderPreview"] {
-    clip-path: inset(0) !important;
-}
-
+[class*="folderPreview"],
 [class*="blobContainer"],
 [class*="iconBadge"] {
     clip-path: inset(0) !important;
 }
 
 
-/* ================================================================
-   8.  BORDERS & DIVIDERS
-   ================================================================ */
-[class*="sidebar-"] {
-    border-left:  1px solid var(--grv-bg2) !important;
-    border-right: 1px solid var(--grv-bg2) !important;
-}
-
-[class*="members-"] {
-    border-left: 1px solid var(--grv-bg2) !important;
-}
-
-[class*="panels-"] {
-    border-top: 1px solid var(--grv-bg2) !important;
-}
-
-[class*="popout-"],
-[class*="menu-"],
-[class*="autocomplete-"] {
+code, pre,
+#app-mount [class*="markup"] code,
+#app-mount [class*="markup"] pre {
+    background-color: var(--grv-bg-hard) !important;
     border: 1px solid var(--grv-bg2) !important;
 }
 
-[class*="divider-"] {
-    border-color:     var(--grv-bg2) !important;
-    background-color: var(--grv-bg2) !important;
-}
-
-[class*="searchBar"],
-[class*="searchBox"] {
-    background-color: var(--grv-bg0) !important;
-    border: 1px solid var(--grv-bg2) !important;
-}
-
-[role="textbox"]:focus-visible,
-[data-slate-editor]:focus-visible,
-[class*="textArea-"]:focus-visible,
-[class*="input-"]:focus-visible,
-[class*="channelTextArea-"]:focus-visible {
-    outline: none;
-}
-
-
-/* ================================================================
-   9.  INTERACTIVE STATES
-   ================================================================ */
-[class*="channel-"]:hover,
-[class*="listItem-"]:hover,
-[class*="item-"]:hover {
-    background-color: rgba(80, 73, 69, 0.40) !important;
-}
-
-[class*="selected-"],
-[class*="active-"][class*="channel-"] {
-    background-color: rgba(80, 73, 69, 0.60) !important;
-}
-
-[class*="message-"]:hover,
-[class*="messageListItem"]:hover {
-    background-color: rgba(80, 73, 69, 0.15) !important;
-}
-
-
-/* ================================================================
-   10. TEXT COLOURS
-   ================================================================ */
-[class*="username-"],
-[class*="headerText"],
-h1, h2, h3 {
-    color: var(--grv-fg0) !important;
-}
-
-[class*="colorStandard"],
-[class*="defaultColor"] {
-    color: var(--grv-fg1) !important;
-}
-
-[class*="colorMuted"],
-[class*="muted-"] {
-    color: var(--grv-fg4) !important;
-}
-
-a,
-[class*="anchor-"] {
-    color: var(--grv-blue-b) !important;
-}
-
-h1[class*="defaultColor"],
-h2[class*="defaultColor"],
-h3[class*="defaultColor"] {
-    color: var(--grv-fg0) !important;
-}
-
-
-/* ================================================================
-   11. BUTTONS
-   Voice panel icon buttons (camera, screenshare, soundboard) use
-   currentColor for their SVG fill and carry the "buttonColor"
-   class. Excluding them with :not keeps their icons their original
-   blurple rather than being overridden to near-black.
-   ================================================================ */
-
-/* Primary / brand — text color only; excludes voice panel icon buttons */
-[class*="lookFilled"][class*="colorBrand"]:not([class*="buttonColor"]),
-[class*="button"][class*="colorBrand"]:not([class*="buttonColor"]) {
-    color: var(--grv-bg-hard) !important;
-}
-
-/* Secondary / grey */
-[class*="lookFilled"][class*="colorGrey"],
-[class*="button"][class*="colorGrey"] {
-    background-color: var(--grv-bg1) !important;
-    color: var(--grv-fg1) !important;
-}
-[class*="lookFilled"][class*="colorGrey"]:hover,
-[class*="button"][class*="colorGrey"]:hover {
-    background-color: var(--grv-bg2) !important;
-}
-
-/* Danger */
-[class*="lookFilled"][class*="colorRed"],
-[class*="button"][class*="colorRed"] {
-    background-color: var(--grv-red) !important;
-}
-[class*="lookFilled"][class*="colorRed"]:hover,
-[class*="button"][class*="colorRed"]:hover {
-    background-color: var(--grv-red-b) !important;
-}
-
-
-/* ================================================================
-   12. EMBEDS & REACTIONS
-   ================================================================ */
-[class*="embed-"] {
+div[class*="embed_"],
+div[class*="embedWrapper_"] {
     background-color: var(--grv-bg1) !important;
     border-left: 3px solid var(--grv-yellow) !important;
 }
 
-[class*="reaction-"] {
+div[class*="reaction_"] {
     background-color: var(--grv-bg1) !important;
     border: 1px solid var(--grv-bg2) !important;
 }
-
-[class*="reactionMe"] {
+div[class*="reactionMe_"] {
     background-color: rgba(215, 153, 33, 0.20) !important;
     border: 1px solid var(--grv-yellow) !important;
 }
 
-
-/* ================================================================
-   13. MENTIONS
-   ================================================================ */
-[class*="mentioned-"] {
+div[class*="mentioned_"] {
     background-color: rgba(215, 153, 33, 0.07) !important;
 }
-[class*="mentioned-"]::before {
+div[class*="mentioned_"]::before {
     background-color: var(--grv-yellow) !important;
 }
 
-
-/* ================================================================
-   14. BADGES & UNREAD PILLS
-   ================================================================ */
-[class*="numberBadge"],
-[class*="badge-"] {
+div[class*="numberBadge_"],
+div[class*="badge_"],
+span[class*="numberBadge_"],
+span[class*="badge_"] {
     background-color: var(--grv-red-b) !important;
 }
 
-[class*="unread-"],
-[class*="pill-"] {
+span[class^="unreadPill_"] {
     background-color: var(--grv-fg0) !important;
 }
 
-
-/* ================================================================
-   15. STATUS INDICATORS
-   ================================================================ */
-[class*="status-"][class*="online-"] { background-color: var(--grv-green-b) !important; }
-[class*="status-"][class*="idle-"]   { background-color: var(--grv-y-bright) !important; }
-[class*="status-"][class*="dnd-"]    { background-color: var(--grv-red-b)    !important; }
-
-
-/* ================================================================
-   16. VOICE — speaking ring
-   ================================================================ */
-[class*="speaking"] {
+div[class*="speaking_"] {
     box-shadow: inset 0 0 0 2px var(--grv-aqua-b) !important;
 }
 
+section[class*="panels_"] {
+    flex-shrink: 0 !important;
+    min-height: 52px !important;
+    background-color: var(--grv-bg-hard) !important;
+}
 
-/* ================================================================
-   17. THEME CLASS OVERRIDES
-   ================================================================ */
+div[class*="accountProfileCard_"] *,
+div[class*="nameTag_"] *,
+div[class*="customStatus_"] * {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    letter-spacing: 0 !important;
+    line-height: normal !important;
+}
+
+div[class*="listItemWrapper_"],
+li[class*="listItem_"] {
+    overflow: visible !important;
+}
+
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"] {
+    background-color: var(--grv-red) !important;
+}
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover,
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover {
+    background-color: var(--grv-red-b) !important;
+}
+
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"],
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"] {
+    background-color: var(--grv-bg1) !important;
+    color: var(--grv-fg1) !important;
+}
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover,
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover {
+    background-color: var(--grv-bg2) !important;
+}
+
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])),
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])) {
+    color: var(--grv-bg-hard) !important;
+}
+
+
 .theme-dark {
     --background-mentioned:       rgba(215, 153, 33, 0.07);
     --background-mentioned-hover: rgba(215, 153, 33, 0.12);
@@ -593,9 +499,16 @@ h3[class*="defaultColor"] {
 }
 
 
-/* ================================================================
-   18. BETTERDISCORD UI
-   ================================================================ */
+[class^="privateChannels_"] [class^="buttonChildrenWrapper_"],
+[class^="privateChannels_"] [class^="buttonChildren_"] {
+    background-color: var(--grv-bg-hard) !important;
+}
+
+[class^="privateChannels_"] button:has([class^="buttonChildrenWrapper_"]) {
+    background-color: var(--grv-bg-hard) !important;
+}
+
+
 .bd-addon-list .bd-addon-card {
     border: 1px solid var(--grv-bg2);
     background-color: var(--grv-bg0-s);
