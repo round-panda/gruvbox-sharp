@@ -11,10 +11,16 @@
 
 /* IMPORTANT: Enable Discord's built-in Dark Mode before use. */
 
+
+/* 1. FONTS */
+
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 
+/* 2. DESIGN TOKENS  —  Base palette & Discord variable mappings */
+
 :root {
+    /* --- Gruvbox palette --- */
     --grv-bg-hard:  #1d2021;
     --grv-bg0-s:    #32302f;
     --grv-bg0:      #282828;
@@ -34,6 +40,7 @@
     --grv-red-b:    #fb4934;
     --grv-green-b:  #b8bb26;
 
+    /* --- Backgrounds --- */
     --background-primary:                var(--grv-bg0-s);
     --background-secondary:              var(--grv-bg0);
     --background-secondary-alt:          var(--grv-bg1);
@@ -76,6 +83,7 @@
     --custom-status-bubble-background:   var(--grv-bg-hard);
     --custom-status-bubble-background-color: var(--grv-bg0);
 
+    /* --- Borders --- */
     --border-subtle:                     var(--grv-bg0-s);
     --border-muted:                      var(--grv-bg1);
     --border-normal:                     var(--grv-bg-hard);
@@ -85,6 +93,7 @@
     --deprecated-text-input-border-disabled: var(--grv-bg1);
     --deprecated-text-input-prefix:      var(--grv-fg2);
 
+    /* --- Typography --- */
     --header-primary:                    var(--grv-fg0);
     --header-secondary:                  var(--grv-fg4);
     --text-normal:                       var(--grv-fg1);
@@ -102,17 +111,20 @@
     --text-feedback-warning:             var(--grv-y-bright);
     --text-feedback-info:                var(--grv-blue-b);
 
+    /* --- Interactive states --- */
     --interactive-normal:                var(--grv-fg4);
     --interactive-hover:                 var(--grv-fg2);
     --interactive-active:                var(--grv-fg0);
     --interactive-muted:                 var(--grv-bg3);
 
+    /* --- Channel & input surfaces --- */
     --channels-default:                  var(--grv-fg4);
     --channeltextarea-background:        var(--grv-bg0);
     --userarea-background:               var(--grv-bg-hard);
     --voice-color:                       var(--grv-yellow);
     --activity-card-background:          var(--grv-bg0-s);
 
+    /* --- Brand / accent --- */
     --brand-experiment:                  var(--grv-yellow);
     --brand-experiment-560:              var(--grv-yellow);
     --brand-experiment-600:              var(--grv-y-bright);
@@ -122,6 +134,7 @@
     --brand-560:                         var(--grv-yellow);
     --brand-600:                         var(--grv-y-bright);
 
+    /* --- Controls --- */
     --control-primary-background-default: var(--grv-yellow);
     --control-primary-background-hover:   var(--grv-y-bright);
     --control-primary-background-active:  var(--grv-y-bright);
@@ -132,6 +145,7 @@
     --control-secondary-text-default:       var(--grv-fg1);
     --control-secondary-text-hover:         var(--grv-fg1);
 
+    /* --- Status --- */
     --status-positive:                   var(--grv-green-b);
     --status-positive-background:        var(--grv-green-b);
     --status-positive-text:              var(--grv-bg-hard);
@@ -151,6 +165,7 @@
     --icon-feedback-info:                var(--grv-blue-b);
     --icon-feedback-notification:        var(--grv-red-b);
 
+    /* --- Scrollbars --- */
     --scrollbar-thin-thumb:              var(--grv-bg2);
     --scrollbar-thin-track:              transparent;
     --scrollbar-auto-thumb:              var(--grv-bg2);
@@ -158,11 +173,13 @@
     --scrollbar-auto-scrollbar-color-thumb: var(--grv-bg2);
     --scrollbar-auto-scrollbar-color-track: rgba(40, 40, 40, 0.3);
 
+    /* --- Elevation / Shadows --- */
     --elevation-low:    0 1px 0 rgba(30, 25, 20, 0.3), 0 2px 0 rgba(30, 25, 20, 0.1);
     --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.2);
     --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.3);
     --elevation-stroke: 0 0 0 1px rgba(30, 25, 20, 0.2);
 
+    /* --- Feedback & misc --- */
     --info-positive-text:    var(--grv-bg-hard);
     --info-warning-text:     var(--grv-bg-hard);
     --info-danger-text:      #ffffff;
@@ -178,6 +195,7 @@
     --checkbox-icon-active:               var(--grv-bg-hard);
     --radio-thumb-background-active:      var(--grv-bg-hard);
 
+    /* --- Deprecated / legacy mappings --- */
     --deprecated-panel-background:                 var(--grv-bg1);
     --deprecated-card-bg:                          var(--grv-bg0);
     --deprecated-card-editable-bg:                 var(--grv-bg0);
@@ -186,11 +204,14 @@
     --deprecated-quickswitcher-input-placeholder:  rgba(235, 219, 178, 0.3);
     --deprecated-text-input-bg:                    var(--grv-bg0);
 
+    /* --- Global shape & divide --- */
     --border-radius: 0px;
     --border-color:  var(--grv-bg2);
     --divide-color:  var(--grv-yellow);
 }
 
+
+/* 3. VISUAL REFRESH OVERRIDES */
 
 .visual-refresh.theme-dark,
 .visual-refresh .theme-dark {
@@ -268,220 +289,7 @@
 }
 
 
-* {
-    border-radius: 0 !important;
-}
-
-#app-mount {
-    font-family: 'IBM Plex Mono', 'Courier New', monospace;
-    letter-spacing: -0.01em;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--grv-bg2) !important;
-    border-radius: 0 !important;
-}
-::-webkit-scrollbar-track {
-    background-color: var(--grv-bg0) !important;
-    border-radius: 0 !important;
-}
-
-
-#app-mount [class*="markup"],
-#app-mount [class*="markup"] *,
-#app-mount [class*="messageContent"],
-#app-mount [class*="messageContent"] * {
-    font-family: 'IBM Plex Sans', sans-serif;
-    letter-spacing: 0;
-}
-
-[role="textbox"],
-[role="textbox"] *,
-[data-slate-editor],
-[data-slate-editor] * {
-    font-family: 'IBM Plex Sans', sans-serif !important;
-    letter-spacing: 0 !important;
-}
-
-#app-mount [class*="markup"] code,
-#app-mount [class*="markup"] pre,
-code,
-pre {
-    font-family: 'IBM Plex Mono', monospace !important;
-    background-color: var(--grv-bg-hard) !important;
-    border: 1px solid var(--grv-bg2) !important;
-}
-
-
-foreignObject[mask] {
-    mask: none !important;
-}
-
-[class*="mask"] circle[fill="black"],
-[class*="svg"] circle[fill="black"],
-[class*="mask"] circle[fill="white"],
-[class*="svg"] circle[fill="white"] {
-    display: none !important;
-}
-
-rect[mask*="status"] {
-    stroke: var(--grv-bg-hard) !important;
-    stroke-width: 10px !important;
-    paint-order: stroke fill !important;
-}
-
-foreignObject[width="32"][height="32"]:has(~ g),
-foreignObject[width="40"][height="40"]:has(~ g) {
-    clip-path: polygon(
-        0% 0%, 100% 0%,
-        100% 62%, 62% 62%,
-        62% 100%, 0% 100%
-    ) !important;
-}
-
-foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
-foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-    clip-path: polygon(
-        0% 0%,    100% 0%,
-        100% 46.875%, 62.5% 46.875%,
-        62.5% 100%, 0% 100%
-    ) !important;
-}
-
-foreignObject[width="80"][height="80"][mask] ~ g rect {
-    transform: translate(16px, 16px) !important;
-}
-foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-    clip-path: polygon(
-        0%    0%,
-        100%  0%,
-        100%  90%,
-        95%   90%,
-        95%   100%,
-        0%    100%
-    ) !important;
-}
-
-foreignObject[width="120"][height="120"][mask] ~ g rect {
-    transform: translate(25px, 25px) !important;
-}
-foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-    clip-path: polygon(
-        0%    0%,
-        100%  0%,
-        100%  88.7%,
-        95%   88.7%,
-        95%   100%,
-        0%    100%
-    ) !important;
-}
-
-
-[class*="guilds"] [class*="layerContainer"],
-[class*="guilds"] [class*="layer"],
-[class*="guildTooltip"],
-[class*="guildPopout"] {
-    clip-path: inset(0) !important;
-    border: 1px solid var(--grv-bg2) !important;
-    background-color: var(--grv-bg1) !important;
-}
-
-[class*="folder"],
-[class*="folderEndButton"],
-[class*="folderPreview"],
-[class*="blobContainer"],
-[class*="iconBadge"] {
-    clip-path: inset(0) !important;
-}
-
-
-code, pre,
-#app-mount [class*="markup"] code,
-#app-mount [class*="markup"] pre {
-    background-color: var(--grv-bg-hard) !important;
-    border: 1px solid var(--grv-bg2) !important;
-}
-
-div[class*="embed_"],
-div[class*="embedWrapper_"] {
-    background-color: var(--grv-bg1) !important;
-    border-left: 3px solid var(--grv-yellow) !important;
-}
-
-div[class*="reaction_"] {
-    background-color: var(--grv-bg1) !important;
-    border: 1px solid var(--grv-bg2) !important;
-}
-div[class*="reactionMe_"] {
-    background-color: rgba(215, 153, 33, 0.20) !important;
-    border: 1px solid var(--grv-yellow) !important;
-}
-
-div[class*="mentioned_"] {
-    background-color: rgba(215, 153, 33, 0.07) !important;
-}
-div[class*="mentioned_"]::before {
-    background-color: var(--grv-yellow) !important;
-}
-
-div[class*="numberBadge_"],
-div[class*="badge_"],
-span[class*="numberBadge_"],
-span[class*="badge_"] {
-    background-color: var(--grv-red-b) !important;
-}
-
-span[class^="unreadPill_"] {
-    background-color: var(--grv-fg0) !important;
-}
-
-div[class*="speaking_"] {
-    box-shadow: inset 0 0 0 2px var(--grv-aqua-b) !important;
-}
-
-section[class*="panels_"] {
-    flex-shrink: 0 !important;
-    min-height: 52px !important;
-    background-color: var(--grv-bg-hard) !important;
-}
-
-div[class*="accountProfileCard_"] *,
-div[class*="nameTag_"] *,
-div[class*="customStatus_"] * {
-    font-family: 'IBM Plex Sans', sans-serif !important;
-    letter-spacing: 0 !important;
-    line-height: normal !important;
-}
-
-div[class*="listItemWrapper_"],
-li[class*="listItem_"] {
-    overflow: visible !important;
-}
-
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"] {
-    background-color: var(--grv-red) !important;
-}
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover,
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover {
-    background-color: var(--grv-red-b) !important;
-}
-
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"],
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"] {
-    background-color: var(--grv-bg1) !important;
-    color: var(--grv-fg1) !important;
-}
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover,
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover {
-    background-color: var(--grv-bg2) !important;
-}
-
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])),
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])) {
-    color: var(--grv-bg-hard) !important;
-}
-
+/* 4. THEME VARIANTS  —  Dark & light fallback overrides */
 
 .theme-dark {
     --background-mentioned:       rgba(215, 153, 33, 0.07);
@@ -501,6 +309,181 @@ li[class*="listItem_"] {
 }
 
 
+/* 5. GLOBAL RESET */
+
+* {
+    border-radius: 0 !important;
+}
+
+
+/* 6. TYPOGRAPHY  —  Font assignments & overrides */
+
+/* Base UI font: monospace chrome */
+#app-mount {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    letter-spacing: -0.01em;
+}
+
+/* Chat message content: proportional sans */
+#app-mount [class*="markup"],
+#app-mount [class*="markup"] *,
+#app-mount [class*="messageContent"],
+#app-mount [class*="messageContent"] * {
+    font-family: 'IBM Plex Sans', sans-serif;
+    letter-spacing: 0;
+}
+
+/* Message input / text editor */
+[role="textbox"],
+[role="textbox"] *,
+[data-slate-editor],
+[data-slate-editor] * {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    letter-spacing: 0 !important;
+}
+
+/* User area / name tags */
+div[class*="accountProfileCard_"] *,
+div[class*="nameTag_"] *,
+div[class*="customStatus_"] * {
+    font-family: 'IBM Plex Sans', sans-serif !important;
+    letter-spacing: 0 !important;
+    line-height: normal !important;
+}
+
+/* Inline & block code */
+code, pre,
+#app-mount [class*="markup"] code,
+#app-mount [class*="markup"] pre {
+    font-family: 'IBM Plex Mono', monospace !important;
+    background-color: var(--grv-bg-hard) !important;
+    border: 1px solid var(--grv-bg2) !important;
+}
+
+
+/* 7. SCROLLBARS */
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--grv-bg2) !important;
+    border-radius: 0 !important;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--grv-bg0) !important;
+    border-radius: 0 !important;
+}
+
+
+/* 8. AVATARS & STATUS INDICATORS  —  SVG mask / clip-path fixes */
+
+foreignObject[mask] {
+    mask: none !important;
+}
+
+[class*="mask"] circle[fill="black"],
+[class*="svg"] circle[fill="black"],
+[class*="mask"] circle[fill="white"],
+[class*="svg"] circle[fill="white"] {
+    display: none !important;
+}
+
+rect[mask*="status"] {
+    stroke: var(--grv-bg-hard) !important;
+    stroke-width: 10px !important;
+    paint-order: stroke fill !important;
+}
+
+/* 32×32 / 40×40 avatar cutouts */
+foreignObject[width="32"][height="32"]:has(~ g),
+foreignObject[width="40"][height="40"]:has(~ g) {
+    clip-path: polygon(
+        0% 0%, 100% 0%,
+        100% 62%, 62% 62%,
+        62% 100%, 0% 100%
+    ) !important;
+}
+
+foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
+foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+    clip-path: polygon(
+        0% 0%,    100% 0%,
+        100% 46.875%, 62.5% 46.875%,
+        62.5% 100%, 0% 100%
+    ) !important;
+}
+
+/* 80×80 avatar cutouts */
+foreignObject[width="80"][height="80"][mask] ~ g rect {
+    transform: translate(16px, 16px) !important;
+}
+foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+    clip-path: polygon(
+        0%    0%,
+        100%  0%,
+        100%  90%,
+        95%   90%,
+        95%   100%,
+        0%    100%
+    ) !important;
+}
+
+/* 120×120 avatar cutouts */
+foreignObject[width="120"][height="120"][mask] ~ g rect {
+    transform: translate(25px, 25px) !important;
+}
+foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+    clip-path: polygon(
+        0%    0%,
+        100%  0%,
+        100%  88.7%,
+        95%   88.7%,
+        95%   100%,
+        0%    100%
+    ) !important;
+}
+
+/* Avatar stack (foreignObject context) */
+foreignObject [class*="avatarStack_"],
+foreignObject [class*="avatarStack_"]::after,
+foreignObject [class*="avatarStack_"] > * {
+    clip-path: none !important;
+    border-radius: 0 !important;
+}
+
+/* Speaking ring */
+div[class*="speaking_"] {
+    box-shadow: inset 0 0 0 2px var(--grv-aqua-b) !important;
+}
+
+
+/* 9. LAYOUT & NAVIGATION  —  Guilds, folders, panels, channels */
+
+/* Guild tooltips / popouts */
+[class*="guilds"] [class*="layerContainer"],
+[class*="guilds"] [class*="layer"],
+[class*="guildTooltip"],
+[class*="guildPopout"] {
+    clip-path: inset(0) !important;
+    border: 1px solid var(--grv-bg2) !important;
+    background-color: var(--grv-bg1) !important;
+}
+
+/* Folder icons */
+[class*="folder"],
+[class*="folderEndButton"],
+[class*="folderPreview"],
+[class*="blobContainer"],
+[class*="iconBadge"] {
+    clip-path: inset(0) !important;
+}
+
+/* Bottom user panel */
+section[class*="panels_"] {
+    flex-shrink: 0 !important;
+    min-height: 52px !important;
+    background-color: var(--grv-bg-hard) !important;
+}
+
+/* DM list / private channels */
 [class^="privateChannels_"] [class^="buttonChildrenWrapper_"],
 [class^="privateChannels_"] [class^="buttonChildren_"] {
     background-color: var(--grv-bg-hard) !important;
@@ -510,9 +493,93 @@ li[class*="listItem_"] {
     background-color: var(--grv-bg-hard) !important;
 }
 
+/* List item overflow fix */
+div[class*="listItemWrapper_"],
+li[class*="listItem_"] {
+    overflow: visible !important;
+}
+
+
+/* 10. CHAT & MESSAGES  —  Embeds, reactions, mentions */
+
+/* Embeds */
+div[class*="embed_"],
+div[class*="embedWrapper_"] {
+    background-color: var(--grv-bg1) !important;
+    border-left: 3px solid var(--grv-yellow) !important;
+}
+
+/* Reactions */
+div[class*="reaction_"] {
+    background-color: var(--grv-bg1) !important;
+    border: 1px solid var(--grv-bg2) !important;
+}
+div[class*="reactionMe_"] {
+    background-color: rgba(215, 153, 33, 0.20) !important;
+    border: 1px solid var(--grv-yellow) !important;
+}
+
+/* Mentions */
+div[class*="mentioned_"] {
+    background-color: rgba(215, 153, 33, 0.07) !important;
+}
+div[class*="mentioned_"]::before {
+    background-color: var(--grv-yellow) !important;
+}
+
+
+/* 11. BADGES & NOTIFICATIONS */
+
+div[class*="numberBadge_"],
+div[class*="badge_"],
+span[class*="numberBadge_"],
+span[class*="badge_"] {
+    background-color: var(--grv-red-b) !important;
+}
+
+span[class^="unreadPill_"] {
+    background-color: var(--grv-fg0) !important;
+}
+
+
+/* 12. BUTTONS  —  Visual Refresh colour overrides */
+
+/* Destructive (red) */
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"] {
+    background-color: var(--grv-red) !important;
+}
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover,
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover {
+    background-color: var(--grv-red-b) !important;
+}
+
+/* Secondary (grey) */
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"],
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"] {
+    background-color: var(--grv-bg1) !important;
+    color: var(--grv-fg1) !important;
+}
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover,
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover {
+    background-color: var(--grv-bg2) !important;
+}
+
+/* Primary / brand */
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])),
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])) {
+    color: var(--grv-bg-hard) !important;
+}
+
+
+/* 13. OVERLAYS & MODALS */
+
 div[class*="overlay_"] {
     background-color: var(--grv-bg0) !important;
 }
+
+
+/* 14. BetterDiscord plugin UI */
 
 .bd-addon-list .bd-addon-card {
     border: 1px solid var(--grv-bg2);
