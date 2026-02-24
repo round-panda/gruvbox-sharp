@@ -166,17 +166,12 @@ $_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
   --activity-card-background:   #{$bg0-s};
 
   // --- Brand colour ramp -----------------------------------------------------
-  // [FIX 2] --brand-500 was $blue-dark (#076678) — too dark to be a visible
-  //         accent. Set to $blue-b here; visual-refresh overrides to $blue-b
-  //         with !important below. $blue-dark is still used for button fills
-  //         (--control-primary-background-default) where the dark fill + light
-  //         text pattern is intentional.
   --brand-experiment:       #{$blue-dark};
   --brand-experiment-560:   #{$blue-dark};
   --brand-experiment-600:   #{$blue-b};
   --control-brand-foreground:     #{$blue-b};
   --control-brand-foreground-new: #{$blue-b};
-  --brand-500: #{$blue-b};   // [FIX 2] was $blue-dark
+  --brand-500: #{$blue-b};
   --brand-560: #{$blue-dark};
   --brand-600: #{$blue-b};
 
@@ -264,7 +259,7 @@ $_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
 
   // Connected / active call controls
   --control-connected-background-default: #{$green-b};
-  --control-connected-background-hover:   #{lighten($green-b, 5%)}; // [FIX 8] was raw #c8cc26
+  --control-connected-background-hover:   #{lighten($green-b, 5%)};
   --control-connected-background-active:  #{$green-b};
   --control-connected-border-default:     #{$green-b};
   --control-connected-border-hover:       #{lighten($green-b, 5%)};
@@ -377,7 +372,7 @@ $_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
   --deprecated-card-editable-bg:               #{$bg0};
   --deprecated-store-bg:                       #{$bg1};
   --deprecated-quickswitcher-input-background: #{$bg0};
-  --deprecated-quickswitcher-input-placeholder: #{rgba($fg1, 0.30)}; // [FIX 7]
+  --deprecated-quickswitcher-input-placeholder: #{rgba($fg1, 0.30)};
   --deprecated-text-input-bg:                  #{$bg0};
 
   // --- Modals ----------------------------------------------------------------
@@ -849,7 +844,6 @@ div[class*="pill_"] rect {
 [class*="selected_"][class*="channel_"],
 [class*="selected_"][class*="containerDefault_"],
 [class*="selected_"][class*="privateChannel_"] {
-  // [FIX 7] Was rgba(7, 102, 120, 0.2) — magic number for $blue-dark (#076678)
   background-color: #{rgba($blue-dark, 0.20)} !important;
 }
 
