@@ -9,3 +9,5 @@ Thumbs.db
 # Local scratch files
 *.swp
 *.bak
+
+*.css.map

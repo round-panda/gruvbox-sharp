@@ -1,0 +1,954 @@
+/**
+ * @name          Gruvbox Sharp
+ * @version       1.6
+ * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
+ *                typography. Monospace UI chrome, IBM Plex Sans for chat.
+ *                Compatible with BetterDiscord and Vencord.
+ *                Requires Discord's built-in Dark Mode to be enabled.
+ * @author        round-panda
+ * @authorLink    https://github.com/round-panda
+ * @source        https://github.com/round-panda/gruvbox-sharp
+ */
+
+// -----------------------------------------------------------------------------
+// Google Fonts
+// IBM Plex Mono  → UI chrome, headers, sidebars
+// IBM Plex Sans  → chat messages, user input, account cards
+// -----------------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+
+// =============================================================================
+// SCSS PALETTE
+// Gruvbox Dark Soft — all raw colour values defined once here.
+// Every CSS custom property below must reference these SCSS variables so that
+// a palette swap only requires editing this section.
+// =============================================================================
+
+// --- Backgrounds (dark → light) ----------------------------------------------
+$bg-hard:   #1d2021; // hardest / darkest surface (titlebar, userarea)
+$bg0-s:     #32302f; // soft bg0 — primary chat / main panel background
+$bg0:       #282828; // standard bg0 — secondary panels, input bg
+$bg1:       #3c3836; // slightly raised cards, embeds, sidebars
+$bg2:       #504945; // borders, selected states, secondary controls
+$bg3:       #665c54; // muted icons, disabled borders
+$bg4:       #7c6f64; // markdown syntax highlight, faint UI chrome
+
+// --- Foregrounds -------------------------------------------------------------
+$fg0:       #f9f5d7; // brightest text — headers, active interactive
+$fg1:       #ebdbb2; // normal text — messages, labels
+$fg2:       #d5c4a1; // subtle text — secondary descriptions
+$fg4:       #a89984; // muted text — timestamps, channel names, placeholders
+
+// --- Accent colours ----------------------------------------------------------
+$yellow:    #d79921; // mention foreground, mention bar
+$y-bright:  #fabd2f; // warning text, idle status, premium yellow
+$blue-b:    #83a598; // primary accent — links, brand, reactions, voice
+$blue-l:    #a4c3bb; // brand hover / lighter brand shade
+$blue-dark: #076678; // dark brand — button fills, pill indicator
+$aqua-b:    #8ec07c; // speaking glow, guild-boost colours
+$red:       #cc241d; // danger button base
+$red-b:     #fb4934; // danger hover / error text / badges
+$green-b:   #b8bb26; // positive text, online status, success indicators
+
+// Derived — used for rgba() calls; keeps magic numbers out of property defs.
+// These are not emitted as CSS variables; SCSS resolves them at compile time.
+$_bg2-rgb:       $bg2;       // rgba source for modifier overlays
+$_fg1-rgb:       $fg1;       // rgba source for placeholder / deprec. vars
+$_yellow-rgb:    $yellow;    // rgba source for mention backgrounds
+$_blue-b-rgb:    $blue-b;    // rgba source for brand alpha ramp
+$_bg-dark-rgb:   #1e1914;    // rgba source for message hover (near bg-hard)
+$_red-b-rgb:     $red-b;     // rgba source for critical feedback bg
+$_green-b-rgb:   $green-b;   // rgba source for positive feedback bg
+$_y-bright-rgb:  $y-bright;  // rgba source for warning feedback bg
+$_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
+
+
+// =============================================================================
+// :root — Discord CSS Custom Properties
+// Applied globally; overridden for visual-refresh in the block below.
+// =============================================================================
+:root {
+
+  // --- Background surfaces ---------------------------------------------------
+  // Discord maps these to the main layout regions.
+  --background-primary:           #{$bg0-s};   // chat panel, main content
+  --background-secondary:         #{$bg0};     // sidebar, member list
+  --background-secondary-alt:     #{$bg1};     // active sidebar item bg
+  --background-tertiary:          #{$bg-hard}; // titlebar, server list strip
+  --background-floating:          #{$bg1};     // tooltips, dropdowns, popouts
+  --background-accent:            #{$bg2};     // scroll track, accent surfaces
+  --background-modifier-hover:    #{rgba($bg2, 0.30)};
+  --background-modifier-active:   #{rgba($bg2, 0.50)};
+  --background-modifier-selected: #{rgba($bg2, 0.60)};
+  --background-modifier-accent:   #{$bg2};
+
+  // Mention + message tints
+  --background-mentioned:         #{rgba($yellow, 0.07)};
+  --background-mentioned-hover:   #{rgba($yellow, 0.12)};
+  --background-message-hover:     #{rgba($_bg-dark-rgb, 0.08)};
+  // Legacy name; current name is --message-background-hover, set below
+
+  // --- Semantic / layout backgrounds ----------------------------------------
+  --app-frame-background:         #{$bg-hard};
+  --home-background:              #{$bg0-s};
+  --chat-background:              #{$bg0-s};
+  --chat-background-default:      #{$bg0-s};
+  --chat-border:                  #{$bg-hard};
+  --chat-text-muted:              #{$fg4};
+  --__header-bar-background:      #{$bg1};
+  --bg-surface-raised:            #{$bg1};
+  --background-gradient-highest:  #{$bg0-s};
+
+  // Visual-refresh surface hierarchy (background-surface-*)
+  --background-surface-high:      #{$bg0-s};
+  --background-surface-higher:    #{$bg1};
+  --background-surface-highest:   #{$bg2};
+
+  // Visual-refresh base hierarchy (background-base-*)
+  --background-base-lowest:       #{$bg-hard};
+  --background-base-lower:        #{$bg0};
+  --background-base-low:          #{$bg0-s};
+
+  // Mod overlays — used by visual-refresh components internally
+  --background-mod-muted:         #{rgba($bg2, 0.05)};
+  --background-mod-normal:        #{rgba($bg2, 0.15)};
+  --background-mod-subtle:        #{rgba($bg2, 0.25)};
+  --background-mod-strong:        #{rgba($bg2, 0.45)};
+
+  // Cards, panels, misc surfaces
+  --card-background-default:               #{$bg1};
+  --custom-channel-members-bg:             #{$bg0};
+  --custom-status-bubble-background:       #{$bg-hard};
+  --custom-status-bubble-background-color: #{$bg0};
+
+  // --- Borders ---------------------------------------------------------------
+  --border-subtle:                         #{$bg0-s};
+  --border-muted:                          #{$bg1};
+  --border-normal:                         #{$bg-hard};
+  --border-strong:                         #{$bg0};
+  --deprecated-text-input-border:          #{$bg2};
+  --deprecated-text-input-border-hover:    #{$bg3};
+  --deprecated-text-input-border-disabled: #{$bg1};
+  --deprecated-text-input-prefix:          #{$fg2};
+  --border-color:                          #{$bg2};
+
+  // --- Text ------------------------------------------------------------------
+  --header-primary:   #{$fg0};
+  --header-secondary: #{$fg4};
+  --text-normal:      #{$fg1};
+  --text-muted:       #{$fg4};
+  --text-link:        #{$blue-b};
+  --text-positive:    #{$green-b};
+  --text-warning:     #{$y-bright};
+  --text-danger:      #{$red-b};
+  --text-default:     #{$fg1};
+  --text-strong:      #{$fg0};
+  --text-subtle:      #{$fg2};
+  --text-brand:       #{$blue-b};
+
+  --text-feedback-positive: #{$green-b};
+  --text-feedback-critical: #{$red-b};
+  --text-feedback-warning:  #{$y-bright};
+  --text-feedback-info:     #{$blue-b};
+
+  // --- Interactive states ----------------------------------------------------
+  --interactive-normal: #{$fg4};
+  --interactive-hover:  #{$fg2};
+  --interactive-active: #{$fg0};
+  --interactive-muted:  #{$bg3};
+
+  // --- Channel / input areas -------------------------------------------------
+  --channels-default:           #{$fg4};
+  --channeltextarea-background: #{$bg0};
+  --userarea-background:        #{$bg-hard};
+  --voice-color:                #{$blue-b};
+  --activity-card-background:   #{$bg0-s};
+
+  // --- Brand colour ramp -----------------------------------------------------
+  // [FIX 2] --brand-500 was $blue-dark (#076678) — too dark to be a visible
+  //         accent. Set to $blue-b here; visual-refresh overrides to $blue-b
+  //         with !important below. $blue-dark is still used for button fills
+  //         (--control-primary-background-default) where the dark fill + light
+  //         text pattern is intentional.
+  --brand-experiment:       #{$blue-dark};
+  --brand-experiment-560:   #{$blue-dark};
+  --brand-experiment-600:   #{$blue-b};
+  --control-brand-foreground:     #{$blue-b};
+  --control-brand-foreground-new: #{$blue-b};
+  --brand-500: #{$blue-b};   // [FIX 2] was $blue-dark
+  --brand-560: #{$blue-dark};
+  --brand-600: #{$blue-b};
+
+  // Full brand ramp — matches Catppuccin's structure (100–900 + alpha variants)
+  // Values are manually interpolated between $blue-dark and $blue-l.
+  --brand-100: #e8f2f0;
+  --brand-130: #def0ed;
+  --brand-160: #d1ebe7;
+  --brand-200: #c2e4de;
+  --brand-230: #b3dcd6;
+  --brand-260: #a4d3cc;
+  --brand-300: #96ccc4;
+  --brand-330: #8fc4bc;
+  --brand-360: #89bcb4;
+  --brand-400: #87b9b1;
+  --brand-430: #85b4ac;
+  --brand-460: #84afa7;
+  --brand-530: #7b9d90;
+  --brand-630: #63837b;
+  --brand-660: #547970;
+  --brand-700: #456f66;
+  --brand-730: #3c6259;
+  --brand-760: #335650;
+  --brand-800: #2a4a44;
+  --brand-830: #21403a;
+  --brand-860: #193630;
+  --brand-900: #112c26;
+
+  // Alpha variants of the brand colour ($blue-b = #83a598 = rgb(131,165,152))
+  --brand-05a: #{rgba($blue-b, 0.05)};
+  --brand-10a: #{rgba($blue-b, 0.10)};
+  --brand-15a: #{rgba($blue-b, 0.15)};
+  --brand-20a: #{rgba($blue-b, 0.20)};
+  --brand-25a: #{rgba($blue-b, 0.25)};
+  --brand-30a: #{rgba($blue-b, 0.30)};
+  --brand-35a: #{rgba($blue-b, 0.35)};
+  --brand-40a: #{rgba($blue-b, 0.40)};
+  --brand-45a: #{rgba($blue-b, 0.45)};
+  --brand-50a: #{rgba($blue-b, 0.50)};
+  --brand-55a: #{rgba($blue-b, 0.55)};
+  --brand-60a: #{rgba($blue-b, 0.60)};
+  --brand-65a: #{rgba($blue-b, 0.65)};
+  --brand-70a: #{rgba($blue-b, 0.70)};
+  --brand-75a: #{rgba($blue-b, 0.75)};
+  --brand-80a: #{rgba($blue-b, 0.80)};
+  --brand-85a: #{rgba($blue-b, 0.85)};
+  --brand-90a: #{rgba($blue-b, 0.90)};
+  --brand-95a: #{rgba($blue-b, 0.95)};
+
+  // "Blurple" slots repurposed to teal (Discord's original purple replaced)
+  --opacity-blurple-8:  #{rgba($blue-b, 0.08)};
+  --opacity-blurple-16: #{rgba($blue-b, 0.16)};
+  --opacity-blurple-24: #{rgba($blue-b, 0.24)};
+  --opacity-blurple-32: #{rgba($blue-b, 0.32)};
+  --opacity-blurple-60: #{rgba($blue-b, 0.60)};
+  --blurple-50:         #{$blue-dark};
+  --blurple-60:         #{$blue-l};
+
+  // --- Controls --------------------------------------------------------------
+  --control-primary-background-default:   #{$blue-dark}; // dark fill looks intentional with light text
+  --control-primary-background-hover:     #{$blue-b};
+  --control-primary-background-active:    #{$blue-b};
+  --control-secondary-background-default: #{$bg2};
+  --control-secondary-background-hover:   #{$bg3};
+  --control-secondary-background-active:  #{$bg3};
+  --control-secondary-border-default:     #{$bg2};
+  --control-secondary-text-default:       #{$fg1};
+  --control-secondary-text-hover:         #{$fg1};
+
+  // Critical (destructive) controls
+  --control-critical-primary-background-default:   #{$red};
+  --control-critical-primary-background-hover:     #{$red-b};
+  --control-critical-primary-background-active:    #{$red-b};
+  --control-critical-primary-text-default:         #{$bg-hard};
+  --control-critical-primary-text-hover:           #{$bg-hard};
+  --control-critical-secondary-background-default: transparent;
+  --control-critical-secondary-background-hover:   #{rgba($red-b, 0.15)};
+  --control-critical-secondary-background-active:  #{rgba($red-b, 0.20)};
+  --control-critical-secondary-border-default:     #{$red-b};
+  --control-critical-secondary-border-hover:       #{$red-b};
+  --control-critical-secondary-border-active:      #{$red-b};
+  --control-critical-secondary-text-default:       #{$fg1};
+  --control-critical-secondary-text-hover:         #{$bg-hard};
+  --control-critical-secondary-text-active:        #{$bg-hard};
+
+  // Connected / active call controls
+  --control-connected-background-default: #{$green-b};
+  --control-connected-background-hover:   #{lighten($green-b, 5%)}; // [FIX 8] was raw #c8cc26
+  --control-connected-background-active:  #{$green-b};
+  --control-connected-border-default:     #{$green-b};
+  --control-connected-border-hover:       #{lighten($green-b, 5%)};
+  --control-connected-border-active:      #{lighten($green-b, 5%)};
+
+  // Button outline variants
+  --button-outline-primary-text:           #{$fg1};
+  --button-outline-brand-text:             #{$fg1};
+  --button-outline-brand-background-hover: #{rgba($blue-b, 0.30)};
+  --button-outline-brand-border-active:    #{$blue-b};
+
+  // --- Status colours --------------------------------------------------------
+  --status-positive:            #{$green-b};
+  --status-positive-background: #{$green-b};
+  --status-positive-text:       #{$bg-hard};
+  --status-warning:             #{$y-bright};
+  --status-warning-background:  #{$y-bright};
+  --status-warning-text:        #{$bg-hard};
+  --status-danger:              #{$red-b};
+
+  --text-status-online:  #{$green-b};
+  --text-status-idle:    #{$y-bright};
+  --text-status-dnd:     #{$red-b};
+  --text-status-offline: #{$fg4};
+  --icon-status-online:  #{$green-b};
+  --icon-status-idle:    #{$y-bright};
+  --icon-status-dnd:     #{$red-b};
+  --icon-status-offline: #{$fg4};
+
+  // --- Feedback backgrounds & icons ------------------------------------------
+  --background-feedback-positive:     #{rgba($green-b, 0.15)};
+  --background-feedback-warning:      #{rgba($y-bright, 0.15)};
+  --background-feedback-critical:     #{rgba($red-b, 0.15)};
+  --background-feedback-info:         #{rgba($blue-b, 0.15)};
+  --background-feedback-notification: #{$red-b};
+  --badge-notification-background:    #{$red-b};
+
+  --icon-feedback-positive:     #{$green-b};
+  --icon-feedback-warning:      #{$y-bright};
+  --icon-feedback-critical:     #{$red-b};
+  --icon-feedback-info:         #{$blue-b};
+  --icon-feedback-notification: #{$red-b};
+
+  // --- Notice banners --------------------------------------------------------
+  --notice-background-critical: #{$red-b};
+  --notice-background-info:     #{$blue-b};
+  --notice-background-positive: #{$green-b};
+  --notice-background-warning:  #{$y-bright};
+  --notice-text-critical:       #{$bg-hard};
+  --notice-text-info:           #{$bg-hard};
+  --notice-text-positive:       #{$bg-hard};
+  --notice-text-warning:        #{$bg-hard};
+
+  // --- Info callout boxes ----------------------------------------------------
+  --info-positive-text:   #{$bg-hard};
+  --info-warning-text:    #{$bg-hard};
+  --info-danger-text:     #ffffff;
+  --info-help-background: #{rgba($blue-b, 0.15)};
+  --info-help-foreground: #{$blue-b};
+  --info-help-text:       #{$fg1};
+
+  // --- Scrollbars ------------------------------------------------------------
+  --scrollbar-thin-thumb:                 #{$bg2};
+  --scrollbar-thin-track:                 transparent;
+  --scrollbar-auto-thumb:                 #{$bg2};
+  --scrollbar-auto-track:                 #{rgba($bg0, 0.30)};
+  --scrollbar-auto-scrollbar-color-thumb: #{$bg2};
+  --scrollbar-auto-scrollbar-color-track: #{rgba($bg0, 0.30)};
+
+  // --- Elevation (shadows) ---------------------------------------------------
+  --elevation-low:    0 1px 0 #{rgba($bg-hard, 0.30)}, 0 2px 0 #{rgba($bg-hard, 0.10)};
+  --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.20);
+  --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.30);
+  --elevation-stroke: 0 0 0 1px #{rgba($bg-hard, 0.20)};
+
+  // --- Mentions --------------------------------------------------------------
+  --mention-foreground:                   #{$yellow};
+  --mention-background:                   #{rgba($yellow, 0.30)};
+  --message-mentioned-background-default: #{rgba($yellow, 0.07)};
+  --message-mentioned-background-hover:   #{rgba($yellow, 0.05)};
+  --message-automod-background-default:   #{rgba($red, 0.05)};
+  --message-automod-background-hover:     #{rgba($red, 0.10)};
+  --message-highlight-background-default: #{rgba($yellow, 0.08)};
+  --message-highlight-background-hover:   #{rgba($yellow, 0.06)};
+
+  // --- Code blocks -----------------------------------------------------------
+  // [NOTE] --background-code is not an official Discord var but is widely
+  //        consumed by BD/Vencord plugin themes. Retained.
+  --background-code: #{$bg-hard};
+
+  // --- Spoilers --------------------------------------------------------------
+  --spoiler-revealed-background:        #{$bg1};
+  --spoiler-hidden-background:          #{$bg2};
+  --__spoiler-background-color--hidden: #{$bg2};
+  --__spoiler-warning-background-color: #{$bg3};
+
+  // --- Misc ------------------------------------------------------------------
+  --__adaptive-focus-ring-color:    #{$blue-b};
+  --textbox-markdown-syntax:        #{$bg4};
+  --logo-primary:                   #{$fg0};
+  --message-reacted-background-default: #{rgba($blue-b, 0.30)};
+  --message-reacted-text-default:       #{$blue-b};
+  --checkbox-border-default:            #{$bg3};
+  --checkbox-icon-active:               #{$bg-hard};
+  --radio-thumb-background-active:      #{$bg-hard};
+
+  // --- Deprecated legacy variables (still read by some parts of Discord) -----
+  --deprecated-panel-background:               #{$bg1};
+  --deprecated-card-bg:                        #{$bg0};
+  --deprecated-card-editable-bg:               #{$bg0};
+  --deprecated-store-bg:                       #{$bg1};
+  --deprecated-quickswitcher-input-background: #{$bg0};
+  --deprecated-quickswitcher-input-placeholder: #{rgba($fg1, 0.30)}; // [FIX 7]
+  --deprecated-text-input-bg:                  #{$bg0};
+
+  // --- Modals ----------------------------------------------------------------
+  --modal-background:        #{$bg0-s};
+  --modal-footer-background: #{$bg0-s};
+
+  // --- Inputs ----------------------------------------------------------------
+  --input-background-default:       #{$bg-hard};
+  --input-text-default:             #{$fg1};
+  --input-placeholder-text-default: #{rgba($fg1, 0.50)};
+  --input-border-default:           #{$bg2};
+
+  // --- Icon tones ------------------------------------------------------------
+  --icon-muted:       #{$bg3};
+  --icon-voice-muted: #{$red-b};
+  --icon-default:     #{$fg1};
+  --icon-strong:      #{$fg0};
+  --icon-subtle:      #{$fg2};
+
+  // --- Channel area ----------------------------------------------------------
+  --channel-icon:                  #{$fg4};
+  --channel-text-area-placeholder: #{rgba($fg1, 0.50)};
+
+  // --- Interactive components ------------------------------------------------
+  --interactive-icon-default:        #{$fg1};
+  --interactive-icon-hover:          #{$fg1};
+  --interactive-icon-active:         #{$fg1};
+  --interactive-text-default:        #{$fg1};
+  --interactive-text-hover:          #{$fg1};
+  --interactive-text-active:         #{$fg1};
+  --interactive-background-hover:    #{rgba($bg2, 0.15)};
+  --interactive-background-selected: #{rgba($bg2, 0.20)};
+  --interactive-background-active:   #{rgba($fg1, 0.17)};
+
+  // --- Profile overlay -------------------------------------------------------
+  --user-profile-overlay-background:       #{$bg0-s};
+  --user-profile-overlay-background-hover: #{$bg1};
+
+  // --- Primitive colour aliases ----------------------------------------------
+  // Discord uses named colour slots internally; remapped to Gruvbox equivalents.
+  --white:     #{$fg1};
+  --white-500: #{$fg1};
+  --black-500: #{$bg-hard};
+
+  --green-360:  #{$green-b};
+  --green-300:  #{$green-b};
+  --yellow-360: #{$y-bright};
+  --yellow-300: #{$y-bright};
+  --red-400:    #{$red-b};
+  --red-430:    #{$red-b};
+  --red-500:    #{$red};
+  --blue-500:   #{$blue-b};
+  --blue-530:   #{$blue-b};
+
+  --primary-100: #{$fg2};
+  --primary-200: #{$fg4};
+  --primary-300: #{$fg2};
+  --primary-400: #{$fg2};
+  --primary-630: #{$bg1};
+  --primary-700: #{$bg2};
+  --primary-800: #{$bg-hard};
+
+  // --- Third-party platform colours ------------------------------------------
+  --twitch:      #{$fg2};
+  --playstation: #{$blue-b};
+  --spotify:     #{$green-b};
+
+  // --- Premium / guild boost decorations ------------------------------------
+  --guild-boosting-pink:   #{$aqua-b};
+  --guild-boosting-blue:   #{$blue-b};
+  --guild-boosting-purple: #{$fg2};
+
+  --premium-perk-yellow:                    #{$y-bright};
+  --premium-perk-purple:                    #{$fg2};
+  --premium-perk-dark-blue:                 #{$blue-b};
+  --premium-perk-light-blue:                #{$aqua-b};
+  --premium-perk-blue:                      #{$blue-b};
+  --premium-perk-green:                     #{$green-b};
+  --premium-perk-pink:                      #{$fg2};
+  --premium-perk-orange:                    #{$y-bright};
+  --premium-tier-0-blue:                    #{$blue-b};
+  --premium-tier-0-purple:                  #{$fg2};
+  --premium-tier-1-blue-for-gradients:      #{$aqua-b};
+  --premium-tier-1-dark-blue-for-gradients: #{$blue-b};
+  --premium-tier-2-purple-for-gradients:    #{$fg2};
+  --premium-tier-2-purple-for-gradients-2:  #{$fg4};
+  --premium-tier-2-pink-for-gradients:      #{$fg2};
+
+  // --- Misc internal slots ---------------------------------------------------
+  --plum-23:          #{$bg0-s};
+  --badge-text-brand: #{$bg-hard};
+}
+
+
+// =============================================================================
+// Visual Refresh Overrides
+// Discord's redesigned UI (visual-refresh) re-reads many variables under new
+// contexts. These !important overrides ensure the Gruvbox palette wins even
+// when Discord resets variables mid-component.
+// =============================================================================
+.visual-refresh.theme-dark,
+.visual-refresh .theme-dark {
+  --__header-bar-background:               #{$bg1} !important;
+  --background-surface-high:               #{$bg0-s} !important;
+  --background-surface-higher:             #{$bg1} !important;
+  --background-surface-highest:            #{$bg2} !important;
+  --background-base-lowest:                #{$bg-hard} !important;
+  --background-base-lower:                 #{$bg0} !important;
+  --background-base-low:                   #{$bg0-s} !important;
+  --background-secondary-alt:              #{$bg1} !important;
+  --background-accent:                     #{$bg2} !important;
+  --background-mod-subtle:                 #{rgba($bg2, 0.25)} !important;
+  --background-mod-strong:                 #{rgba($bg2, 0.45)} !important;
+  --card-background-default:               #{$bg1} !important;
+  --custom-status-bubble-background:       #{$bg-hard} !important;
+  --custom-status-bubble-background-color: #{$bg0} !important;
+  --border-subtle:                         #{$bg0-s} !important;
+  --text-muted:                            #{$fg4} !important;
+  --text-link:                             #{$blue-b} !important;
+  --text-strong:                           #{$fg0} !important;
+  --message-reacted-background-default:    #{rgba($blue-b, 0.30)} !important;
+
+  --brand-500: #{$blue-b} !important;
+  --brand-560: #{$blue-b} !important;
+  --brand-600: #{$blue-l} !important;
+
+  --modal-background:                      #{$bg0-s} !important;
+  --icon-muted:                            #{$bg3} !important;
+  --channel-icon:                          #{$fg4} !important;
+  --interactive-icon-default:              #{$fg1} !important;
+  --interactive-text-default:              #{$fg1} !important;
+  --control-secondary-background-default:  #{$bg2} !important;
+  --control-secondary-text-default:        #{$fg1} !important;
+
+  // Voice speaking ring (visual-refresh specific)
+  --status-speaking: #{$aqua-b};
+
+  // Current name for message hover background in visual-refresh context
+  --message-background-hover: #{rgba($_bg-dark-rgb, 0.08)} !important;
+}
+
+
+// =============================================================================
+// Legacy .theme-dark overrides
+// Only variables that genuinely need a different value in the legacy dark theme
+// context vs :root defaults.
+// =============================================================================
+.theme-dark {
+  // These are kept because Discord's legacy dark theme resets them to blurple.
+  --background-mentioned:       #{rgba($yellow, 0.07)};
+  --background-mentioned-hover: #{rgba($yellow, 0.12)};
+  --background-message-hover:   #{rgba($_bg-dark-rgb, 0.08)};
+}
+
+
+// =============================================================================
+// Light mode safety net
+// The header states Dark Mode is required, but if a user has light mode on,
+// this prevents a blinding white Discord from flashing through.
+// Full light-mode support would require a complete separate mapping.
+// =============================================================================
+.theme-light {
+  --background-primary:       #{$bg0-s};
+  --background-secondary:     #{$bg0};
+  --background-tertiary:      #{$bg-hard};
+  --background-floating:      #{$bg1};
+  --header-primary:           #{$fg0};
+  --header-secondary:         #{$fg4};
+  --text-normal:              #{$fg1};
+  --deprecated-text-input-bg: #{$bg0};
+}
+
+
+// =============================================================================
+// Global reset
+// Force square corners everywhere. Discord (post-visual-refresh) uses
+// border-radius as an inline var on many elements, so !important is required.
+// =============================================================================
+* {
+  border-radius: 0 !important;
+}
+
+
+// =============================================================================
+// Typography
+// IBM Plex Mono for UI chrome (sidebars, headers, timestamps) to give the
+// terminal aesthetic. IBM Plex Sans for chat messages and user input so reading
+// long conversations isn't fatiguing. Code blocks stay monospace.
+// =============================================================================
+
+// UI chrome — everything that isn't message content
+#app-mount {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  letter-spacing: -0.01em;
+}
+
+// Message markup and content areas — readable sans-serif
+#app-mount [class*="markup"],
+#app-mount [class*="markup"] *,
+#app-mount [class*="messageContent"],
+#app-mount [class*="messageContent"] * {
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+// Text input / Slate editor (message box)
+[role="textbox"],
+[role="textbox"] *,
+[data-slate-editor],
+[data-slate-editor] * {
+  font-family: 'IBM Plex Sans', sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+// Account card, display name, custom status bubble
+div[class*="accountProfileCard_"] *,
+div[class*="nameTag_"] *,
+div[class*="customStatus_"] * {
+  font-family: 'IBM Plex Sans', sans-serif !important;
+  letter-spacing: 0 !important;
+  line-height: normal !important;
+}
+
+// Code blocks — always monospace regardless of surrounding context
+code,
+pre,
+#app-mount [class*="markup"] code,
+#app-mount [class*="markup"] pre {
+  font-family: 'IBM Plex Mono', monospace !important;
+  background-color: #{$bg-hard} !important;
+  border: 1px solid #{$bg2} !important;
+}
+
+
+// =============================================================================
+// Scrollbars (WebKit)
+// =============================================================================
+::-webkit-scrollbar-thumb {
+  background-color: #{$bg2} !important;
+  border-radius: 0 !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #{$bg0} !important;
+  border-radius: 0 !important;
+}
+
+
+// =============================================================================
+// Avatar masks — Square avatar system
+//
+// Discord renders avatars as circular SVG foreignObjects. This block:
+//  1. Removes the circular SVG mask entirely (foreignObject[mask] { mask: none })
+//  2. Hides the SVG circle elements used for the circular cutout
+//  3. Applies clip-path polygons that create square avatars with a rectangular
+//     notch cut in the bottom-right corner for the status indicator dot.
+//  4. Different polygon geometries for each avatar size (32/40/80/120px).
+//  5. The "mobile" status indicator (phone icon) is taller so uses a narrower
+//     notch that starts higher up.
+//
+// The status badge stroke uses bg-hard as the separator ring, matching the
+// background colour so the badge appears to float on the surface.
+// =============================================================================
+
+// Remove circular SVG masks globally
+foreignObject[mask] {
+  mask: none !important;
+}
+
+// Hide SVG circle elements used to create the round-avatar cutout effect
+[class*="mask"] circle[fill="black"],
+[class*="svg"] circle[fill="black"],
+[class*="mask"] circle[fill="white"],
+[class*="svg"] circle[fill="white"] {
+  display: none !important;
+}
+
+// Status dot border — uses stroke to simulate the "ring" around the indicator
+rect[mask*="status"] {
+  stroke: #{$bg-hard} !important;
+  stroke-width: 10px !important;
+  paint-order: stroke fill !important;
+}
+
+// 32px and 40px avatars — standard status indicator notch (38% × 38% cutout)
+foreignObject[width="32"][height="32"]:has(~ g),
+foreignObject[width="40"][height="40"]:has(~ g) {
+  clip-path: polygon(
+    0%   0%,
+    100% 0%,
+    100% 62%,
+    62%  62%,
+    62%  100%,
+    0%   100%
+  ) !important;
+}
+
+// 32/40px avatars with mobile status (phone icon is taller, so notch starts higher)
+foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
+foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+  clip-path: polygon(
+    0%      0%,
+    100%    0%,
+    100%    46.875%,
+    62.5%   46.875%,
+    62.5%   100%,
+    0%      100%
+  ) !important;
+}
+
+// 80px avatars (profile popout header) — status badge offset correction
+foreignObject[width="80"][height="80"][mask] ~ g rect {
+  transform: translate(16px, 16px) !important;
+}
+
+foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+  clip-path: polygon(
+    0%   0%,
+    100% 0%,
+    100% 90%,
+    95%  90%,
+    95%  100%,
+    0%   100%
+  ) !important;
+}
+
+// 120px avatars (user profile modal) — status badge offset correction
+foreignObject[width="120"][height="120"][mask] ~ g rect {
+  transform: translate(25px, 25px) !important;
+}
+
+foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
+  clip-path: polygon(
+    0%     0%,
+    100%   0%,
+    100%   88.7%,
+    95%    88.7%,
+    95%    100%,
+    0%     100%
+  ) !important;
+}
+
+// Avatar stacks (message thread overlap) — no clip, no rounding
+foreignObject [class*="avatarStack_"],
+foreignObject [class*="avatarStack_"]::after,
+foreignObject [class*="avatarStack_"] > * {
+  clip-path: none !important;
+  border-radius: 0 !important;
+}
+
+
+// =============================================================================
+// Voice — speaking indicator
+// Aqua glow ring instead of Discord's default green/blurple.
+// =============================================================================
+div[class*="speaking_"] {
+  box-shadow: inset 0 0 0 2px #{$aqua-b} !important;
+}
+
+
+// =============================================================================
+// Guild / server list
+// Overrides the pill + clip-path behaviour that makes guild icons circular,
+// and forces square popout/tooltip containers.
+// =============================================================================
+
+// Tooltips and popouts attached to guild icons
+[class*="guilds"] [class*="layerContainer"],
+[class*="guilds"] [class*="layer"],
+[class*="guildTooltip"],
+[class*="guildPopout"] {
+  clip-path: inset(0) !important;
+  border: 1px solid #{$bg2} !important;
+  background-color: #{$bg1} !important;
+}
+
+// Folder containers and blob shapes — flatten to rectangle
+[class*="folder"],
+[class*="folderEndButton"],
+[class*="folderPreview"],
+[class*="blobContainer"],
+[class*="iconBadge"] {
+  clip-path: inset(0) !important;
+}
+
+
+// =============================================================================
+// Panels — user area (mute/deafen controls, account row)
+// =============================================================================
+section[class*="panels_"] {
+  flex-shrink: 0 !important;       // prevent layout collapse in small windows
+  min-height: 52px !important;
+  background-color: #{$bg-hard} !important;
+}
+
+// DM list "Create DM" / "Friends" action buttons
+[class^="privateChannels_"] [class^="buttonChildrenWrapper_"],
+[class^="privateChannels_"] [class^="buttonChildren_"] {
+  background-color: #{$bg-hard} !important;
+}
+
+[class^="privateChannels_"] button:has([class^="buttonChildrenWrapper_"]) {
+  background-color: #{$bg-hard} !important;
+}
+
+// Prevent overflow clipping on list items (ensures tooltips aren't clipped)
+div[class*="listItemWrapper_"],
+li[class*="listItem_"] {
+  overflow: visible !important;
+}
+
+
+// =============================================================================
+// Embeds
+// Left accent border uses brand teal; background steps one level lighter.
+// =============================================================================
+div[class*="embed_"],
+div[class*="embedWrapper_"] {
+  background-color: #{$bg1} !important;
+  border-left: 3px solid #{$blue-b} !important;
+}
+
+
+// =============================================================================
+// Reactions
+// Default reaction chip and "reacted by me" (active) state.
+// =============================================================================
+div[class*="reaction_"] {
+  background-color: #{$bg1} !important;
+  border: 1px solid #{$bg2} !important;
+}
+
+div[class*="reactionMe_"] {
+  background-color: #{rgba($blue-b, 0.20)} !important;
+  border: 1px solid #{$blue-b} !important;
+}
+
+
+// =============================================================================
+// Mentions
+// Highlighted message row + left bar for @mentions.
+// =============================================================================
+div[class*="mentioned_"] {
+  background-color: #{rgba($yellow, 0.07)} !important;
+}
+
+div[class*="mentioned_"]::before {
+  background-color: #{$yellow} !important; // left accent bar on mentioned messages
+}
+
+
+// =============================================================================
+// Badges & pills
+// Notification counts, unread pills, active channel pill.
+// =============================================================================
+
+// Unread/notification number badges — red-b
+div[class*="numberBadge_"],
+div[class*="badge_"],
+span[class*="numberBadge_"],
+span[class*="badge_"] {
+  background-color: #{$red-b} !important;
+}
+
+// Unread pill (the white dot on DMs) — bright foreground colour
+span[class^="unreadPill_"] {
+  background-color: #{$fg0} !important;
+}
+
+// Active/selected channel pill rect — dark teal
+div[class*="pill_"] rect {
+  fill: #{$blue-dark} !important;
+}
+
+
+// =============================================================================
+// Channel / DM selection highlight
+// =============================================================================
+[class*="selected_"][class*="channel_"],
+[class*="selected_"][class*="containerDefault_"],
+[class*="selected_"][class*="privateChannel_"] {
+  // [FIX 7] Was rgba(7, 102, 120, 0.2) — magic number for $blue-dark (#076678)
+  background-color: #{rgba($blue-dark, 0.20)} !important;
+}
+
+// Visual-refresh selected channel text colour
+.visual-refresh.theme-dark div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"],
+.visual-refresh .theme-dark div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"] {
+  color: #{$blue-dark} !important;
+}
+
+
+// =============================================================================
+// Guild icon hover / active / selected states
+// "noIcon_" = server without a custom icon (initials). These get the dark teal
+// fill + bright text on hover / active to serve as the brand colour indicator.
+// =============================================================================
+div[class*="guilds_"] [class*="wrapper_"]:hover div[class*="icon_"][class*="noIcon_"],
+div[class*="guilds_"] [class*="wrapper_"][class*="selected_"] div[class*="icon_"][class*="noIcon_"],
+div[class*="guilds_"] [class*="wrapper_"]:active div[class*="icon_"][class*="noIcon_"] {
+  background-color: #{$blue-dark} !important;
+  color: #{$fg0} !important;
+}
+
+// Home icon / Discord logo pill on selected/active
+div[class*="guilds_"] [class*="wrapper_"][class*="selected_"] > svg,
+div[class*="guilds_"] [class*="wrapper_"]:active > svg {
+  color: #{$blue-dark} !important;
+}
+
+// Home button (DM / Friends hub) hover and selected states
+[data-list-item-id="guildsnav___home"]:hover,
+[data-list-item-id="guildsnav___home"][aria-selected="true"],
+[data-list-item-id="guildsnav___home"]:active,
+[data-list-item-id="guildsnav___home"]:hover div[class*="childWrapper_"],
+[data-list-item-id="guildsnav___home"][aria-selected="true"] div[class*="childWrapper_"],
+[data-list-item-id="guildsnav___home"]:active div[class*="childWrapper_"] {
+  background-color: #{$blue-dark} !important;
+  color: #{$fg0} !important;
+}
+
+
+// =============================================================================
+// Visual-refresh button colour overrides
+// Discord's visual-refresh resets filled button colours back to blurple/white.
+// These rules restore Gruvbox-appropriate colours.
+// =============================================================================
+
+// Danger (red) buttons
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"] {
+  background-color: #{$red} !important;
+
+  &:hover {
+    background-color: #{$red-b} !important;
+  }
+}
+
+// Grey / secondary buttons
+.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"],
+.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"] {
+  background-color: #{$bg1} !important;
+  color: #{$fg1} !important;
+
+  &:hover {
+    background-color: #{$bg2} !important;
+  }
+}
+
+
+// =============================================================================
+// Overlay (context menus, dropdowns, modals backdrop)
+// =============================================================================
+div[class*="overlay_"] {
+  background-color: #{$bg0} !important;
+}
+
+
+// =============================================================================
+// New messages bar (jump-to-present banner)
+// =============================================================================
+div[class*="newMessagesBar_"] {
+  background-color: #{$blue-dark} !important;
+}
+
+
+// =============================================================================
+// BetterDiscord addon list (plugin / theme cards in BD settings)
+// =============================================================================
+.bd-addon-list .bd-addon-card {
+  border: 1px solid #{$bg2};
+  background-color: #{$bg0-s};
+  margin-bottom: 18px;
+}

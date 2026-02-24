@@ -9,713 +9,610 @@
  * @authorLink    https://github.com/round-panda
  * @source        https://github.com/round-panda/gruvbox-sharp
  */
-
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 :root {
-    --grv-bg-hard:   #1d2021;
-    --grv-bg0-s:     #32302f;
-    --grv-bg0:       #282828;
-    --grv-bg1:       #3c3836;
-    --grv-bg2:       #504945;
-    --grv-bg3:       #665c54;
-    --grv-bg4:       #7c6f64;
-    --grv-fg0:       #f9f5d7;
-    --grv-fg1:       #ebdbb2;
-    --grv-fg2:       #d5c4a1;
-    --grv-fg4:       #a89984;
-    --grv-yellow:    #d79921;
-    --grv-y-bright:  #fabd2f;
-    --grv-blue-b:    #83a598;
-    --grv-blue-l:    #a4c3bb;
-    --grv-blue-dark: #076678;
-    --grv-aqua-b:    #8ec07c;
-    --grv-red:       #cc241d;
-    --grv-red-b:     #fb4934;
-    --grv-green-b:   #b8bb26;
-
-    --background-primary:                var(--grv-bg0-s);
-    --background-secondary:              var(--grv-bg0);
-    --background-secondary-alt:          var(--grv-bg1);
-    --background-tertiary:               var(--grv-bg-hard);
-    --background-floating:               var(--grv-bg1);
-    --background-accent:                 var(--grv-bg2);
-    --background-modifier-hover:         rgba(80, 73, 69, 0.3);
-    --background-modifier-active:        rgba(80, 73, 69, 0.5);
-    --background-modifier-selected:      rgba(80, 73, 69, 0.6);
-    --background-modifier-accent:        var(--grv-bg2);
-    --background-mentioned:              rgba(215, 153, 33, 0.07);
-    --background-mentioned-hover:        rgba(215, 153, 33, 0.12);
-    --background-message-hover:          rgba(30, 25, 20, 0.08);
-
-    --app-frame-background:              var(--grv-bg-hard);
-    --home-background:                   var(--grv-bg0-s);
-    --chat-background:                   var(--grv-bg0-s);
-    --chat-background-default:           var(--grv-bg0-s);
-    --chat-border:                       var(--grv-bg-hard);
-    --chat-text-muted:                   var(--grv-fg4);
-    --__header-bar-background:           var(--grv-bg1);
-    --bg-surface-raised:                 var(--grv-bg1);
-    --background-gradient-highest:       var(--grv-bg0-s);
-
-    --background-surface-high:           var(--grv-bg0-s);
-    --background-surface-higher:         var(--grv-bg1);
-    --background-surface-highest:        var(--grv-bg2);
-
-    --background-base-lowest:            var(--grv-bg-hard);
-    --background-base-lower:             var(--grv-bg0);
-    --background-base-low:               var(--grv-bg0-s);
-
-    --background-mod-muted:              rgba(80, 73, 69, 0.05);
-    --background-mod-normal:             rgba(80, 73, 69, 0.15);
-    --background-mod-subtle:             rgba(80, 73, 69, 0.25);
-    --background-mod-strong:             rgba(80, 73, 69, 0.45);
-
-    --card-background-default:               var(--grv-bg1);
-    --custom-channel-members-bg:             var(--grv-bg0);
-    --custom-status-bubble-background:       var(--grv-bg-hard);
-    --custom-status-bubble-background-color: var(--grv-bg0);
-
-    --border-subtle:                         var(--grv-bg0-s);
-    --border-muted:                          var(--grv-bg1);
-    --border-normal:                         var(--grv-bg-hard);
-    --border-strong:                         var(--grv-bg0);
-    --deprecated-text-input-border:          var(--grv-bg2);
-    --deprecated-text-input-border-hover:    var(--grv-bg3);
-    --deprecated-text-input-border-disabled: var(--grv-bg1);
-    --deprecated-text-input-prefix:         var(--grv-fg2);
-
-    --header-primary:   var(--grv-fg0);
-    --header-secondary: var(--grv-fg4);
-    --text-normal:      var(--grv-fg1);
-    --text-muted:       var(--grv-fg4);
-    --text-link:        var(--grv-blue-b);
-    --text-positive:    var(--grv-green-b);
-    --text-warning:     var(--grv-y-bright);
-    --text-danger:      var(--grv-red-b);
-    --text-default:     var(--grv-fg1);
-    --text-strong:      var(--grv-fg0);
-    --text-subtle:      var(--grv-fg2);
-    --text-brand:       var(--grv-blue-b);
-
-    --text-feedback-positive: var(--grv-green-b);
-    --text-feedback-critical: var(--grv-red-b);
-    --text-feedback-warning:  var(--grv-y-bright);
-    --text-feedback-info:     var(--grv-blue-b);
-
-    --interactive-normal: var(--grv-fg4);
-    --interactive-hover:  var(--grv-fg2);
-    --interactive-active: var(--grv-fg0);
-    --interactive-muted:  var(--grv-bg3);
-
-    --channels-default:           var(--grv-fg4);
-    --channeltextarea-background: var(--grv-bg0);
-    --userarea-background:        var(--grv-bg-hard);
-    --voice-color:                var(--grv-blue-b);
-    --activity-card-background:   var(--grv-bg0-s);
-
-    --brand-experiment:       var(--grv-blue-dark);
-    --brand-experiment-560:   var(--grv-blue-dark);
-    --brand-experiment-600:   var(--grv-blue-b);
-    --control-brand-foreground:     var(--grv-blue-b);
-    --control-brand-foreground-new: var(--grv-blue-b);
-    --brand-500: var(--grv-blue-dark);
-    --brand-560: var(--grv-blue-dark);
-    --brand-600: var(--grv-blue-b);
-
-    --control-primary-background-default:    var(--grv-blue-dark);
-    --control-primary-background-hover:      var(--grv-blue-b);
-    --control-primary-background-active:     var(--grv-blue-b);
-    --control-secondary-background-default:  var(--grv-bg2);
-    --control-secondary-background-hover:    var(--grv-bg3);
-    --control-secondary-background-active:   var(--grv-bg3);
-    --control-secondary-border-default:      var(--grv-bg2);
-    --control-secondary-text-default:        var(--grv-fg1);
-    --control-secondary-text-hover:          var(--grv-fg1);
-
-    --status-positive:            var(--grv-green-b);
-    --status-positive-background: var(--grv-green-b);
-    --status-positive-text:       var(--grv-bg-hard);
-    --status-warning:             var(--grv-y-bright);
-    --status-warning-background:  var(--grv-y-bright);
-    --status-warning-text:        var(--grv-bg-hard);
-    --status-danger:              var(--grv-red-b);
-
-    --background-feedback-positive:     rgba(184, 187, 38, 0.15);
-    --background-feedback-warning:      rgba(250, 189, 47, 0.15);
-    --background-feedback-critical:     rgba(251, 73, 52, 0.15);
-    --background-feedback-info:         rgba(131, 165, 152, 0.15);
-    --background-feedback-notification: var(--grv-red-b);
-    --badge-notification-background:    var(--grv-red-b);
-
-    --icon-feedback-positive:     var(--grv-green-b);
-    --icon-feedback-warning:      var(--grv-y-bright);
-    --icon-feedback-critical:     var(--grv-red-b);
-    --icon-feedback-info:         var(--grv-blue-b);
-    --icon-feedback-notification: var(--grv-red-b);
-
-    --scrollbar-thin-thumb:                  var(--grv-bg2);
-    --scrollbar-thin-track:                  transparent;
-    --scrollbar-auto-thumb:                  var(--grv-bg2);
-    --scrollbar-auto-track:                  rgba(40, 40, 40, 0.3);
-    --scrollbar-auto-scrollbar-color-thumb:  var(--grv-bg2);
-    --scrollbar-auto-scrollbar-color-track:  rgba(40, 40, 40, 0.3);
-
-    --elevation-low:    0 1px 0 rgba(30, 25, 20, 0.3), 0 2px 0 rgba(30, 25, 20, 0.1);
-    --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.2);
-    --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.3);
-    --elevation-stroke: 0 0 0 1px rgba(30, 25, 20, 0.2);
-
-    --info-positive-text:   var(--grv-bg-hard);
-    --info-warning-text:    var(--grv-bg-hard);
-    --info-danger-text:     #ffffff;
-    --info-help-background: rgba(131, 165, 152, 0.15);
-    --info-help-foreground: var(--grv-blue-b);
-    --info-help-text:       var(--grv-fg1);
-    --textbox-markdown-syntax: var(--grv-bg4);
-
-    --logo-primary:                       var(--grv-fg0);
-    --message-reacted-background-default: rgba(131, 165, 152, 0.3);
-    --message-reacted-text-default:       var(--grv-blue-b);
-    --checkbox-border-default:            var(--grv-bg3);
-    --checkbox-icon-active:               var(--grv-bg-hard);
-    --radio-thumb-background-active:      var(--grv-bg-hard);
-
-    --deprecated-panel-background:                var(--grv-bg1);
-    --deprecated-card-bg:                         var(--grv-bg0);
-    --deprecated-card-editable-bg:                var(--grv-bg0);
-    --deprecated-store-bg:                        var(--grv-bg1);
-    --deprecated-quickswitcher-input-background:  var(--grv-bg0);
-    --deprecated-quickswitcher-input-placeholder: rgba(235, 219, 178, 0.3);
-    --deprecated-text-input-bg:                   var(--grv-bg0);
-
-    --modal-background:        var(--grv-bg0-s);
-    --modal-footer-background: var(--grv-bg0-s);
-
-    --input-background-default:       var(--grv-bg-hard);
-    --input-text-default:             var(--grv-fg1);
-    --input-placeholder-text-default: rgba(235, 219, 178, 0.5);
-    --input-border-default:           var(--grv-bg2);
-
-    --icon-muted:       var(--grv-bg3);
-    --icon-voice-muted: var(--grv-red-b);
-    --icon-default:     var(--grv-fg1);
-    --icon-strong:      var(--grv-fg0);
-    --icon-subtle:      var(--grv-fg2);
-
-    --channel-icon:                  var(--grv-fg4);
-    --channel-text-area-placeholder: rgba(235, 219, 178, 0.5);
-
-    --interactive-icon-default:          var(--grv-fg1);
-    --interactive-icon-hover:            var(--grv-fg1);
-    --interactive-icon-active:           var(--grv-fg1);
-    --interactive-text-default:          var(--grv-fg1);
-    --interactive-text-hover:            var(--grv-fg1);
-    --interactive-text-active:           var(--grv-fg1);
-    --interactive-background-hover:      rgba(80, 73, 69, 0.15);
-    --interactive-background-selected:   rgba(80, 73, 69, 0.2);
-    --interactive-background-active:     rgba(235, 219, 178, 0.17);
-
-    --mention-foreground:                        var(--grv-yellow);
-    --mention-background:                        rgba(215, 153, 33, 0.3);
-    --message-mentioned-background-default:      rgba(215, 153, 33, 0.07);
-    --message-mentioned-background-hover:        rgba(215, 153, 33, 0.05);
-    --message-automod-background-default:        rgba(204, 36, 29, 0.05);
-    --message-automod-background-hover:          rgba(204, 36, 29, 0.1);
-    --message-highlight-background-default:      rgba(215, 153, 33, 0.08);
-    --message-highlight-background-hover:        rgba(215, 153, 33, 0.06);
-
-    --background-code:                    var(--grv-bg-hard);
-    --spoiler-revealed-background:        var(--grv-bg1);
-    --spoiler-hidden-background:          var(--grv-bg2);
-    --__spoiler-background-color--hidden: var(--grv-bg2);
-    --__spoiler-warning-background-color: var(--grv-bg3);
-
-    --__adaptive-focus-ring-color: var(--grv-blue-b);
-
-    --text-status-online:  var(--grv-green-b);
-    --text-status-idle:    var(--grv-y-bright);
-    --text-status-dnd:     var(--grv-red-b);
-    --text-status-offline: var(--grv-fg4);
-    --icon-status-online:  var(--grv-green-b);
-    --icon-status-idle:    var(--grv-y-bright);
-    --icon-status-dnd:     var(--grv-red-b);
-    --icon-status-offline: var(--grv-fg4);
-
-    --notice-background-critical: var(--grv-red-b);
-    --notice-background-info:     var(--grv-blue-b);
-    --notice-background-positive: var(--grv-green-b);
-    --notice-background-warning:  var(--grv-y-bright);
-    --notice-text-critical:       var(--grv-bg-hard);
-    --notice-text-info:           var(--grv-bg-hard);
-    --notice-text-positive:       var(--grv-bg-hard);
-    --notice-text-warning:        var(--grv-bg-hard);
-
-    --control-critical-primary-background-default:   var(--grv-red);
-    --control-critical-primary-background-hover:     var(--grv-red-b);
-    --control-critical-primary-background-active:    var(--grv-red-b);
-    --control-critical-primary-text-default:         var(--grv-bg-hard);
-    --control-critical-primary-text-hover:           var(--grv-bg-hard);
-    --control-critical-secondary-background-default: transparent;
-    --control-critical-secondary-background-hover:   rgba(251, 73, 52, 0.15);
-    --control-critical-secondary-background-active:  rgba(251, 73, 52, 0.2);
-    --control-critical-secondary-border-default:     var(--grv-red-b);
-    --control-critical-secondary-border-hover:       var(--grv-red-b);
-    --control-critical-secondary-border-active:      var(--grv-red-b);
-    --control-critical-secondary-text-default:       var(--grv-fg1);
-    --control-critical-secondary-text-hover:         var(--grv-bg-hard);
-    --control-critical-secondary-text-active:        var(--grv-bg-hard);
-
-    --control-connected-background-default: var(--grv-green-b);
-    --control-connected-background-hover:   #c8cc26;
-    --control-connected-background-active:  var(--grv-green-b);
-    --control-connected-border-default:     var(--grv-green-b);
-    --control-connected-border-hover:       #c8cc26;
-    --control-connected-border-active:      #c8cc26;
-
-    --button-outline-primary-text:           var(--grv-fg1);
-    --button-outline-brand-text:             var(--grv-fg1);
-    --button-outline-brand-background-hover: rgba(131, 165, 152, 0.3);
-    --button-outline-brand-border-active:    var(--grv-blue-b);
-
-    --user-profile-overlay-background:       var(--grv-bg0-s);
-    --user-profile-overlay-background-hover: var(--grv-bg1);
-
-    --plum-23:          var(--grv-bg0-s);
-    --badge-text-brand: var(--grv-bg-hard);
-
-    --guild-boosting-pink:   var(--grv-aqua-b);
-    --guild-boosting-blue:   var(--grv-blue-b);
-    --guild-boosting-purple: var(--grv-fg2);
-
-    --premium-perk-yellow:                    var(--grv-y-bright);
-    --premium-perk-purple:                    var(--grv-fg2);
-    --premium-perk-dark-blue:                 var(--grv-blue-b);
-    --premium-perk-light-blue:                var(--grv-aqua-b);
-    --premium-perk-blue:                      var(--grv-blue-b);
-    --premium-perk-green:                     var(--grv-green-b);
-    --premium-perk-pink:                      var(--grv-fg2);
-    --premium-perk-orange:                    var(--grv-y-bright);
-    --premium-tier-0-blue:                    var(--grv-blue-b);
-    --premium-tier-0-purple:                  var(--grv-fg2);
-    --premium-tier-1-blue-for-gradients:      var(--grv-aqua-b);
-    --premium-tier-1-dark-blue-for-gradients: var(--grv-blue-b);
-    --premium-tier-2-purple-for-gradients:    var(--grv-fg2);
-    --premium-tier-2-purple-for-gradients-2:  var(--grv-fg4);
-    --premium-tier-2-pink-for-gradients:      var(--grv-fg2);
-
-    --twitch:      var(--grv-fg2);
-    --playstation: var(--grv-blue-b);
-    --spotify:     var(--grv-green-b);
-
-    --white:     var(--grv-fg1);
-    --white-500: var(--grv-fg1);
-    --black-500: var(--grv-bg-hard);
-
-    --green-360:  var(--grv-green-b);
-    --green-300:  var(--grv-green-b);
-    --yellow-360: var(--grv-y-bright);
-    --yellow-300: var(--grv-y-bright);
-    --red-400:    var(--grv-red-b);
-    --red-430:    var(--grv-red-b);
-    --red-500:    var(--grv-red);
-    --blue-500:   var(--grv-blue-b);
-    --blue-530:   var(--grv-blue-b);
-
-    --primary-100: var(--grv-fg2);
-    --primary-200: var(--grv-fg4);
-    --primary-300: var(--grv-fg2);
-    --primary-400: var(--grv-fg2);
-    --primary-630: var(--grv-bg1);
-    --primary-700: var(--grv-bg2);
-    --primary-800: var(--grv-bg-hard);
-
-    --brand-100: #e8f2f0;
-    --brand-130: #def0ed;
-    --brand-160: #d1ebe7;
-    --brand-200: #c2e4de;
-    --brand-230: #b3dcd6;
-    --brand-260: #a4d3cc;
-    --brand-300: #96ccc4;
-    --brand-330: #8fc4bc;
-    --brand-360: #89bcb4;
-    --brand-400: #87b9b1;
-    --brand-430: #85b4ac;
-    --brand-460: #84afa7;
-    --brand-530: #7b9d90;
-    --brand-630: #63837b;
-    --brand-660: #547970;
-    --brand-700: #456f66;
-    --brand-730: #3c6259;
-    --brand-760: #335650;
-    --brand-800: #2a4a44;
-    --brand-830: #21403a;
-    --brand-860: #193630;
-    --brand-900: #112c26;
-
-    --brand-05a: rgba(131, 165, 152, 0.05);
-    --brand-10a: rgba(131, 165, 152, 0.1);
-    --brand-15a: rgba(131, 165, 152, 0.15);
-    --brand-20a: rgba(131, 165, 152, 0.2);
-    --brand-25a: rgba(131, 165, 152, 0.25);
-    --brand-30a: rgba(131, 165, 152, 0.3);
-    --brand-35a: rgba(131, 165, 152, 0.35);
-    --brand-40a: rgba(131, 165, 152, 0.4);
-    --brand-45a: rgba(131, 165, 152, 0.45);
-    --brand-50a: rgba(131, 165, 152, 0.5);
-    --brand-55a: rgba(131, 165, 152, 0.55);
-    --brand-60a: rgba(131, 165, 152, 0.6);
-    --brand-65a: rgba(131, 165, 152, 0.65);
-    --brand-70a: rgba(131, 165, 152, 0.7);
-    --brand-75a: rgba(131, 165, 152, 0.75);
-    --brand-80a: rgba(131, 165, 152, 0.8);
-    --brand-85a: rgba(131, 165, 152, 0.85);
-    --brand-90a: rgba(131, 165, 152, 0.9);
-    --brand-95a: rgba(131, 165, 152, 0.95);
-
-    --opacity-blurple-8:  rgba(131, 165, 152, 0.08);
-    --opacity-blurple-16: rgba(131, 165, 152, 0.16);
-    --opacity-blurple-24: rgba(131, 165, 152, 0.24);
-    --opacity-blurple-32: rgba(131, 165, 152, 0.32);
-    --opacity-blurple-60: rgba(131, 165, 152, 0.6);
-    --blurple-50:         var(--grv-blue-dark);
-    --blurple-60:         var(--grv-blue-l);
-
-    --border-radius: 0;
-    --border-color:  var(--grv-bg2);
-    --divide-color:  var(--grv-blue-b);
+  --background-primary: #32302f;
+  --background-secondary: #282828;
+  --background-secondary-alt: #3c3836;
+  --background-tertiary: #1d2021;
+  --background-floating: #3c3836;
+  --background-accent: #504945;
+  --background-modifier-hover: rgba(80, 73, 69, 0.3);
+  --background-modifier-active: rgba(80, 73, 69, 0.5);
+  --background-modifier-selected: rgba(80, 73, 69, 0.6);
+  --background-modifier-accent: #504945;
+  --background-mentioned: rgba(215, 153, 33, 0.07);
+  --background-mentioned-hover: rgba(215, 153, 33, 0.12);
+  --background-message-hover: rgba(30, 25, 20, 0.08);
+  --app-frame-background: #1d2021;
+  --home-background: #32302f;
+  --chat-background: #32302f;
+  --chat-background-default: #32302f;
+  --chat-border: #1d2021;
+  --chat-text-muted: #a89984;
+  --__header-bar-background: #3c3836;
+  --bg-surface-raised: #3c3836;
+  --background-gradient-highest: #32302f;
+  --background-surface-high: #32302f;
+  --background-surface-higher: #3c3836;
+  --background-surface-highest: #504945;
+  --background-base-lowest: #1d2021;
+  --background-base-lower: #282828;
+  --background-base-low: #32302f;
+  --background-mod-muted: rgba(80, 73, 69, 0.05);
+  --background-mod-normal: rgba(80, 73, 69, 0.15);
+  --background-mod-subtle: rgba(80, 73, 69, 0.25);
+  --background-mod-strong: rgba(80, 73, 69, 0.45);
+  --card-background-default: #3c3836;
+  --custom-channel-members-bg: #282828;
+  --custom-status-bubble-background: #1d2021;
+  --custom-status-bubble-background-color: #282828;
+  --border-subtle: #32302f;
+  --border-muted: #3c3836;
+  --border-normal: #1d2021;
+  --border-strong: #282828;
+  --deprecated-text-input-border: #504945;
+  --deprecated-text-input-border-hover: #665c54;
+  --deprecated-text-input-border-disabled: #3c3836;
+  --deprecated-text-input-prefix: #d5c4a1;
+  --border-color: #504945;
+  --header-primary: #f9f5d7;
+  --header-secondary: #a89984;
+  --text-normal: #ebdbb2;
+  --text-muted: #a89984;
+  --text-link: #83a598;
+  --text-positive: #b8bb26;
+  --text-warning: #fabd2f;
+  --text-danger: #fb4934;
+  --text-default: #ebdbb2;
+  --text-strong: #f9f5d7;
+  --text-subtle: #d5c4a1;
+  --text-brand: #83a598;
+  --text-feedback-positive: #b8bb26;
+  --text-feedback-critical: #fb4934;
+  --text-feedback-warning: #fabd2f;
+  --text-feedback-info: #83a598;
+  --interactive-normal: #a89984;
+  --interactive-hover: #d5c4a1;
+  --interactive-active: #f9f5d7;
+  --interactive-muted: #665c54;
+  --channels-default: #a89984;
+  --channeltextarea-background: #282828;
+  --userarea-background: #1d2021;
+  --voice-color: #83a598;
+  --activity-card-background: #32302f;
+  --brand-experiment: #076678;
+  --brand-experiment-560: #076678;
+  --brand-experiment-600: #83a598;
+  --control-brand-foreground: #83a598;
+  --control-brand-foreground-new: #83a598;
+  --brand-500: #83a598;
+  --brand-560: #076678;
+  --brand-600: #83a598;
+  --brand-100: #e8f2f0;
+  --brand-130: #def0ed;
+  --brand-160: #d1ebe7;
+  --brand-200: #c2e4de;
+  --brand-230: #b3dcd6;
+  --brand-260: #a4d3cc;
+  --brand-300: #96ccc4;
+  --brand-330: #8fc4bc;
+  --brand-360: #89bcb4;
+  --brand-400: #87b9b1;
+  --brand-430: #85b4ac;
+  --brand-460: #84afa7;
+  --brand-530: #7b9d90;
+  --brand-630: #63837b;
+  --brand-660: #547970;
+  --brand-700: #456f66;
+  --brand-730: #3c6259;
+  --brand-760: #335650;
+  --brand-800: #2a4a44;
+  --brand-830: #21403a;
+  --brand-860: #193630;
+  --brand-900: #112c26;
+  --brand-05a: rgba(131, 165, 152, 0.05);
+  --brand-10a: rgba(131, 165, 152, 0.1);
+  --brand-15a: rgba(131, 165, 152, 0.15);
+  --brand-20a: rgba(131, 165, 152, 0.2);
+  --brand-25a: rgba(131, 165, 152, 0.25);
+  --brand-30a: rgba(131, 165, 152, 0.3);
+  --brand-35a: rgba(131, 165, 152, 0.35);
+  --brand-40a: rgba(131, 165, 152, 0.4);
+  --brand-45a: rgba(131, 165, 152, 0.45);
+  --brand-50a: rgba(131, 165, 152, 0.5);
+  --brand-55a: rgba(131, 165, 152, 0.55);
+  --brand-60a: rgba(131, 165, 152, 0.6);
+  --brand-65a: rgba(131, 165, 152, 0.65);
+  --brand-70a: rgba(131, 165, 152, 0.7);
+  --brand-75a: rgba(131, 165, 152, 0.75);
+  --brand-80a: rgba(131, 165, 152, 0.8);
+  --brand-85a: rgba(131, 165, 152, 0.85);
+  --brand-90a: rgba(131, 165, 152, 0.9);
+  --brand-95a: rgba(131, 165, 152, 0.95);
+  --opacity-blurple-8: rgba(131, 165, 152, 0.08);
+  --opacity-blurple-16: rgba(131, 165, 152, 0.16);
+  --opacity-blurple-24: rgba(131, 165, 152, 0.24);
+  --opacity-blurple-32: rgba(131, 165, 152, 0.32);
+  --opacity-blurple-60: rgba(131, 165, 152, 0.6);
+  --blurple-50: #076678;
+  --blurple-60: #a4c3bb;
+  --control-primary-background-default: #076678;
+  --control-primary-background-hover: #83a598;
+  --control-primary-background-active: #83a598;
+  --control-secondary-background-default: #504945;
+  --control-secondary-background-hover: #665c54;
+  --control-secondary-background-active: #665c54;
+  --control-secondary-border-default: #504945;
+  --control-secondary-text-default: #ebdbb2;
+  --control-secondary-text-hover: #ebdbb2;
+  --control-critical-primary-background-default: #cc241d;
+  --control-critical-primary-background-hover: #fb4934;
+  --control-critical-primary-background-active: #fb4934;
+  --control-critical-primary-text-default: #1d2021;
+  --control-critical-primary-text-hover: #1d2021;
+  --control-critical-secondary-background-default: transparent;
+  --control-critical-secondary-background-hover: rgba(251, 73, 52, 0.15);
+  --control-critical-secondary-background-active: rgba(251, 73, 52, 0.2);
+  --control-critical-secondary-border-default: #fb4934;
+  --control-critical-secondary-border-hover: #fb4934;
+  --control-critical-secondary-border-active: #fb4934;
+  --control-critical-secondary-text-default: #ebdbb2;
+  --control-critical-secondary-text-hover: #1d2021;
+  --control-critical-secondary-text-active: #1d2021;
+  --control-connected-background-default: #b8bb26;
+  --control-connected-background-hover: rgb(204.8533333333, 208.1933333333, 42.3066666667);
+  --control-connected-background-active: #b8bb26;
+  --control-connected-border-default: #b8bb26;
+  --control-connected-border-hover: rgb(204.8533333333, 208.1933333333, 42.3066666667);
+  --control-connected-border-active: rgb(204.8533333333, 208.1933333333, 42.3066666667);
+  --button-outline-primary-text: #ebdbb2;
+  --button-outline-brand-text: #ebdbb2;
+  --button-outline-brand-background-hover: rgba(131, 165, 152, 0.3);
+  --button-outline-brand-border-active: #83a598;
+  --status-positive: #b8bb26;
+  --status-positive-background: #b8bb26;
+  --status-positive-text: #1d2021;
+  --status-warning: #fabd2f;
+  --status-warning-background: #fabd2f;
+  --status-warning-text: #1d2021;
+  --status-danger: #fb4934;
+  --text-status-online: #b8bb26;
+  --text-status-idle: #fabd2f;
+  --text-status-dnd: #fb4934;
+  --text-status-offline: #a89984;
+  --icon-status-online: #b8bb26;
+  --icon-status-idle: #fabd2f;
+  --icon-status-dnd: #fb4934;
+  --icon-status-offline: #a89984;
+  --background-feedback-positive: rgba(184, 187, 38, 0.15);
+  --background-feedback-warning: rgba(250, 189, 47, 0.15);
+  --background-feedback-critical: rgba(251, 73, 52, 0.15);
+  --background-feedback-info: rgba(131, 165, 152, 0.15);
+  --background-feedback-notification: #fb4934;
+  --badge-notification-background: #fb4934;
+  --icon-feedback-positive: #b8bb26;
+  --icon-feedback-warning: #fabd2f;
+  --icon-feedback-critical: #fb4934;
+  --icon-feedback-info: #83a598;
+  --icon-feedback-notification: #fb4934;
+  --notice-background-critical: #fb4934;
+  --notice-background-info: #83a598;
+  --notice-background-positive: #b8bb26;
+  --notice-background-warning: #fabd2f;
+  --notice-text-critical: #1d2021;
+  --notice-text-info: #1d2021;
+  --notice-text-positive: #1d2021;
+  --notice-text-warning: #1d2021;
+  --info-positive-text: #1d2021;
+  --info-warning-text: #1d2021;
+  --info-danger-text: #ffffff;
+  --info-help-background: rgba(131, 165, 152, 0.15);
+  --info-help-foreground: #83a598;
+  --info-help-text: #ebdbb2;
+  --scrollbar-thin-thumb: #504945;
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: #504945;
+  --scrollbar-auto-track: rgba(40, 40, 40, 0.3);
+  --scrollbar-auto-scrollbar-color-thumb: #504945;
+  --scrollbar-auto-scrollbar-color-track: rgba(40, 40, 40, 0.3);
+  --elevation-low: 0 1px 0 rgba(29, 32, 33, 0.3), 0 2px 0 rgba(29, 32, 33, 0.1);
+  --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.20);
+  --elevation-high: 0 8px 16px rgba(0, 0, 0, 0.30);
+  --elevation-stroke: 0 0 0 1px rgba(29, 32, 33, 0.2);
+  --mention-foreground: #d79921;
+  --mention-background: rgba(215, 153, 33, 0.3);
+  --message-mentioned-background-default: rgba(215, 153, 33, 0.07);
+  --message-mentioned-background-hover: rgba(215, 153, 33, 0.05);
+  --message-automod-background-default: rgba(204, 36, 29, 0.05);
+  --message-automod-background-hover: rgba(204, 36, 29, 0.1);
+  --message-highlight-background-default: rgba(215, 153, 33, 0.08);
+  --message-highlight-background-hover: rgba(215, 153, 33, 0.06);
+  --background-code: #1d2021;
+  --spoiler-revealed-background: #3c3836;
+  --spoiler-hidden-background: #504945;
+  --__spoiler-background-color--hidden: #504945;
+  --__spoiler-warning-background-color: #665c54;
+  --__adaptive-focus-ring-color: #83a598;
+  --textbox-markdown-syntax: #7c6f64;
+  --logo-primary: #f9f5d7;
+  --message-reacted-background-default: rgba(131, 165, 152, 0.3);
+  --message-reacted-text-default: #83a598;
+  --checkbox-border-default: #665c54;
+  --checkbox-icon-active: #1d2021;
+  --radio-thumb-background-active: #1d2021;
+  --deprecated-panel-background: #3c3836;
+  --deprecated-card-bg: #282828;
+  --deprecated-card-editable-bg: #282828;
+  --deprecated-store-bg: #3c3836;
+  --deprecated-quickswitcher-input-background: #282828;
+  --deprecated-quickswitcher-input-placeholder: rgba(235, 219, 178, 0.3);
+  --deprecated-text-input-bg: #282828;
+  --modal-background: #32302f;
+  --modal-footer-background: #32302f;
+  --input-background-default: #1d2021;
+  --input-text-default: #ebdbb2;
+  --input-placeholder-text-default: rgba(235, 219, 178, 0.5);
+  --input-border-default: #504945;
+  --icon-muted: #665c54;
+  --icon-voice-muted: #fb4934;
+  --icon-default: #ebdbb2;
+  --icon-strong: #f9f5d7;
+  --icon-subtle: #d5c4a1;
+  --channel-icon: #a89984;
+  --channel-text-area-placeholder: rgba(235, 219, 178, 0.5);
+  --interactive-icon-default: #ebdbb2;
+  --interactive-icon-hover: #ebdbb2;
+  --interactive-icon-active: #ebdbb2;
+  --interactive-text-default: #ebdbb2;
+  --interactive-text-hover: #ebdbb2;
+  --interactive-text-active: #ebdbb2;
+  --interactive-background-hover: rgba(80, 73, 69, 0.15);
+  --interactive-background-selected: rgba(80, 73, 69, 0.2);
+  --interactive-background-active: rgba(235, 219, 178, 0.17);
+  --user-profile-overlay-background: #32302f;
+  --user-profile-overlay-background-hover: #3c3836;
+  --white: #ebdbb2;
+  --white-500: #ebdbb2;
+  --black-500: #1d2021;
+  --green-360: #b8bb26;
+  --green-300: #b8bb26;
+  --yellow-360: #fabd2f;
+  --yellow-300: #fabd2f;
+  --red-400: #fb4934;
+  --red-430: #fb4934;
+  --red-500: #cc241d;
+  --blue-500: #83a598;
+  --blue-530: #83a598;
+  --primary-100: #d5c4a1;
+  --primary-200: #a89984;
+  --primary-300: #d5c4a1;
+  --primary-400: #d5c4a1;
+  --primary-630: #3c3836;
+  --primary-700: #504945;
+  --primary-800: #1d2021;
+  --twitch: #d5c4a1;
+  --playstation: #83a598;
+  --spotify: #b8bb26;
+  --guild-boosting-pink: #8ec07c;
+  --guild-boosting-blue: #83a598;
+  --guild-boosting-purple: #d5c4a1;
+  --premium-perk-yellow: #fabd2f;
+  --premium-perk-purple: #d5c4a1;
+  --premium-perk-dark-blue: #83a598;
+  --premium-perk-light-blue: #8ec07c;
+  --premium-perk-blue: #83a598;
+  --premium-perk-green: #b8bb26;
+  --premium-perk-pink: #d5c4a1;
+  --premium-perk-orange: #fabd2f;
+  --premium-tier-0-blue: #83a598;
+  --premium-tier-0-purple: #d5c4a1;
+  --premium-tier-1-blue-for-gradients: #8ec07c;
+  --premium-tier-1-dark-blue-for-gradients: #83a598;
+  --premium-tier-2-purple-for-gradients: #d5c4a1;
+  --premium-tier-2-purple-for-gradients-2: #a89984;
+  --premium-tier-2-pink-for-gradients: #d5c4a1;
+  --plum-23: #32302f;
+  --badge-text-brand: #1d2021;
 }
-
 
 .visual-refresh.theme-dark,
 .visual-refresh .theme-dark {
-    --__header-bar-background:               var(--grv-bg1) !important;
-    --background-surface-high:               var(--grv-bg0-s) !important;
-    --background-surface-higher:             var(--grv-bg1) !important;
-    --background-surface-highest:            var(--grv-bg2) !important;
-    --background-base-lowest:                var(--grv-bg-hard) !important;
-    --background-base-lower:                 var(--grv-bg0) !important;
-    --background-base-low:                   var(--grv-bg0-s) !important;
-    --background-secondary-alt:              var(--grv-bg1) !important;
-    --background-accent:                     var(--grv-bg2) !important;
-    --background-mod-subtle:                 rgba(80, 73, 69, 0.25) !important;
-    --background-mod-strong:                 rgba(80, 73, 69, 0.45) !important;
-    --card-background-default:               var(--grv-bg1) !important;
-    --custom-status-bubble-background:       var(--grv-bg-hard) !important;
-    --custom-status-bubble-background-color: var(--grv-bg0) !important;
-    --border-subtle:                         var(--grv-bg0-s) !important;
-    --text-muted:                            var(--grv-fg4) !important;
-    --text-link:                             var(--grv-blue-b) !important;
-    --text-strong:                           var(--grv-fg0) !important;
-    --message-reacted-background-default:    rgba(131, 165, 152, 0.3) !important;
-    --brand-500:                             var(--grv-blue-b) !important;
-    --brand-560:                             var(--grv-blue-b);
-    --brand-600:                             var(--grv-blue-l);
-    --modal-background:                      var(--grv-bg0-s) !important;
-    --icon-muted:                            var(--grv-bg3) !important;
-    --channel-icon:                          var(--grv-fg4) !important;
-    --interactive-icon-default:              var(--grv-fg1) !important;
-    --interactive-text-default:              var(--grv-fg1) !important;
-    --control-secondary-background-default:  var(--grv-bg2) !important;
-    --control-secondary-text-default:        var(--grv-fg1) !important;
-    --status-speaking:                       var(--grv-aqua-b);
-    --message-background-hover:              rgba(30, 25, 20, 0.08) !important;
+  --__header-bar-background: #3c3836 !important;
+  --background-surface-high: #32302f !important;
+  --background-surface-higher: #3c3836 !important;
+  --background-surface-highest: #504945 !important;
+  --background-base-lowest: #1d2021 !important;
+  --background-base-lower: #282828 !important;
+  --background-base-low: #32302f !important;
+  --background-secondary-alt: #3c3836 !important;
+  --background-accent: #504945 !important;
+  --background-mod-subtle: rgba(80, 73, 69, 0.25) !important;
+  --background-mod-strong: rgba(80, 73, 69, 0.45) !important;
+  --card-background-default: #3c3836 !important;
+  --custom-status-bubble-background: #1d2021 !important;
+  --custom-status-bubble-background-color: #282828 !important;
+  --border-subtle: #32302f !important;
+  --text-muted: #a89984 !important;
+  --text-link: #83a598 !important;
+  --text-strong: #f9f5d7 !important;
+  --message-reacted-background-default: rgba(131, 165, 152, 0.3) !important;
+  --brand-500: #83a598 !important;
+  --brand-560: #83a598 !important;
+  --brand-600: #a4c3bb !important;
+  --modal-background: #32302f !important;
+  --icon-muted: #665c54 !important;
+  --channel-icon: #a89984 !important;
+  --interactive-icon-default: #ebdbb2 !important;
+  --interactive-text-default: #ebdbb2 !important;
+  --control-secondary-background-default: #504945 !important;
+  --control-secondary-text-default: #ebdbb2 !important;
+  --status-speaking: #8ec07c;
+  --message-background-hover: rgba(30, 25, 20, 0.08) !important;
 }
 
-
 .theme-dark {
-    --background-mentioned:       rgba(215, 153, 33, 0.07);
-    --background-mentioned-hover: rgba(215, 153, 33, 0.12);
-    --background-message-hover:   rgba(30, 25, 20, 0.08);
+  --background-mentioned: rgba(215, 153, 33, 0.07);
+  --background-mentioned-hover: rgba(215, 153, 33, 0.12);
+  --background-message-hover: rgba(30, 25, 20, 0.08);
 }
 
 .theme-light {
-    --background-primary:        var(--grv-bg0-s);
-    --background-secondary:      var(--grv-bg0);
-    --background-tertiary:       var(--grv-bg-hard);
-    --background-floating:       var(--grv-bg1);
-    --header-primary:            var(--grv-fg0);
-    --header-secondary:          var(--grv-fg4);
-    --text-normal:               var(--grv-fg1);
-    --deprecated-text-input-bg:  var(--grv-bg0);
+  --background-primary: #32302f;
+  --background-secondary: #282828;
+  --background-tertiary: #1d2021;
+  --background-floating: #3c3836;
+  --header-primary: #f9f5d7;
+  --header-secondary: #a89984;
+  --text-normal: #ebdbb2;
+  --deprecated-text-input-bg: #282828;
 }
-
 
 * {
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
-
 
 #app-mount {
-    font-family: 'IBM Plex Mono', 'Courier New', monospace;
-    letter-spacing: -0.01em;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  letter-spacing: -0.01em;
 }
 
-#app-mount [class*="markup"],
-#app-mount [class*="markup"] *,
-#app-mount [class*="messageContent"],
-#app-mount [class*="messageContent"] * {
-    font-family: 'IBM Plex Sans', sans-serif;
-    letter-spacing: 0;
+#app-mount [class*=markup],
+#app-mount [class*=markup] *,
+#app-mount [class*=messageContent],
+#app-mount [class*=messageContent] * {
+  font-family: "IBM Plex Sans", sans-serif;
+  letter-spacing: 0;
 }
 
-[role="textbox"],
-[role="textbox"] *,
+[role=textbox],
+[role=textbox] *,
 [data-slate-editor],
 [data-slate-editor] * {
-    font-family: 'IBM Plex Sans', sans-serif !important;
-    letter-spacing: 0 !important;
+  font-family: "IBM Plex Sans", sans-serif !important;
+  letter-spacing: 0 !important;
 }
 
-div[class*="accountProfileCard_"] *,
-div[class*="nameTag_"] *,
-div[class*="customStatus_"] * {
-    font-family: 'IBM Plex Sans', sans-serif !important;
-    letter-spacing: 0 !important;
-    line-height: normal !important;
+div[class*=accountProfileCard_] *,
+div[class*=nameTag_] *,
+div[class*=customStatus_] * {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  letter-spacing: 0 !important;
+  line-height: normal !important;
 }
 
-code, pre,
-#app-mount [class*="markup"] code,
-#app-mount [class*="markup"] pre {
-    font-family: 'IBM Plex Mono', monospace !important;
-    background-color: var(--grv-bg-hard) !important;
-    border: 1px solid var(--grv-bg2) !important;
+code,
+pre,
+#app-mount [class*=markup] code,
+#app-mount [class*=markup] pre {
+  font-family: "IBM Plex Mono", monospace !important;
+  background-color: #1d2021 !important;
+  border: 1px solid #504945 !important;
 }
-
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--grv-bg2) !important;
-    border-radius: 0 !important;
+  background-color: #504945 !important;
+  border-radius: 0 !important;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--grv-bg0) !important;
-    border-radius: 0 !important;
+  background-color: #282828 !important;
+  border-radius: 0 !important;
 }
-
 
 foreignObject[mask] {
-    mask: none !important;
+  -webkit-mask: none !important;
+          mask: none !important;
 }
 
-[class*="mask"] circle[fill="black"],
-[class*="svg"] circle[fill="black"],
-[class*="mask"] circle[fill="white"],
-[class*="svg"] circle[fill="white"] {
-    display: none !important;
+[class*=mask] circle[fill=black],
+[class*=svg] circle[fill=black],
+[class*=mask] circle[fill=white],
+[class*=svg] circle[fill=white] {
+  display: none !important;
 }
 
-rect[mask*="status"] {
-    stroke: var(--grv-bg-hard) !important;
-    stroke-width: 10px !important;
-    paint-order: stroke fill !important;
+rect[mask*=status] {
+  stroke: #1d2021 !important;
+  stroke-width: 10px !important;
+  paint-order: stroke fill !important;
 }
 
 foreignObject[width="32"][height="32"]:has(~ g),
 foreignObject[width="40"][height="40"]:has(~ g) {
-    clip-path: polygon(
-        0% 0%, 100% 0%,
-        100% 62%, 62% 62%,
-        62% 100%, 0% 100%
-    ) !important;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 62%, 62% 62%, 62% 100%, 0% 100%) !important;
 }
 
 foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
 foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-    clip-path: polygon(
-        0% 0%,       100% 0%,
-        100% 46.875%, 62.5% 46.875%,
-        62.5% 100%,  0% 100%
-    ) !important;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 46.875%, 62.5% 46.875%, 62.5% 100%, 0% 100%) !important;
 }
 
 foreignObject[width="80"][height="80"][mask] ~ g rect {
-    transform: translate(16px, 16px) !important;
+  transform: translate(16px, 16px) !important;
 }
 
 foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-    clip-path: polygon(
-        0%   0%,
-        100% 0%,
-        100% 90%,
-        95%  90%,
-        95%  100%,
-        0%   100%
-    ) !important;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 95% 90%, 95% 100%, 0% 100%) !important;
 }
 
 foreignObject[width="120"][height="120"][mask] ~ g rect {
-    transform: translate(25px, 25px) !important;
+  transform: translate(25px, 25px) !important;
 }
 
 foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-    clip-path: polygon(
-        0%   0%,
-        100% 0%,
-        100% 88.7%,
-        95%  88.7%,
-        95%  100%,
-        0%   100%
-    ) !important;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 88.7%, 95% 88.7%, 95% 100%, 0% 100%) !important;
 }
 
-foreignObject [class*="avatarStack_"],
-foreignObject [class*="avatarStack_"]::after,
-foreignObject [class*="avatarStack_"] > * {
-    clip-path: none !important;
-    border-radius: 0 !important;
+foreignObject [class*=avatarStack_],
+foreignObject [class*=avatarStack_]::after,
+foreignObject [class*=avatarStack_] > * {
+  clip-path: none !important;
+  border-radius: 0 !important;
 }
 
-
-div[class*="speaking_"] {
-    box-shadow: inset 0 0 0 2px var(--grv-aqua-b) !important;
+div[class*=speaking_] {
+  box-shadow: inset 0 0 0 2px #8ec07c !important;
 }
 
-
-[class*="guilds"] [class*="layerContainer"],
-[class*="guilds"] [class*="layer"],
-[class*="guildTooltip"],
-[class*="guildPopout"] {
-    clip-path: inset(0) !important;
-    border: 1px solid var(--grv-bg2) !important;
-    background-color: var(--grv-bg1) !important;
+[class*=guilds] [class*=layerContainer],
+[class*=guilds] [class*=layer],
+[class*=guildTooltip],
+[class*=guildPopout] {
+  clip-path: inset(0) !important;
+  border: 1px solid #504945 !important;
+  background-color: #3c3836 !important;
 }
 
-[class*="folder"],
-[class*="folderEndButton"],
-[class*="folderPreview"],
-[class*="blobContainer"],
-[class*="iconBadge"] {
-    clip-path: inset(0) !important;
+[class*=folder],
+[class*=folderEndButton],
+[class*=folderPreview],
+[class*=blobContainer],
+[class*=iconBadge] {
+  clip-path: inset(0) !important;
 }
 
-section[class*="panels_"] {
-    flex-shrink: 0 !important;
-    min-height: 52px !important;
-    background-color: var(--grv-bg-hard) !important;
+section[class*=panels_] {
+  flex-shrink: 0 !important;
+  min-height: 52px !important;
+  background-color: #1d2021 !important;
 }
 
-[class^="privateChannels_"] [class^="buttonChildrenWrapper_"],
-[class^="privateChannels_"] [class^="buttonChildren_"] {
-    background-color: var(--grv-bg-hard) !important;
+[class^=privateChannels_] [class^=buttonChildrenWrapper_],
+[class^=privateChannels_] [class^=buttonChildren_] {
+  background-color: #1d2021 !important;
 }
 
-[class^="privateChannels_"] button:has([class^="buttonChildrenWrapper_"]) {
-    background-color: var(--grv-bg-hard) !important;
+[class^=privateChannels_] button:has([class^=buttonChildrenWrapper_]) {
+  background-color: #1d2021 !important;
 }
 
-div[class*="listItemWrapper_"],
-li[class*="listItem_"] {
-    overflow: visible !important;
+div[class*=listItemWrapper_],
+li[class*=listItem_] {
+  overflow: visible !important;
 }
 
-
-div[class*="embed_"],
-div[class*="embedWrapper_"] {
-    background-color: var(--grv-bg1) !important;
-    border-left: 3px solid var(--grv-blue-b) !important;
+div[class*=embed_],
+div[class*=embedWrapper_] {
+  background-color: #3c3836 !important;
+  border-left: 3px solid #83a598 !important;
 }
 
-div[class*="reaction_"] {
-    background-color: var(--grv-bg1) !important;
-    border: 1px solid var(--grv-bg2) !important;
+div[class*=reaction_] {
+  background-color: #3c3836 !important;
+  border: 1px solid #504945 !important;
 }
 
-div[class*="reactionMe_"] {
-    background-color: rgba(131, 165, 152, 0.2) !important;
-    border: 1px solid var(--grv-blue-b) !important;
+div[class*=reactionMe_] {
+  background-color: rgba(131, 165, 152, 0.2) !important;
+  border: 1px solid #83a598 !important;
 }
 
-div[class*="mentioned_"] {
-    background-color: rgba(215, 153, 33, 0.07) !important;
+div[class*=mentioned_] {
+  background-color: rgba(215, 153, 33, 0.07) !important;
 }
 
-div[class*="mentioned_"]::before {
-    background-color: var(--grv-yellow) !important;
+div[class*=mentioned_]::before {
+  background-color: #d79921 !important;
 }
 
-
-div[class*="numberBadge_"],
-div[class*="badge_"],
-span[class*="numberBadge_"],
-span[class*="badge_"] {
-    background-color: var(--grv-red-b) !important;
+div[class*=numberBadge_],
+div[class*=badge_],
+span[class*=numberBadge_],
+span[class*=badge_] {
+  background-color: #fb4934 !important;
 }
 
-span[class^="unreadPill_"] {
-    background-color: var(--grv-fg0) !important;
+span[class^=unreadPill_] {
+  background-color: #f9f5d7 !important;
 }
 
-div[class*="pill_"] rect {
-    fill: var(--grv-blue-dark) !important;
+div[class*=pill_] rect {
+  fill: #076678 !important;
 }
 
-[class*="selected_"][class*="channel_"],
-[class*="selected_"][class*="containerDefault_"],
-[class*="selected_"][class*="privateChannel_"] {
-    background-color: rgba(7, 102, 120, 0.2) !important;
+[class*=selected_][class*=channel_],
+[class*=selected_][class*=containerDefault_],
+[class*=selected_][class*=privateChannel_] {
+  background-color: rgba(7, 102, 120, 0.2) !important;
 }
 
-.visual-refresh.theme-dark div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"],
-.visual-refresh .theme-dark div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"] {
-    color: var(--grv-blue-dark) !important;
+.visual-refresh.theme-dark div[class^=listItem_] div[class^=wrapper_] [class*=selected_],
+.visual-refresh .theme-dark div[class^=listItem_] div[class^=wrapper_] [class*=selected_] {
+  color: #076678 !important;
 }
 
-div[class*="guilds_"] [class*="wrapper_"]:hover div[class*="icon_"][class*="noIcon_"],
-div[class*="guilds_"] [class*="wrapper_"][class*="selected_"] div[class*="icon_"][class*="noIcon_"],
-div[class*="guilds_"] [class*="wrapper_"]:active div[class*="icon_"][class*="noIcon_"] {
-    background-color: var(--grv-blue-dark) !important;
-    color: var(--grv-fg0) !important;
+div[class*=guilds_] [class*=wrapper_]:hover div[class*=icon_][class*=noIcon_],
+div[class*=guilds_] [class*=wrapper_][class*=selected_] div[class*=icon_][class*=noIcon_],
+div[class*=guilds_] [class*=wrapper_]:active div[class*=icon_][class*=noIcon_] {
+  background-color: #076678 !important;
+  color: #f9f5d7 !important;
 }
 
-div[class*="guilds_"] [class*="wrapper_"][class*="selected_"] > svg,
-div[class*="guilds_"] [class*="wrapper_"]:active > svg {
-    color: var(--grv-blue-dark) !important;
+div[class*=guilds_] [class*=wrapper_][class*=selected_] > svg,
+div[class*=guilds_] [class*=wrapper_]:active > svg {
+  color: #076678 !important;
 }
 
-[data-list-item-id="guildsnav___home"]:hover,
-[data-list-item-id="guildsnav___home"][aria-selected="true"],
-[data-list-item-id="guildsnav___home"]:active,
-[data-list-item-id="guildsnav___home"]:hover div[class*="childWrapper_"],
-[data-list-item-id="guildsnav___home"][aria-selected="true"] div[class*="childWrapper_"],
-[data-list-item-id="guildsnav___home"]:active div[class*="childWrapper_"] {
-    background-color: var(--grv-blue-dark) !important;
-    color: var(--grv-fg0) !important;
+[data-list-item-id=guildsnav___home]:hover,
+[data-list-item-id=guildsnav___home][aria-selected=true],
+[data-list-item-id=guildsnav___home]:active,
+[data-list-item-id=guildsnav___home]:hover div[class*=childWrapper_],
+[data-list-item-id=guildsnav___home][aria-selected=true] div[class*=childWrapper_],
+[data-list-item-id=guildsnav___home]:active div[class*=childWrapper_] {
+  background-color: #076678 !important;
+  color: #f9f5d7 !important;
 }
 
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"] {
-    background-color: var(--grv-red) !important;
+.visual-refresh.theme-dark button[class*=button_][class*=lookFilled_][class*=colorRed_],
+.visual-refresh .theme-dark button[class*=button_][class*=lookFilled_][class*=colorRed_] {
+  background-color: #cc241d !important;
+}
+.visual-refresh.theme-dark button[class*=button_][class*=lookFilled_][class*=colorRed_]:hover,
+.visual-refresh .theme-dark button[class*=button_][class*=lookFilled_][class*=colorRed_]:hover {
+  background-color: #fb4934 !important;
 }
 
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover,
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"]:hover {
-    background-color: var(--grv-red-b) !important;
+.visual-refresh.theme-dark button[class*=button_][class*=lookFilled_][class*=colorGrey_],
+.visual-refresh .theme-dark button[class*=button_][class*=lookFilled_][class*=colorGrey_] {
+  background-color: #3c3836 !important;
+  color: #ebdbb2 !important;
+}
+.visual-refresh.theme-dark button[class*=button_][class*=lookFilled_][class*=colorGrey_]:hover,
+.visual-refresh .theme-dark button[class*=button_][class*=lookFilled_][class*=colorGrey_]:hover {
+  background-color: #504945 !important;
 }
 
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"],
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"] {
-    background-color: var(--grv-bg1) !important;
-    color: var(--grv-fg1) !important;
+div[class*=overlay_] {
+  background-color: #282828 !important;
 }
 
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover,
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGrey_"]:hover {
-    background-color: var(--grv-bg2) !important;
-}
-
-div[class*="overlay_"] {
-    background-color: var(--grv-bg0) !important;
+div[class*=newMessagesBar_] {
+  background-color: #076678 !important;
 }
 
 .bd-addon-list .bd-addon-card {
-    border: 1px solid var(--grv-bg2);
-    background-color: var(--grv-bg0-s);
-    margin-bottom: 18px;
-}
-
-div[class*="newMessagesBar_"] {
-    background-color: var(--grv-blue-dark) !important;
-}
+  border: 1px solid #504945;
+  background-color: #32302f;
+  margin-bottom: 18px;
+}/*# sourceMappingURL=GruvboxSharp.theme.css.map */
