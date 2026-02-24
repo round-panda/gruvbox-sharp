@@ -475,15 +475,6 @@ div[class*=speaking_] {
   box-shadow: inset 0 0 0 2px #8ec07c !important;
 }
 
-[class*=guilds] [class*=layerContainer],
-[class*=guilds] [class*=layer],
-[class*=guildTooltip],
-[class*=guildPopout] {
-  clip-path: inset(0) !important;
-  border: 1px solid #504945 !important;
-  background-color: #3c3836 !important;
-}
-
 [class*=folder],
 [class*=folderEndButton],
 [class*=folderPreview],
