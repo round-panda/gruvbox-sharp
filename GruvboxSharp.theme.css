@@ -735,3 +735,7 @@ div[class*="overlay_"] {
     background-color: var(--grv-bg0-s);
     margin-bottom: 18px;
 }
+
+div[class*="newMessagesBar_"] {
+    background-color: var(--grv-blue-dark) !important;
+}
