@@ -1,6 +1,6 @@
 /**
  * @name          Gruvbox Sharp
- * @version       1.5
+ * @version       1.6
  * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
  *                typography. Monospace UI chrome, IBM Plex Sans for chat.
  *                Compatible with BetterDiscord and Vencord.
@@ -35,6 +35,8 @@
     --grv-yellow:   #d79921;
     --grv-y-bright: #fabd2f;
     --grv-blue-b:   #83a598;
+    --grv-blue-l:   #a4c3bb;  /* lighter tint for hover/active */
+    --grv-blue-dark: #076678; /* darkest gruvbox blue — accent buttons & focus */
     --grv-aqua-b:   #8ec07c;
     --grv-red:      #cc241d;
     --grv-red-b:    #fb4934;
@@ -105,7 +107,7 @@
     --text-default:                      var(--grv-fg1);
     --text-strong:                       var(--grv-fg0);
     --text-subtle:                       var(--grv-fg2);
-    --text-brand:                        var(--grv-yellow);
+    --text-brand:                        var(--grv-blue-b);
     --text-feedback-positive:            var(--grv-green-b);
     --text-feedback-critical:            var(--grv-red-b);
     --text-feedback-warning:             var(--grv-y-bright);
@@ -121,23 +123,23 @@
     --channels-default:                  var(--grv-fg4);
     --channeltextarea-background:        var(--grv-bg0);
     --userarea-background:               var(--grv-bg-hard);
-    --voice-color:                       var(--grv-yellow);
+    --voice-color:                       var(--grv-blue-b);
     --activity-card-background:          var(--grv-bg0-s);
 
     /* --- Brand / accent --- */
-    --brand-experiment:                  var(--grv-yellow);
-    --brand-experiment-560:              var(--grv-yellow);
-    --brand-experiment-600:              var(--grv-y-bright);
-    --control-brand-foreground:          var(--grv-y-bright);
-    --control-brand-foreground-new:      var(--grv-y-bright);
-    --brand-500:                         var(--grv-yellow);
-    --brand-560:                         var(--grv-yellow);
-    --brand-600:                         var(--grv-y-bright);
+    --brand-experiment:                  var(--grv-blue-dark);
+    --brand-experiment-560:              var(--grv-blue-dark);
+    --brand-experiment-600:              var(--grv-blue-b);
+    --control-brand-foreground:          var(--grv-blue-b);
+    --control-brand-foreground-new:      var(--grv-blue-b);
+    --brand-500:                         var(--grv-blue-dark);
+    --brand-560:                         var(--grv-blue-dark);
+    --brand-600:                         var(--grv-blue-b);
 
     /* --- Controls --- */
-    --control-primary-background-default: var(--grv-yellow);
-    --control-primary-background-hover:   var(--grv-y-bright);
-    --control-primary-background-active:  var(--grv-y-bright);
+    --control-primary-background-default: var(--grv-blue-dark);
+    --control-primary-background-hover:   var(--grv-blue-b);
+    --control-primary-background-active:  var(--grv-blue-b);
     --control-secondary-background-default: var(--grv-bg2);
     --control-secondary-background-hover:   var(--grv-bg3);
     --control-secondary-background-active:  var(--grv-bg3);
@@ -189,8 +191,8 @@
     --textbox-markdown-syntax: var(--grv-bg4);
 
     --logo-primary:                      var(--grv-fg0);
-    --message-reacted-background-default: rgba(215, 153, 33, 0.30);
-    --message-reacted-text-default:       var(--grv-yellow);
+    --message-reacted-background-default: rgba(131, 165, 152, 0.30);
+    --message-reacted-text-default:       var(--grv-blue-b);
     --checkbox-border-default:            var(--grv-bg3);
     --checkbox-icon-active:               var(--grv-bg-hard);
     --radio-thumb-background-active:      var(--grv-bg-hard);
@@ -204,10 +206,226 @@
     --deprecated-quickswitcher-input-placeholder:  rgba(235, 219, 178, 0.3);
     --deprecated-text-input-bg:                    var(--grv-bg0);
 
+    /* --- Modal --- */
+    --modal-background:                               var(--grv-bg0-s);
+    --modal-footer-background:                        var(--grv-bg0-s);
+
+    /* --- Input fields --- */
+    --input-background-default:                       var(--grv-bg-hard);
+    --input-text-default:                             var(--grv-fg1);
+    --input-placeholder-text-default:                 rgba(235, 219, 178, 0.5);
+    --input-border-default:                           var(--grv-bg2);
+
+    /* --- Icons --- */
+    --icon-muted:                                     var(--grv-bg3);
+    --icon-voice-muted:                               var(--grv-red-b);
+    --icon-default:                                   var(--grv-fg1);
+    --icon-strong:                                    var(--grv-fg0);
+    --icon-subtle:                                    var(--grv-fg2);
+
+    /* --- Channel --- */
+    --channel-icon:                                   var(--grv-fg4);
+    --channel-text-area-placeholder:                  rgba(235, 219, 178, 0.5);
+
+    /* --- Extended interactive --- */
+    --interactive-icon-default:                       var(--grv-fg1);
+    --interactive-icon-hover:                         var(--grv-fg1);
+    --interactive-icon-active:                        var(--grv-fg1);
+    --interactive-text-default:                       var(--grv-fg1);
+    --interactive-text-hover:                         var(--grv-fg1);
+    --interactive-text-active:                        var(--grv-fg1);
+    --interactive-background-hover:                   rgba(80, 73, 69, 0.15);
+    --interactive-background-selected:                rgba(80, 73, 69, 0.20);
+    --interactive-background-active:                  rgba(235, 219, 178, 0.17);
+
+    /* --- Mentions --- */
+    --mention-foreground:                             var(--grv-yellow);
+    --mention-background:                             rgba(215, 153, 33, 0.30);
+    --message-mentioned-background-default:           rgba(215, 153, 33, 0.07);
+    --message-mentioned-background-hover:             rgba(215, 153, 33, 0.05);
+    --message-automod-background-default:             rgba(204, 36, 29, 0.05);
+    --message-automod-background-hover:               rgba(204, 36, 29, 0.10);
+    --message-highlight-background-default:           rgba(215, 153, 33, 0.08);
+    --message-highlight-background-hover:             rgba(215, 153, 33, 0.06);
+
+    /* --- Code & spoilers --- */
+    --background-code:                                var(--grv-bg-hard);
+    --spoiler-revealed-background:                    var(--grv-bg1);
+    --spoiler-hidden-background:                      var(--grv-bg2);
+    --__spoiler-background-color--hidden:             var(--grv-bg2);
+    --__spoiler-warning-background-color:             var(--grv-bg3);
+
+    /* --- Focus ring --- */
+    --__adaptive-focus-ring-color:                    var(--grv-blue-b);
+
+    /* --- Status text & icons --- */
+    --text-status-online:                             var(--grv-green-b);
+    --text-status-idle:                               var(--grv-y-bright);
+    --text-status-dnd:                                var(--grv-red-b);
+    --text-status-offline:                            var(--grv-fg4);
+    --icon-status-online:                             var(--grv-green-b);
+    --icon-status-idle:                               var(--grv-y-bright);
+    --icon-status-dnd:                                var(--grv-red-b);
+    --icon-status-offline:                            var(--grv-fg4);
+
+    /* --- Notices --- */
+    --notice-background-critical:                     var(--grv-red-b);
+    --notice-background-info:                         var(--grv-blue-b);
+    --notice-background-positive:                     var(--grv-green-b);
+    --notice-background-warning:                      var(--grv-y-bright);
+    --notice-text-critical:                           var(--grv-bg-hard);
+    --notice-text-info:                               var(--grv-bg-hard);
+    --notice-text-positive:                           var(--grv-bg-hard);
+    --notice-text-warning:                            var(--grv-bg-hard);
+
+    /* --- Critical controls --- */
+    --control-critical-primary-background-default:    var(--grv-red);
+    --control-critical-primary-background-hover:      var(--grv-red-b);
+    --control-critical-primary-background-active:     var(--grv-red-b);
+    --control-critical-primary-text-default:          var(--grv-bg-hard);
+    --control-critical-primary-text-hover:            var(--grv-bg-hard);
+    --control-critical-secondary-background-default:  transparent;
+    --control-critical-secondary-background-hover:    rgba(251, 73, 52, 0.15);
+    --control-critical-secondary-background-active:   rgba(251, 73, 52, 0.20);
+    --control-critical-secondary-border-default:      var(--grv-red-b);
+    --control-critical-secondary-border-hover:        var(--grv-red-b);
+    --control-critical-secondary-border-active:       var(--grv-red-b);
+    --control-critical-secondary-text-default:        var(--grv-fg1);
+    --control-critical-secondary-text-hover:          var(--grv-bg-hard);
+    --control-critical-secondary-text-active:         var(--grv-bg-hard);
+
+    /* --- Connected controls (go-live, join voice) --- */
+    --control-connected-background-default:           var(--grv-green-b);
+    --control-connected-background-hover:             #c8cc26;
+    --control-connected-background-active:            var(--grv-green-b);
+    --control-connected-border-default:               var(--grv-green-b);
+    --control-connected-border-hover:                 #c8cc26;
+    --control-connected-border-active:                #c8cc26;
+
+    /* --- Button outline variants --- */
+    --button-outline-primary-text:                    var(--grv-fg1);
+    --button-outline-brand-text:                      var(--grv-fg1);
+    --button-outline-brand-background-hover:          rgba(131, 165, 152, 0.30);
+    --button-outline-brand-border-active:             var(--grv-blue-b);
+
+    /* --- User profile overlay --- */
+    --user-profile-overlay-background:                var(--grv-bg0-s);
+    --user-profile-overlay-background-hover:          var(--grv-bg1);
+
+    /* --- Misc semantic --- */
+    --plum-23:                                        var(--grv-bg0-s);
+    --badge-text-brand:                               var(--grv-bg-hard);
+
+    /* --- Guild boosting --- */
+    --guild-boosting-pink:                            var(--grv-aqua-b);
+    --guild-boosting-blue:                            var(--grv-blue-b);
+    --guild-boosting-purple:                          var(--grv-fg2);
+
+    /* --- Premium / Nitro --- */
+    --premium-perk-yellow:                            var(--grv-y-bright);
+    --premium-perk-purple:                            var(--grv-fg2);
+    --premium-perk-dark-blue:                         var(--grv-blue-b);
+    --premium-perk-light-blue:                        var(--grv-aqua-b);
+    --premium-perk-blue:                              var(--grv-blue-b);
+    --premium-perk-green:                             var(--grv-green-b);
+    --premium-perk-pink:                              var(--grv-fg2);
+    --premium-perk-orange:                            var(--grv-y-bright);
+    --premium-tier-0-blue:                            var(--grv-blue-b);
+    --premium-tier-0-purple:                          var(--grv-fg2);
+    --premium-tier-1-blue-for-gradients:              var(--grv-aqua-b);
+    --premium-tier-1-dark-blue-for-gradients:         var(--grv-blue-b);
+    --premium-tier-2-purple-for-gradients:            var(--grv-fg2);
+    --premium-tier-2-purple-for-gradients-2:          var(--grv-fg4);
+    --premium-tier-2-pink-for-gradients:              var(--grv-fg2);
+
+    /* --- Platform branding --- */
+    --twitch:                                         var(--grv-fg2);
+    --playstation:                                    var(--grv-blue-b);
+    --spotify:                                        var(--grv-green-b);
+
+    /* --- White/black remapping (branded elements) --- */
+    --white:                                          var(--grv-fg1);
+    --white-500:                                      var(--grv-fg1);
+    --black-500:                                      var(--grv-bg-hard);
+
+    /* --- Discord semantic color scale --- */
+    --green-360:                                      var(--grv-green-b);
+    --green-300:                                      var(--grv-green-b);
+    --yellow-360:                                     var(--grv-y-bright);
+    --yellow-300:                                     var(--grv-y-bright);
+    --red-400:                                        var(--grv-red-b);
+    --red-430:                                        var(--grv-red-b);
+    --red-500:                                        var(--grv-red);
+    --blue-500:                                       var(--grv-blue-b);
+    --blue-530:                                       var(--grv-blue-b);
+
+    /* --- Neutral primary scale --- */
+    --primary-100:                                    var(--grv-fg2);
+    --primary-200:                                    var(--grv-fg4);
+    --primary-300:                                    var(--grv-fg2);
+    --primary-400:                                    var(--grv-fg2);
+    --primary-630:                                    var(--grv-bg1);
+    --primary-700:                                    var(--grv-bg2);
+    --primary-800:                                    var(--grv-bg-hard);
+
+    /* --- Full brand scale (blue gradient) --- */
+    --brand-100: #e8f2f0;
+    --brand-130: #def0ed;
+    --brand-160: #d1ebe7;
+    --brand-200: #c2e4de;
+    --brand-230: #b3dcd6;
+    --brand-260: #a4d3cc;
+    --brand-300: #96ccc4;
+    --brand-330: #8fc4bc;
+    --brand-360: #89bcb4;
+    --brand-400: #87b9b1;
+    --brand-430: #85b4ac;
+    --brand-460: #84afa7;
+    --brand-530: #7b9d90;
+    --brand-630: #63837b;
+    --brand-660: #547970;
+    --brand-700: #456f66;
+    --brand-730: #3c6259;
+    --brand-760: #335650;
+    --brand-800: #2a4a44;
+    --brand-830: #21403a;
+    --brand-860: #193630;
+    --brand-900: #112c26;
+
+    /* --- Brand alpha scale --- */
+    --brand-05a:  rgba(131, 165, 152, 0.05);
+    --brand-10a:  rgba(131, 165, 152, 0.10);
+    --brand-15a:  rgba(131, 165, 152, 0.15);
+    --brand-20a:  rgba(131, 165, 152, 0.20);
+    --brand-25a:  rgba(131, 165, 152, 0.25);
+    --brand-30a:  rgba(131, 165, 152, 0.30);
+    --brand-35a:  rgba(131, 165, 152, 0.35);
+    --brand-40a:  rgba(131, 165, 152, 0.40);
+    --brand-45a:  rgba(131, 165, 152, 0.45);
+    --brand-50a:  rgba(131, 165, 152, 0.50);
+    --brand-55a:  rgba(131, 165, 152, 0.55);
+    --brand-60a:  rgba(131, 165, 152, 0.60);
+    --brand-65a:  rgba(131, 165, 152, 0.65);
+    --brand-70a:  rgba(131, 165, 152, 0.70);
+    --brand-75a:  rgba(131, 165, 152, 0.75);
+    --brand-80a:  rgba(131, 165, 152, 0.80);
+    --brand-85a:  rgba(131, 165, 152, 0.85);
+    --brand-90a:  rgba(131, 165, 152, 0.90);
+    --brand-95a:  rgba(131, 165, 152, 0.95);
+
+    /* --- Brand opacity aliases (Discord "blurple" → Gruvbox blue) --- */
+    --opacity-blurple-8:   rgba(131, 165, 152, 0.08);
+    --opacity-blurple-16:  rgba(131, 165, 152, 0.16);
+    --opacity-blurple-24:  rgba(131, 165, 152, 0.24);
+    --opacity-blurple-32:  rgba(131, 165, 152, 0.32);
+    --opacity-blurple-60:  rgba(131, 165, 152, 0.60);
+    --blurple-50:          var(--grv-blue-b);
+    --blurple-60:          var(--grv-blue-l);
+
     /* --- Global shape & divide --- */
     --border-radius: 0px;
     --border-color:  var(--grv-bg2);
-    --divide-color:  var(--grv-yellow);
+    --divide-color:  var(--grv-blue-b);
 }
 
 
@@ -248,17 +466,17 @@
     --text-link:                         var(--grv-blue-b) !important;
     --text-strong:                       var(--grv-fg0) !important;
     --text-subtle:                       var(--grv-fg2);
-    --text-brand:                        var(--grv-yellow);
+    --text-brand:                        var(--grv-blue-b);
     --text-feedback-positive:            var(--grv-green-b);
     --text-feedback-critical:            var(--grv-red-b);
     --text-feedback-warning:             var(--grv-y-bright);
     --text-feedback-info:                var(--grv-blue-b);
-    --message-reacted-background-default: rgba(215, 153, 33, 0.30) !important;
-    --message-reacted-text-default:       var(--grv-yellow);
-    --brand-500:                         var(--grv-yellow) !important;
-    --brand-530:                         var(--grv-yellow);
-    --brand-560:                         var(--grv-yellow);
-    --brand-600:                         var(--grv-y-bright);
+    --message-reacted-background-default: rgba(131, 165, 152, 0.30) !important;
+    --message-reacted-text-default:       var(--grv-blue-b);
+    --brand-500:                         var(--grv-blue-dark) !important;
+    --brand-530:                         var(--grv-blue-b);
+    --brand-560:                         var(--grv-blue-dark);
+    --brand-600:                         var(--grv-blue-b);
     --background-feedback-positive:      rgba(184, 187, 38, 0.15);
     --background-feedback-warning:       rgba(250, 189, 47, 0.15);
     --background-feedback-critical:      rgba(251, 73, 52, 0.15);
@@ -280,13 +498,243 @@
     --checkbox-border-default:           var(--grv-bg3);
     --checkbox-icon-active:              var(--grv-bg-hard);
     --radio-thumb-background-active:     var(--grv-bg-hard);
-    --control-primary-background-default: var(--grv-yellow);
-    --control-primary-background-hover:   var(--grv-y-bright);
-    --control-primary-background-active:  var(--grv-y-bright);
+    --control-primary-background-default: var(--grv-blue-dark);
+    --control-primary-background-hover:   var(--grv-blue-b);
+    --control-primary-background-active:  var(--grv-blue-b);
     --control-secondary-background-default: var(--grv-bg2) !important;
+    --control-secondary-background-hover:   var(--grv-bg3);
+    --control-secondary-background-active:  var(--grv-bg3);
     --control-secondary-border-default:     var(--grv-bg2);
     --control-secondary-text-default:       var(--grv-fg1) !important;
     --control-secondary-text-hover:         var(--grv-fg1);
+
+    /* --- Full brand scale (visual-refresh) --- */
+    --brand-100: #e8f2f0;
+    --brand-130: #def0ed;
+    --brand-160: #d1ebe7;
+    --brand-200: #c2e4de;
+    --brand-230: #b3dcd6;
+    --brand-260: #a4d3cc;
+    --brand-300: #96ccc4;
+    --brand-330: #8fc4bc;
+    --brand-360: #89bcb4;
+    --brand-400: #87b9b1;
+    --brand-430: #85b4ac;
+    --brand-460: #84afa7;
+    --brand-500: var(--grv-blue-b) !important;
+    --brand-530: #7b9d90;
+    --brand-560: var(--grv-blue-b);
+    --brand-600: var(--grv-blue-l);
+    --brand-630: #63837b;
+    --brand-660: #547970;
+    --brand-700: #456f66;
+    --brand-730: #3c6259;
+    --brand-760: #335650;
+    --brand-800: #2a4a44;
+    --brand-830: #21403a;
+    --brand-860: #193630;
+    --brand-900: #112c26;
+    --brand-05a:  rgba(131, 165, 152, 0.05);
+    --brand-10a:  rgba(131, 165, 152, 0.10);
+    --brand-15a:  rgba(131, 165, 152, 0.15);
+    --brand-20a:  rgba(131, 165, 152, 0.20);
+    --brand-25a:  rgba(131, 165, 152, 0.25);
+    --brand-30a:  rgba(131, 165, 152, 0.30);
+    --brand-35a:  rgba(131, 165, 152, 0.35);
+    --brand-40a:  rgba(131, 165, 152, 0.40);
+    --brand-45a:  rgba(131, 165, 152, 0.45);
+    --brand-50a:  rgba(131, 165, 152, 0.50);
+    --brand-55a:  rgba(131, 165, 152, 0.55);
+    --brand-60a:  rgba(131, 165, 152, 0.60);
+    --brand-65a:  rgba(131, 165, 152, 0.65);
+    --brand-70a:  rgba(131, 165, 152, 0.70);
+    --brand-75a:  rgba(131, 165, 152, 0.75);
+    --brand-80a:  rgba(131, 165, 152, 0.80);
+    --brand-85a:  rgba(131, 165, 152, 0.85);
+    --brand-90a:  rgba(131, 165, 152, 0.90);
+    --brand-95a:  rgba(131, 165, 152, 0.95);
+
+    /* --- Brand opacity aliases --- */
+    --opacity-blurple-8:   rgba(131, 165, 152, 0.08);
+    --opacity-blurple-16:  rgba(131, 165, 152, 0.16);
+    --opacity-blurple-24:  rgba(131, 165, 152, 0.24);
+    --opacity-blurple-32:  rgba(131, 165, 152, 0.32);
+    --opacity-blurple-60:  rgba(131, 165, 152, 0.60);
+    --blurple-50:          var(--grv-blue-b);
+    --blurple-60:          var(--grv-blue-l);
+
+    /* --- White/black remapping --- */
+    --white:     var(--grv-fg1);
+    --white-500: var(--grv-fg1);
+    --black-500: var(--grv-bg-hard);
+
+    /* --- Discord semantic color scale --- */
+    --green-360:  var(--grv-green-b);
+    --green-300:  var(--grv-green-b);
+    --yellow-360: var(--grv-y-bright);
+    --yellow-300: var(--grv-y-bright);
+    --red-400:    var(--grv-red-b);
+    --red-430:    var(--grv-red-b);
+    --red-500:    var(--grv-red);
+    --blue-500:   var(--grv-blue-b);
+    --blue-530:   var(--grv-blue-b);
+
+    /* --- Neutral primary scale --- */
+    --primary-100: var(--grv-fg2);
+    --primary-200: var(--grv-fg4);
+    --primary-300: var(--grv-fg2);
+    --primary-400: var(--grv-fg2);
+    --primary-630: var(--grv-bg1);
+    --primary-700: var(--grv-bg2);
+    --primary-800: var(--grv-bg-hard);
+
+    /* --- Modal --- */
+    --modal-background:        var(--grv-bg0-s) !important;
+    --modal-footer-background: var(--grv-bg0-s);
+
+    /* --- Input fields --- */
+    --input-background-default:               var(--grv-bg-hard);
+    --input-text-default:                     var(--grv-fg1);
+    --input-placeholder-text-default:         rgba(235, 219, 178, 0.5);
+    --input-border-default:                   var(--grv-bg2);
+
+    /* --- Icons --- */
+    --icon-muted:       var(--grv-bg3) !important;
+    --icon-voice-muted: var(--grv-red-b);
+    --icon-default:     var(--grv-fg1);
+    --icon-strong:      var(--grv-fg0);
+    --icon-subtle:      var(--grv-fg2);
+    --icon-feedback-info: var(--grv-blue-b);
+
+    /* --- Channel --- */
+    --channel-icon:                  var(--grv-fg4) !important;
+    --channel-text-area-placeholder: rgba(235, 219, 178, 0.5);
+    --channeltextarea-background:    var(--grv-bg0);
+
+    /* --- Extended interactive --- */
+    --interactive-icon-default:   var(--grv-fg1) !important;
+    --interactive-icon-hover:     var(--grv-fg1);
+    --interactive-icon-active:    var(--grv-fg1);
+    --interactive-text-default:   var(--grv-fg1) !important;
+    --interactive-text-hover:     var(--grv-fg1);
+    --interactive-text-active:    var(--grv-fg1);
+    --interactive-background-hover:    rgba(80, 73, 69, 0.15);
+    --interactive-background-selected: rgba(80, 73, 69, 0.20);
+    --interactive-background-active:   rgba(235, 219, 178, 0.17);
+
+    /* --- Mentions --- */
+    --mention-foreground:                           var(--grv-yellow);
+    --mention-background:                           rgba(215, 153, 33, 0.30);
+    --message-mentioned-background-default:         rgba(215, 153, 33, 0.07);
+    --message-mentioned-background-hover:           rgba(215, 153, 33, 0.05);
+    --message-background-hover:                     rgba(30, 25, 20, 0.08) !important;
+    --message-automod-background-default:           rgba(204, 36, 29, 0.05);
+    --message-automod-background-hover:             rgba(204, 36, 29, 0.10);
+    --message-highlight-background-default:         rgba(215, 153, 33, 0.08);
+    --message-highlight-background-hover:           rgba(215, 153, 33, 0.06);
+
+    /* --- Code & spoilers --- */
+    --background-code:                    var(--grv-bg-hard);
+    --spoiler-revealed-background:        var(--grv-bg1);
+    --spoiler-hidden-background:          var(--grv-bg2);
+    --__spoiler-background-color--hidden: var(--grv-bg2);
+    --__spoiler-warning-background-color: var(--grv-bg3);
+
+    /* --- Focus ring --- */
+    --__adaptive-focus-ring-color: var(--grv-blue-b);
+
+    /* --- Status text & icons --- */
+    --text-status-online:  var(--grv-green-b);
+    --text-status-idle:    var(--grv-y-bright);
+    --text-status-dnd:     var(--grv-red-b);
+    --text-status-offline: var(--grv-fg4);
+    --icon-status-online:  var(--grv-green-b);
+    --icon-status-idle:    var(--grv-y-bright);
+    --icon-status-dnd:     var(--grv-red-b);
+    --icon-status-offline: var(--grv-fg4);
+
+    /* --- Notices --- */
+    --notice-background-critical: var(--grv-red-b);
+    --notice-background-info:     var(--grv-blue-b);
+    --notice-background-positive: var(--grv-green-b);
+    --notice-background-warning:  var(--grv-y-bright);
+    --notice-text-critical:       var(--grv-bg-hard);
+    --notice-text-info:           var(--grv-bg-hard);
+    --notice-text-positive:       var(--grv-bg-hard);
+    --notice-text-warning:        var(--grv-bg-hard);
+
+    /* --- Critical controls --- */
+    --control-critical-primary-background-default:    var(--grv-red);
+    --control-critical-primary-background-hover:      var(--grv-red-b);
+    --control-critical-primary-background-active:     var(--grv-red-b);
+    --control-critical-primary-text-default:          var(--grv-bg-hard);
+    --control-critical-primary-text-hover:            var(--grv-bg-hard);
+    --control-critical-secondary-background-default:  transparent;
+    --control-critical-secondary-background-hover:    rgba(251, 73, 52, 0.15);
+    --control-critical-secondary-background-active:   rgba(251, 73, 52, 0.20);
+    --control-critical-secondary-border-default:      var(--grv-red-b);
+    --control-critical-secondary-border-hover:        var(--grv-red-b);
+    --control-critical-secondary-border-active:       var(--grv-red-b);
+    --control-critical-secondary-text-default:        var(--grv-fg1);
+    --control-critical-secondary-text-hover:          var(--grv-bg-hard);
+    --control-critical-secondary-text-active:         var(--grv-bg-hard);
+
+    /* --- Connected controls (go-live, join voice) --- */
+    --control-connected-background-default: var(--grv-green-b);
+    --control-connected-background-hover:   #c8cc26;
+    --control-connected-background-active:  var(--grv-green-b);
+    --control-connected-border-default:     var(--grv-green-b);
+    --control-connected-border-hover:       #c8cc26;
+    --control-connected-border-active:      #c8cc26;
+
+    /* --- Button outline variants --- */
+    --button-outline-primary-text:           var(--grv-fg1);
+    --button-outline-brand-text:             var(--grv-fg1);
+    --button-outline-brand-background-hover: rgba(131, 165, 152, 0.30);
+    --button-outline-brand-border-active:    var(--grv-blue-b);
+
+    /* --- Scrollbars --- */
+    --scrollbar-thin-thumb:  var(--grv-bg2);
+    --scrollbar-thin-track:  transparent;
+    --scrollbar-auto-thumb:  var(--grv-bg2);
+    --scrollbar-auto-track:  rgba(40, 40, 40, 0.3);
+    --scrollbar-auto-scrollbar-color-thumb: var(--grv-bg2);
+    --scrollbar-auto-scrollbar-color-track: rgba(40, 40, 40, 0.3);
+
+    /* --- User profile overlay --- */
+    --user-profile-overlay-background:       var(--grv-bg0-s);
+    --user-profile-overlay-background-hover: var(--grv-bg1);
+
+    /* --- Misc semantic --- */
+    --plum-23:        var(--grv-bg0-s);
+    --badge-text-brand: var(--grv-bg-hard);
+
+    /* --- Guild boosting --- */
+    --guild-boosting-pink:   var(--grv-aqua-b);
+    --guild-boosting-blue:   var(--grv-blue-b);
+    --guild-boosting-purple: var(--grv-fg2);
+
+    /* --- Premium / Nitro --- */
+    --premium-perk-yellow:                    var(--grv-y-bright);
+    --premium-perk-purple:                    var(--grv-fg2);
+    --premium-perk-dark-blue:                 var(--grv-blue-b);
+    --premium-perk-light-blue:                var(--grv-aqua-b);
+    --premium-perk-blue:                      var(--grv-blue-b);
+    --premium-perk-green:                     var(--grv-green-b);
+    --premium-perk-pink:                      var(--grv-fg2);
+    --premium-perk-orange:                    var(--grv-y-bright);
+    --premium-tier-0-blue:                    var(--grv-blue-b);
+    --premium-tier-0-purple:                  var(--grv-fg2);
+    --premium-tier-1-blue-for-gradients:      var(--grv-aqua-b);
+    --premium-tier-1-dark-blue-for-gradients: var(--grv-blue-b);
+    --premium-tier-2-purple-for-gradients:    var(--grv-fg2);
+    --premium-tier-2-purple-for-gradients-2:  var(--grv-fg4);
+    --premium-tier-2-pink-for-gradients:      var(--grv-fg2);
+
+    /* --- Platform branding --- */
+    --twitch:      var(--grv-fg2);
+    --playstation: var(--grv-blue-b);
+    --spotify:     var(--grv-green-b);
 }
 
 
@@ -507,7 +955,7 @@ li[class*="listItem_"] {
 div[class*="embed_"],
 div[class*="embedWrapper_"] {
     background-color: var(--grv-bg1) !important;
-    border-left: 3px solid var(--grv-yellow) !important;
+    border-left: 3px solid var(--grv-blue-b) !important;
 }
 
 /* Reactions */
@@ -516,8 +964,8 @@ div[class*="reaction_"] {
     border: 1px solid var(--grv-bg2) !important;
 }
 div[class*="reactionMe_"] {
-    background-color: rgba(215, 153, 33, 0.20) !important;
-    border: 1px solid var(--grv-yellow) !important;
+    background-color: rgba(131, 165, 152, 0.20) !important;
+    border: 1px solid var(--grv-blue-b) !important;
 }
 
 /* Mentions */
@@ -543,7 +991,68 @@ span[class^="unreadPill_"] {
 }
 
 
-/* 12. BUTTONS  —  Visual Refresh colour overrides */
+/* 12. APP / SERVER TAGS & FOCUSED ICON HIGHLIGHTS */
+
+/* APP / BOT badge */
+span[class*="botTag_"],
+span[class*="serverTag_"] {
+    background-color: var(--grv-blue-dark) !important;
+    color: var(--grv-fg0) !important;
+}
+span[class*="botTag_"] span,
+span[class*="serverTag_"] span {
+    color: var(--grv-fg0) !important;
+}
+
+/* Guild icon selected pill */
+div[class*="pill_"] rect {
+    fill: var(--grv-blue-dark) !important;
+}
+
+/* Selected channel / DM entry background tint */
+[class*="selected_"][class*="channel_"],
+[class*="selected_"][class*="containerDefault_"],
+[class*="selected_"][class*="privateChannel_"] {
+    background-color: rgba(7, 102, 120, 0.20) !important;
+}
+
+/* Selected server row (visual-refresh).
+   --white is intentionally NOT remapped here: our accent (#076678) is dark,
+   so foreground elements must stay light — the inverse of light-accent themes. */
+.visual-refresh.theme-dark div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"],
+.visual-refresh .theme-dark div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"] {
+    color: var(--grv-blue-dark) !important;
+}
+
+/* Default text-only server icons (noIcon_) — dark blue tile, gruvbox white text */
+div[class*="guilds_"] [class*="wrapper_"]:hover div[class*="icon_"][class*="noIcon_"],
+div[class*="guilds_"] [class*="wrapper_"][class*="selected_"] div[class*="icon_"][class*="noIcon_"],
+div[class*="guilds_"] [class*="wrapper_"]:active div[class*="icon_"][class*="noIcon_"] {
+    background-color: var(--grv-blue-dark) !important;
+    color: var(--grv-fg0) !important;
+}
+
+/* Guild icon SVG colour on selected / active */
+div[class*="guilds_"] [class*="wrapper_"][class*="selected_"] > svg,
+div[class*="guilds_"] [class*="wrapper_"]:active > svg {
+    color: var(--grv-blue-dark) !important;
+}
+
+/* DM / Home button — dark blue tile on hover, selected, and active.
+   Targets both the outer wrapper and childWrapper to override Discord's
+   childWrapperNoHoverBg_ suppression. color: grv-fg0 keeps the SVG light. */
+[data-list-item-id="guildsnav___home"]:hover,
+[data-list-item-id="guildsnav___home"][aria-selected="true"],
+[data-list-item-id="guildsnav___home"]:active,
+[data-list-item-id="guildsnav___home"]:hover div[class*="childWrapper_"],
+[data-list-item-id="guildsnav___home"][aria-selected="true"] div[class*="childWrapper_"],
+[data-list-item-id="guildsnav___home"]:active div[class*="childWrapper_"] {
+    background-color: var(--grv-blue-dark) !important;
+    color: var(--grv-fg0) !important;
+}
+
+
+/* 13. BUTTONS  —  Visual Refresh colour overrides */
 
 /* Destructive (red) */
 .visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
@@ -573,14 +1082,14 @@ span[class^="unreadPill_"] {
 }
 
 
-/* 13. OVERLAYS & MODALS */
+/* 14. OVERLAYS & MODALS */
 
 div[class*="overlay_"] {
     background-color: var(--grv-bg0) !important;
 }
 
 
-/* 14. BetterDiscord plugin UI */
+/* 15. BetterDiscord plugin UI */
 
 .bd-addon-list .bd-addon-card {
     border: 1px solid var(--grv-bg2);
