@@ -379,7 +379,7 @@
     --opacity-blurple-24: rgba(131, 165, 152, 0.24);
     --opacity-blurple-32: rgba(131, 165, 152, 0.32);
     --opacity-blurple-60: rgba(131, 165, 152, 0.6);
-    --blurple-50:         var(--grv-blue-b);
+    --blurple-50:         var(--grv-blue-dark);
     --blurple-60:         var(--grv-blue-l);
 
     --border-radius: 0;
@@ -648,18 +648,6 @@ span[class^="unreadPill_"] {
     background-color: var(--grv-fg0) !important;
 }
 
-
-span[class*="botTag_"],
-span[class*="serverTag_"] {
-    background-color: var(--grv-blue-dark) !important;
-    color: var(--grv-fg0) !important;
-}
-
-span[class*="botTag_"] span,
-span[class*="serverTag_"] span {
-    color: var(--grv-fg0) !important;
-}
-
 div[class*="pill_"] rect {
     fill: var(--grv-blue-dark) !important;
 }
@@ -697,7 +685,6 @@ div[class*="guilds_"] [class*="wrapper_"]:active > svg {
     color: var(--grv-fg0) !important;
 }
 
-
 .visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
 .visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorRed_"] {
     background-color: var(--grv-red) !important;
@@ -719,16 +706,9 @@ div[class*="guilds_"] [class*="wrapper_"]:active > svg {
     background-color: var(--grv-bg2) !important;
 }
 
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])),
-.visual-refresh .theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:not(:has(> div > div[class*="buttonIcon_"])) {
-    color: var(--grv-bg-hard) !important;
-}
-
-
 div[class*="overlay_"] {
     background-color: var(--grv-bg0) !important;
 }
-
 
 .bd-addon-list .bd-addon-card {
     border: 1px solid var(--grv-bg2);
