@@ -1145,52 +1145,6 @@ div[class*="mentioned_"] {
 }
 
 
-// Badges & pills
-[class*="numberBadge_"],
-[class*="badge_"] {
-  background-color: #{$red-b} !important;
-}
-
-span[class^="unreadPill_"] {
-  background-color: #{$fg0} !important;
-}
-
-div[class*="pill_"] rect {
-  fill: #{$blue-dark} !important;
-}
-
-
-// Channel / DM selection highlight
-[class*="selected_"][class*="channel_"],
-[class*="selected_"][class*="containerDefault_"],
-[class*="selected_"][class*="privateChannel_"] {
-  background-color: #{rgba($blue-dark, 0.20)} !important;
-}
-
-.visual-refresh.theme-dark div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"],
-.visual-refresh .theme-dark  div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"] {
-  color: #{$blue-b} !important;
-}
-
-
-// Guild icon hover / active / selected states
-div[class*="guilds_"] [class*="wrapper_"]:is(:hover, [class*="selected_"], :active)
-  div[class*="icon_"][class*="noIcon_"] {
-  background-color: #{$blue-dark} !important;
-  color: #{$fg0} !important;
-}
-
-div[class*="guilds_"] [class*="wrapper_"]:is([class*="selected_"], :active) > svg {
-  color: #{$blue-dark} !important;
-}
-
-[data-list-item-id="guildsnav___home"]:is(:hover, [aria-selected="true"], :active),
-[data-list-item-id="guildsnav___home"]:is(:hover, [aria-selected="true"], :active) div[class*="childWrapper_"] {
-  background-color: #{$blue-dark} !important;
-  color: #{$fg0} !important;
-}
-
-
 // Visual-refresh button overrides
 :is(.visual-refresh.theme-dark, .visual-refresh .theme-dark) {
 
