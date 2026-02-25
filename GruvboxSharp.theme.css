@@ -23,6 +23,7 @@
   --background-modifier-accent: #504945;
   --background-mentioned: rgba(215, 153, 33, 0.07);
   --background-mentioned-hover: rgba(215, 153, 33, 0.12);
+  --background-mentioned-focus: rgba(215, 153, 33, 0.15);
   --background-message-hover: rgba(30, 25, 20, 0.08);
   --app-frame-background: #1d2021;
   --home-background: #32302f;
@@ -77,9 +78,11 @@
   --interactive-active: #f9f5d7;
   --interactive-muted: #665c54;
   --channels-default: #a89984;
+  --channels-voice-default: #a89984;
   --channeltextarea-background: #282828;
   --userarea-background: #1d2021;
-  --voice-color: #83a598;
+  --voice-color: #8ec07c;
+  --status-speaking: #8ec07c;
   --activity-card-background: #32302f;
   --brand-experiment: #076678;
   --brand-experiment-560: #076678;
@@ -204,8 +207,11 @@
   --notice-text-info: #1d2021;
   --notice-text-positive: #1d2021;
   --notice-text-warning: #1d2021;
+  --info-positive-background: rgba(184, 187, 38, 0.15);
   --info-positive-text: #1d2021;
+  --info-warning-background: rgba(250, 189, 47, 0.15);
   --info-warning-text: #1d2021;
+  --info-danger-background: rgba(251, 73, 52, 0.15);
   --info-danger-text: #ffffff;
   --info-help-background: rgba(131, 165, 152, 0.15);
   --info-help-foreground: #83a598;
@@ -347,7 +353,7 @@
   --interactive-text-default: #ebdbb2 !important;
   --control-secondary-background-default: #504945 !important;
   --control-secondary-text-default: #ebdbb2 !important;
-  --status-speaking: #8ec07c;
+  --status-speaking: #8ec07c !important;
   --message-background-hover: rgba(30, 25, 20, 0.08) !important;
 }
 

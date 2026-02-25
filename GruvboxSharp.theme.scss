@@ -43,25 +43,17 @@ $fg4:       #a89984; // muted text — timestamps, channel names, placeholders
 // --- Accent colours ----------------------------------------------------------
 $yellow:    #d79921; // mention foreground, mention bar
 $y-bright:  #fabd2f; // warning text, idle status, premium yellow
-$blue-b:    #83a598; // primary accent — links, brand, reactions, voice
+$blue-b:    #83a598; // primary accent — links, brand, reactions
 $blue-l:    #a4c3bb; // brand hover / lighter brand shade
 $blue-dark: #076678; // dark brand — button fills, pill indicator
-$aqua-b:    #8ec07c; // speaking glow, guild-boost colours
+$aqua-b:    #8ec07c; // voice colour, speaking glow, guild-boost colours
 $red:       #cc241d; // danger button base
 $red-b:     #fb4934; // danger hover / error text / badges
 $green-b:   #b8bb26; // positive text, online status, success indicators
 
-// Derived — used for rgba() calls; keeps magic numbers out of property defs.
-// These are not emitted as CSS variables; SCSS resolves them at compile time.
-$_bg2-rgb:       $bg2;       // rgba source for modifier overlays
-$_fg1-rgb:       $fg1;       // rgba source for placeholder / deprec. vars
-$_yellow-rgb:    $yellow;    // rgba source for mention backgrounds
-$_blue-b-rgb:    $blue-b;    // rgba source for brand alpha ramp
-$_bg-dark-rgb:   #1e1914;    // rgba source for message hover (near bg-hard)
-$_red-b-rgb:     $red-b;     // rgba source for critical feedback bg
-$_green-b-rgb:   $green-b;   // rgba source for positive feedback bg
-$_y-bright-rgb:  $y-bright;  // rgba source for warning feedback bg
-$_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
+// Derived — the only alias needed: a named value for the message-hover tint
+// that sits between bg-hard and bg0-s. Used in rgba() calls on three lines.
+$_bg-dark-rgb: #1e1914; // message hover tint — near bg-hard but slightly cooler
 
 
 // =============================================================================
@@ -86,8 +78,8 @@ $_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
   // Mention + message tints
   --background-mentioned:         #{rgba($yellow, 0.07)};
   --background-mentioned-hover:   #{rgba($yellow, 0.12)};
+  --background-mentioned-focus:   #{rgba($yellow, 0.15)};
   --background-message-hover:     #{rgba($_bg-dark-rgb, 0.08)};
-  // Legacy name; current name is --message-background-hover, set below
 
   // --- Semantic / layout backgrounds ----------------------------------------
   --app-frame-background:         #{$bg-hard};
@@ -160,9 +152,11 @@ $_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
 
   // --- Channel / input areas -------------------------------------------------
   --channels-default:           #{$fg4};
+  --channels-voice-default:     #{$fg4};     // voice channel name colour in sidebar
   --channeltextarea-background: #{$bg0};
   --userarea-background:        #{$bg-hard};
-  --voice-color:                #{$blue-b};
+  --voice-color:                #{$aqua-b};  // voice-active icon / indicator colour
+  --status-speaking:            #{$aqua-b};  // speaking ring (all UI contexts)
   --activity-card-background:   #{$bg0-s};
 
   // --- Brand colour ramp -----------------------------------------------------
@@ -314,12 +308,15 @@ $_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
   --notice-text-warning:        #{$bg-hard};
 
   // --- Info callout boxes ----------------------------------------------------
-  --info-positive-text:   #{$bg-hard};
-  --info-warning-text:    #{$bg-hard};
-  --info-danger-text:     #ffffff;
-  --info-help-background: #{rgba($blue-b, 0.15)};
-  --info-help-foreground: #{$blue-b};
-  --info-help-text:       #{$fg1};
+  --info-positive-background: #{rgba($green-b, 0.15)};
+  --info-positive-text:       #{$bg-hard};
+  --info-warning-background:  #{rgba($y-bright, 0.15)};
+  --info-warning-text:        #{$bg-hard};
+  --info-danger-background:   #{rgba($red-b, 0.15)};
+  --info-danger-text:         #ffffff;
+  --info-help-background:     #{rgba($blue-b, 0.15)};
+  --info-help-foreground:     #{$blue-b};
+  --info-help-text:           #{$fg1};
 
   // --- Scrollbars ------------------------------------------------------------
   --scrollbar-thin-thumb:                 #{$bg2};
@@ -507,8 +504,8 @@ $_aqua-b-rgb:    $aqua-b;    // rgba source for info feedback bg
   --control-secondary-background-default:  #{$bg2} !important;
   --control-secondary-text-default:        #{$fg1} !important;
 
-  // Voice speaking ring (visual-refresh specific)
-  --status-speaking: #{$aqua-b};
+  // Reinforce voice speaking ring against visual-refresh resets
+  --status-speaking: #{$aqua-b} !important;
 
   // Current name for message hover background in visual-refresh context
   --message-background-hover: #{rgba($_bg-dark-rgb, 0.08)} !important;
