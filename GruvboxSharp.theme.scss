@@ -1,6 +1,6 @@
 /**
  * @name          Gruvbox Sharp
- * @version       3.1
+ * @version       3.2
  * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
  *                typography. Monospace UI chrome, IBM Plex Sans for chat.
  *                Compatible with BetterDiscord and Vencord.
@@ -56,9 +56,13 @@ $_bg-dark-rgb: #1e1914;
 
 
 // =============================================================================
-// :root — Discord CSS Custom Properties
-// Canonical source of truth for every variable. The visual-refresh block below
-// only repeats the subset that Discord's VR internally resets.
+// :root — Discord CSS Custom Properties (canonical definitions)
+//
+// Discord's visual-refresh establishes its own CSS custom-property scope on
+// .visual-refresh.theme-dark, overriding :root for all VR-rendered components.
+// The VR block below therefore re-declares every variable so our values win
+// in that scope too. !important usage in the VR block follows Catppuccin's
+// discipline — only on vars Discord actively forces in its own VR stylesheet.
 // =============================================================================
 :root {
 
@@ -109,7 +113,7 @@ $_bg-dark-rgb: #1e1914;
   --background-mod-subtle: #{rgba($bg2, 0.25)};
   --background-mod-strong: #{rgba($bg2, 0.45)};
 
-  // Cards, panels, misc surfaces
+  // Cards & bubbles
   --card-background-default:               #{$bg1};
   --custom-channel-members-bg:             #{$bg0};
   --custom-status-bubble-background:       #{$bg-hard};
@@ -341,7 +345,7 @@ $_bg-dark-rgb: #1e1914;
   --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.36);
   --elevation-stroke: 0 0 0 1px #{rgba($bg-hard, 0.20)};
 
-  // --- Mentions --------------------------------------------------------------
+  // --- Mentions & messages ---------------------------------------------------
   --mention-foreground:                   #{$yellow};
   --mention-background:                   #{rgba($yellow, 0.30)};
   --message-mentioned-background-default: #{rgba($yellow, 0.07)};
@@ -456,15 +460,34 @@ $_bg-dark-rgb: #1e1914;
 
 // =============================================================================
 // Visual Refresh Overrides
-// Discord's VR internally resets a subset of variables at higher specificity
-// than :root. Only those variables are repeated here — every entry carries
-// !important, except brand-500/560/600 which VR has special internal selector
-// handling for.
+//
+// Discord's VR sets custom properties on .visual-refresh.theme-dark in its own
+// stylesheet, overriding :root for all VR-rendered components. Every variable
+// from :root is therefore re-declared here so our values win in that scope.
+//
+// !important discipline (matches Catppuccin exactly, plus Gruvbox-specific
+// additions for vars whose non-standard values Discord actively resets in VR):
+//
+//  Catppuccin !important vars (Discord forces these in its own VR sheet):
+//    --brand-500, --text-muted, --text-link, --text-strong,
+//    --message-reacted-background-default, --message-background-hover,
+//    --__header-bar-background, --background-secondary-alt, --background-accent,
+//    --background-surface-high/higher/highest, --background-base-low/lower/lowest,
+//    --border-subtle, --background-mod-subtle/strong,
+//    --card-background-default, --custom-status-bubble-background/color,
+//    --control-secondary-background-default/text-default,
+//    --modal-background, --channels-default, --channel-icon,
+//    --icon-muted, --interactive-icon-default, --interactive-text-default
+//
+//  Gruvbox-specific additions (aqua-b/green-b are far from Discord's defaults,
+//  so Discord's VR green/blurple wins without !important):
+//    --status-speaking, --status-positive, --status-positive-background,
+//    --background-feedback-positive, --icon-feedback-positive
 // =============================================================================
 .visual-refresh.theme-dark,
 .visual-refresh .theme-dark {
 
-  // Surface hierarchy
+  // --- Surface hierarchy (VR layout engine) ----------------------------------
   --__header-bar-background:    #{$bg1}     !important;
   --background-surface-high:    #{$bg0-s}   !important;
   --background-surface-higher:  #{$bg1}     !important;
@@ -472,67 +495,363 @@ $_bg-dark-rgb: #1e1914;
   --background-base-lowest:     #{$bg-hard} !important;
   --background-base-lower:      #{$bg0}     !important;
   --background-base-low:        #{$bg0-s}   !important;
+  --bg-surface-raised:          #{$bg1};
+  --background-gradient-highest: #{$bg0-s};
 
-  // Core surfaces
-  --background-primary:       #{$bg0-s}   !important;
-  --background-secondary:     #{$bg0}     !important;
-  --background-secondary-alt: #{$bg1}     !important;
-  --background-tertiary:      #{$bg-hard} !important;
-  --background-floating:      #{$bg1}     !important;
-  --background-accent:        #{$bg2}     !important;
+  // --- Core background surfaces ----------------------------------------------
+  --background-primary:         #{$bg0-s};
+  --background-secondary:       #{$bg0};
+  --background-secondary-alt:   #{$bg1}     !important;
+  --background-tertiary:        #{$bg-hard};
+  --background-floating:        #{$bg1};
+  --background-accent:          #{$bg2}     !important;
 
-  // Mod overlays (only subtle/strong are reset by VR)
-  --background-mod-subtle: #{rgba($bg2, 0.25)} !important;
-  --background-mod-strong: #{rgba($bg2, 0.45)} !important;
+  --background-modifier-hover:    #{rgba($bg2, 0.30)};
+  --background-modifier-active:   #{rgba($bg2, 0.50)};
+  --background-modifier-selected: #{rgba($bg2, 0.60)};
+  --background-modifier-accent:   #{$bg2};
+  --background-mod-muted:         #{rgba($bg2, 0.05)};
+  --background-mod-normal:        #{rgba($bg2, 0.15)};
+  --background-mod-subtle:        #{rgba($bg2, 0.25)} !important;
+  --background-mod-strong:        #{rgba($bg2, 0.45)} !important;
 
-  // Cards & bubbles
+  // --- Semantic / layout backgrounds ----------------------------------------
+  --app-frame-background:     #{$bg-hard};
+  --home-background:          #{$bg0-s};
+  --chat-background:          #{$bg0-s};
+  --chat-background-default:  #{$bg0-s};
+  --chat-border:              #{$bg-hard};
+  --chat-text-muted:          #{$fg4};
+  --userarea-background:      #{$bg-hard};
+  --activity-card-background: #{$bg0-s};
+
+  // --- Cards & bubbles -------------------------------------------------------
   --card-background-default:               #{$bg1}     !important;
+  --custom-channel-members-bg:             #{$bg0};
   --custom-status-bubble-background:       #{$bg-hard} !important;
   --custom-status-bubble-background-color: #{$bg0}     !important;
 
-  // Borders
+  // --- Borders ---------------------------------------------------------------
   --border-subtle: #{$bg0-s} !important;
+  --border-muted:  #{$bg1};
+  --border-normal: #{$bg-hard};
+  --border-strong: #{$bg0};
+  --border-color:  #{$bg2};
+  --deprecated-text-input-border:          #{$bg2};
+  --deprecated-text-input-border-hover:    #{$bg3};
+  --deprecated-text-input-border-disabled: #{$bg1};
+  --deprecated-text-input-prefix:          #{$fg2};
 
-  // Text
-  --text-muted:  #{$fg4}    !important;
-  --text-link:   #{$blue-b} !important;
-  --text-strong: #{$fg0}    !important;
+  // --- Text ------------------------------------------------------------------
+  --header-primary:   #{$fg0};
+  --header-secondary: #{$fg4};
+  --text-normal:      #{$fg1};
+  --text-muted:       #{$fg4}    !important;
+  --text-link:        #{$blue-b} !important;
+  --text-positive:    #{$green-b};
+  --text-warning:     #{$y-bright};
+  --text-danger:      #{$red-b};
+  --text-default:     #{$fg1};
+  --text-strong:      #{$fg0}    !important;
+  --text-subtle:      #{$fg2};
+  --text-brand:       #{$blue-b};
 
-  // Interactive
-  --interactive-icon-default: #{$fg1} !important;
-  --interactive-text-default: #{$fg1} !important;
+  --text-feedback-positive: #{$green-b};
+  --text-feedback-critical: #{$red-b};
+  --text-feedback-warning:  #{$y-bright};
+  --text-feedback-info:     #{$blue-b};
 
-  // Channels
-  --channels-default: #{$fg4} !important;
-  --channel-icon:     #{$fg4} !important;
+  --text-status-online:  #{$green-b};
+  --text-status-idle:    #{$y-bright};
+  --text-status-dnd:     #{$red-b};
+  --text-status-offline: #{$fg4};
 
-  // Icons
-  --icon-muted: #{$bg3} !important;
+  // --- Interactive states ----------------------------------------------------
+  --interactive-normal: #{$fg4};
+  --interactive-hover:  #{$fg2};
+  --interactive-active: #{$fg0};
+  --interactive-muted:  #{$bg3};
 
-  // Voice / status
-  --status-speaking:            #{$aqua-b} !important;
+  --interactive-icon-default:        #{$fg1} !important;
+  --interactive-icon-hover:          #{$fg1};
+  --interactive-icon-active:         #{$fg1};
+  --interactive-text-default:        #{$fg1} !important;
+  --interactive-text-hover:          #{$fg1};
+  --interactive-text-active:         #{$fg1};
+  --interactive-background-hover:    #{rgba($bg2, 0.15)};
+  --interactive-background-selected: #{rgba($bg2, 0.20)};
+  --interactive-background-active:   #{rgba($fg1, 0.17)};
+
+  // --- Channel / input areas -------------------------------------------------
+  --channels-default:              #{$fg4}   !important;
+  --channels-voice-default:        #{$fg4};
+  --channel-icon:                  #{$fg4}   !important;
+  --channel-text-area-placeholder: #{rgba($fg1, 0.50)};
+  --channeltextarea-background:    #{$bg0};
+  --voice-color:                   #{$aqua-b};
+  --status-speaking:               #{$aqua-b} !important; // Gruvbox-specific: far from Discord's default
+
+  // --- Brand colour ramp -----------------------------------------------------
+  --brand-experiment:         #{$blue-dark};
+  --brand-experiment-560:     #{$blue-dark};
+  --brand-experiment-600:     #{$blue-b};
+  --control-brand-foreground:     #{$blue-b};
+  --control-brand-foreground-new: #{$blue-b};
+
+  --brand-100: #e8f2f0;
+  --brand-130: #def0ed;
+  --brand-160: #d1ebe7;
+  --brand-200: #c2e4de;
+  --brand-230: #b3dcd6;
+  --brand-260: #a4d3cc;
+  --brand-300: #96ccc4;
+  --brand-330: #8fc4bc;
+  --brand-360: #89bcb4;
+  --brand-400: #87b9b1;
+  --brand-430: #85b4ac;
+  --brand-460: #84afa7;
+  --brand-500: #{$blue-b} !important;
+  --brand-530: #{$blue-b};
+  --brand-560: #{$blue-dark};
+  --brand-600: #{$blue-b};
+  --brand-630: #63837b;
+  --brand-660: #547970;
+  --brand-700: #456f66;
+  --brand-730: #3c6259;
+  --brand-760: #335650;
+  --brand-800: #2a4a44;
+  --brand-830: #21403a;
+  --brand-860: #193630;
+  --brand-900: #112c26;
+
+  --brand-05a: #{rgba($blue-b, 0.05)};
+  --brand-10a: #{rgba($blue-b, 0.10)};
+  --brand-15a: #{rgba($blue-b, 0.15)};
+  --brand-20a: #{rgba($blue-b, 0.20)};
+  --brand-25a: #{rgba($blue-b, 0.25)};
+  --brand-30a: #{rgba($blue-b, 0.30)};
+  --brand-35a: #{rgba($blue-b, 0.35)};
+  --brand-40a: #{rgba($blue-b, 0.40)};
+  --brand-45a: #{rgba($blue-b, 0.45)};
+  --brand-50a: #{rgba($blue-b, 0.50)};
+  --brand-55a: #{rgba($blue-b, 0.55)};
+  --brand-60a: #{rgba($blue-b, 0.60)};
+  --brand-65a: #{rgba($blue-b, 0.65)};
+  --brand-70a: #{rgba($blue-b, 0.70)};
+  --brand-75a: #{rgba($blue-b, 0.75)};
+  --brand-80a: #{rgba($blue-b, 0.80)};
+  --brand-85a: #{rgba($blue-b, 0.85)};
+  --brand-90a: #{rgba($blue-b, 0.90)};
+  --brand-95a: #{rgba($blue-b, 0.95)};
+
+  --opacity-blurple-8:  #{rgba($blue-b, 0.08)};
+  --opacity-blurple-16: #{rgba($blue-b, 0.16)};
+  --opacity-blurple-24: #{rgba($blue-b, 0.24)};
+  --opacity-blurple-32: #{rgba($blue-b, 0.32)};
+  --opacity-blurple-60: #{rgba($blue-b, 0.60)};
+  --blurple-50:         #{$blue-dark};
+  --blurple-60:         #{$blue-l};
+
+  // --- Controls --------------------------------------------------------------
+  --control-primary-background-default: #{$blue-dark};
+  --control-primary-background-hover:   #{$blue-b};
+  --control-primary-background-active:  #{$blue-b};
+
+  --control-secondary-background-default: #{$bg2} !important;
+  --control-secondary-background-hover:   #{$bg3};
+  --control-secondary-background-active:  #{$bg3};
+  --control-secondary-border-default:     #{$bg2};
+  --control-secondary-text-default:       #{$fg1} !important;
+  --control-secondary-text-hover:         #{$fg1};
+
+  --control-critical-primary-background-default:   #{$red};
+  --control-critical-primary-background-hover:     #{$red-b};
+  --control-critical-primary-background-active:    #{$red-b};
+  --control-critical-primary-text-default:         #{$bg-hard};
+  --control-critical-primary-text-hover:           #{$bg-hard};
+  --control-critical-secondary-background-default: transparent;
+  --control-critical-secondary-background-hover:   #{rgba($red-b, 0.15)};
+  --control-critical-secondary-background-active:  #{rgba($red-b, 0.20)};
+  --control-critical-secondary-border-default:     #{$red-b};
+  --control-critical-secondary-border-hover:       #{$red-b};
+  --control-critical-secondary-border-active:      #{$red-b};
+  --control-critical-secondary-text-default:       #{$fg1};
+  --control-critical-secondary-text-hover:         #{$bg-hard};
+  --control-critical-secondary-text-active:        #{$bg-hard};
+
+  --control-connected-background-default: #{$green-b};
+  --control-connected-background-hover:   #{lighten($green-b, 5%)};
+  --control-connected-background-active:  #{$green-b};
+  --control-connected-border-default:     #{$green-b};
+  --control-connected-border-hover:       #{lighten($green-b, 5%)};
+  --control-connected-border-active:      #{lighten($green-b, 5%)};
+
+  --button-outline-primary-text:           #{$fg1};
+  --button-outline-brand-text:             #{$fg1};
+  --button-outline-brand-background-hover: #{rgba($blue-b, 0.30)};
+  --button-outline-brand-border-active:    #{$blue-b};
+
+  // --- Status colours --------------------------------------------------------
+  // Gruvbox uses aqua-b for positive/speaking — !important needed because
+  // Discord's VR defaults to green and actively overrides in the VR scope.
   --status-positive:            #{$aqua-b} !important;
   --status-positive-background: #{$aqua-b} !important;
+  --status-positive-text:       #{$bg-hard};
+  --status-warning:             #{$y-bright};
+  --status-warning-background:  #{$y-bright};
+  --status-warning-text:        #{$bg-hard};
+  --status-danger:              #{$red-b};
 
-  // Feedback
-  --background-feedback-positive: #{rgba($green-b, 0.15)} !important;
-  --icon-feedback-positive:       #{$aqua-b}              !important;
+  --icon-status-online:  #{$green-b};
+  --icon-status-idle:    #{$y-bright};
+  --icon-status-dnd:     #{$red-b};
+  --icon-status-offline: #{$fg4};
 
-  // Messages
-  --message-reacted-background-default: #{rgba($blue-b, 0.30)}        !important;
-  --message-background-hover:           #{rgba($_bg-dark-rgb, 0.08)}   !important;
+  // --- Feedback backgrounds & icons ------------------------------------------
+  --background-feedback-positive:     #{rgba($green-b, 0.15)} !important; // Gruvbox-specific
+  --background-feedback-warning:      #{rgba($y-bright, 0.15)};
+  --background-feedback-critical:     #{rgba($red-b, 0.15)};
+  --background-feedback-info:         #{rgba($blue-b, 0.15)};
+  --background-feedback-notification: #{$red-b};
+  --badge-notification-background:    #{$red-b};
 
-  // Modal
-  --modal-background: #{$bg0-s} !important;
+  --icon-feedback-positive:     #{$aqua-b} !important; // Gruvbox-specific
+  --icon-feedback-warning:      #{$y-bright};
+  --icon-feedback-critical:     #{$red-b};
+  --icon-feedback-info:         #{$blue-b};
+  --icon-feedback-notification: #{$red-b};
 
-  // Controls
-  --control-secondary-background-default: #{$bg2} !important;
-  --control-secondary-text-default:       #{$fg1} !important;
+  // --- Notice banners --------------------------------------------------------
+  --notice-background-critical: #{$red-b};
+  --notice-background-info:     #{$blue-b};
+  --notice-background-positive: #{$green-b};
+  --notice-background-warning:  #{$y-bright};
+  --notice-text-critical:       #{$bg-hard};
+  --notice-text-info:           #{$bg-hard};
+  --notice-text-positive:       #{$bg-hard};
+  --notice-text-warning:        #{$bg-hard};
 
-  // Brand key-points — VR has internal selectors that read these directly
-  --brand-500: #{$blue-b}  !important;
-  --brand-560: #{$blue-b}  !important;
-  --brand-600: #{$blue-l}  !important;
+  // --- Mentions & messages ---------------------------------------------------
+  --background-mentioned:         #{rgba($yellow, 0.07)};
+  --background-mentioned-hover:   #{rgba($yellow, 0.12)};
+  --background-mentioned-focus:   #{rgba($yellow, 0.15)};
+  --mention-foreground:           #{$yellow};
+  --mention-background:           #{rgba($yellow, 0.30)};
+  --message-mentioned-background-default: #{rgba($yellow, 0.07)};
+  --message-mentioned-background-hover:   #{rgba($yellow, 0.05)};
+  --message-automod-background-default:   #{rgba($red, 0.05)};
+  --message-automod-background-hover:     #{rgba($red, 0.10)};
+  --message-highlight-background-default: #{rgba($yellow, 0.08)};
+  --message-highlight-background-hover:   #{rgba($yellow, 0.06)};
+  --message-reacted-background-default:   #{rgba($blue-b, 0.30)} !important;
+  --message-reacted-text-default:         #{$blue-b};
+  --message-background-hover:             #{rgba($_bg-dark-rgb, 0.08)} !important;
+
+  // --- Code & spoilers -------------------------------------------------------
+  --background-code:             #{$bg-hard};
+  --spoiler-revealed-background: #{$bg1};
+  --spoiler-hidden-background:   #{$bg2};
+  --__spoiler-background-color--hidden: #{$bg2};
+  --__spoiler-warning-background-color: #{$bg3};
+
+  // --- Inputs ----------------------------------------------------------------
+  --input-background-default:       #{$bg-hard};
+  --input-text-default:             #{$fg1};
+  --input-placeholder-text-default: #{rgba($fg1, 0.50)};
+  --input-border-default:           #{$bg2};
+
+  // --- Icons -----------------------------------------------------------------
+  --icon-muted:       #{$bg3}   !important;
+  --icon-voice-muted: #{$red-b};
+  --icon-default:     #{$fg1};
+  --icon-strong:      #{$fg0};
+  --icon-subtle:      #{$fg2};
+
+  // --- Scrollbars ------------------------------------------------------------
+  --scrollbar-thin-thumb:                 #{$bg2};
+  --scrollbar-thin-track:                 transparent;
+  --scrollbar-auto-thumb:                 #{$bg2};
+  --scrollbar-auto-track:                 #{$bg-hard};
+  --scrollbar-auto-scrollbar-color-thumb: #{$bg2};
+  --scrollbar-auto-scrollbar-color-track: #{$bg-hard};
+
+  // --- Elevation (shadows) ---------------------------------------------------
+  --elevation-low:    0 1px 0 #{rgba($bg-hard, 0.30)}, 0 2px 0 #{rgba($bg-hard, 0.10)};
+  --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.24);
+  --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.36);
+  --elevation-stroke: 0 0 0 1px #{rgba($bg-hard, 0.20)};
+
+  // --- Profile, modals, misc -------------------------------------------------
+  --user-profile-overlay-background:       #{$bg0-s};
+  --user-profile-overlay-background-hover: #{$bg1};
+  --modal-background:        #{$bg0-s} !important;
+  --modal-footer-background: #{$bg0-s};
+  --logo-primary:                  #{$fg0};
+  --__adaptive-focus-ring-color:   #{$blue-b};
+  --textbox-markdown-syntax:       #{$bg4};
+  --checkbox-border-default:       #{$bg3};
+  --checkbox-icon-active:          #{$bg-hard};
+  --radio-thumb-background-active: #{$bg-hard};
+  --plum-23:                       #{$bg0-s};
+  --badge-text-brand:              #{$bg-hard};
+
+  // --- Deprecated ------------------------------------------------------------
+  --deprecated-panel-background:               #{$bg1};
+  --deprecated-card-bg:                        #{$bg0};
+  --deprecated-card-editable-bg:               #{$bg0};
+  --deprecated-store-bg:                       #{$bg1};
+  --deprecated-quickswitcher-input-background: #{$bg0};
+  --deprecated-quickswitcher-input-placeholder: #{rgba($fg1, 0.30)};
+  --deprecated-text-input-bg:                  #{$bg0};
+
+  // --- Primitive colour aliases ----------------------------------------------
+  --white:     #{$fg1};
+  --white-500: #{$fg1};
+  --black-500: #{$bg-hard};
+
+  --green-360:  #{$green-b};
+  --green-300:  #{$green-b};
+  --yellow-360: #{$y-bright};
+  --yellow-300: #{$y-bright};
+  --red-400:    #{$red-b};
+  --red-430:    #{$red-b};
+  --red-500:    #{$red};
+  --blue-500:   #{$blue-b};
+  --blue-530:   #{$blue-b};
+
+  --primary-100: #{$fg2};
+  --primary-200: #{$fg4};
+  --primary-300: #{$fg2};
+  --primary-400: #{$fg2};
+  --primary-630: #{$bg1};
+  --primary-700: #{$bg2};
+  --primary-800: #{$bg-hard};
+
+  // --- Third-party platforms -------------------------------------------------
+  --twitch:      #{$fg2};
+  --playstation: #{$blue-b};
+  --spotify:     #{$green-b};
+
+  // --- Premium / guild boost decorations ------------------------------------
+  --guild-boosting-pink:   #{$aqua-b};
+  --guild-boosting-blue:   #{$blue-b};
+  --guild-boosting-purple: #{$fg2};
+
+  --premium-perk-yellow:                    #{$y-bright};
+  --premium-perk-purple:                    #{$fg2};
+  --premium-perk-dark-blue:                 #{$blue-b};
+  --premium-perk-light-blue:                #{$aqua-b};
+  --premium-perk-blue:                      #{$blue-b};
+  --premium-perk-green:                     #{$green-b};
+  --premium-perk-pink:                      #{$fg2};
+  --premium-perk-orange:                    #{$y-bright};
+  --premium-tier-0-blue:                    #{$blue-b};
+  --premium-tier-0-purple:                  #{$fg2};
+  --premium-tier-1-blue-for-gradients:      #{$aqua-b};
+  --premium-tier-1-dark-blue-for-gradients: #{$blue-b};
+  --premium-tier-2-purple-for-gradients:    #{$fg2};
+  --premium-tier-2-purple-for-gradients-2:  #{$fg4};
+  --premium-tier-2-pink-for-gradients:      #{$fg2};
 }
 
 
