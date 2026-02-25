@@ -79,7 +79,7 @@ All palette values are CSS custom properties defined once in `:root`. To adjust 
 |---|---|
 | Vesktop | Tested |
 | BetterDiscord | Tested |
-| Vencord | Likely works |
+| Vencord | Tested |
 | Stylus (browser) | Likely partial styling |
 
 Discord updates its internal CSS class names frequently. If something breaks, please open an issue.
