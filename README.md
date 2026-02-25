@@ -12,27 +12,6 @@ A BetterDiscord / Vencord theme built on the [Gruvbox](https://github.com/morhet
 
 ---
 
-## Colour Palette
-
-| Token | Hex | Role |
-|---|---|---|
-| `bg_hard` | `#1d2021` | User panel, code block background |
-| `bg0_s` | `#32302f` | Primary chat surface |
-| `bg0` | `#282828` | Sidebar, input background |
-| `bg1` | `#3c3836` | Elevated surfaces: popouts, modals, header |
-| `bg2` | `#504945` | Borders, selected state |
-| `fg0` | `#f9f5d7` | Headings, active text |
-| `fg1` | `#ebdbb2` | Normal body text |
-| `fg4` | `#a89984` | Muted / channel names |
-| `yellow` | `#d79921` | Brand accent (replaces blurple) |
-| `y_bright` | `#fabd2f` | Accent hover |
-| `blue_b` | `#83a598` | Links |
-| `aqua_b` | `#8ec07c` | Speaking ring, positive accent |
-| `red_b` | `#fb4934` | Danger text, notification badges |
-| `green_b` | `#b8bb26` | Online status indicator |
-
----
-
 ## Installation
 
 ### BetterDiscord
@@ -71,6 +50,27 @@ All palette values are CSS custom properties defined once in `:root`. To adjust 
     --grv-y-bright: #fe8019;
 }
 ```
+---
+
+## Colour Palette
+
+| Token | Hex | Role |
+|---|---|---|
+| `bg_hard` | `#1d2021` | User panel, code block background |
+| `bg0_s` | `#32302f` | Primary chat surface |
+| `bg0` | `#282828` | Sidebar, input background |
+| `bg1` | `#3c3836` | Elevated surfaces: popouts, modals, header |
+| `bg2` | `#504945` | Borders, selected state |
+| `fg0` | `#f9f5d7` | Headings, active text |
+| `fg1` | `#ebdbb2` | Normal body text |
+| `fg4` | `#a89984` | Muted / channel names |
+| `yellow` | `#d79921` | Brand accent (replaces blurple) |
+| `y_bright` | `#fabd2f` | Accent hover |
+| `blue_b` | `#83a598` | Links |
+| `aqua_b` | `#8ec07c` | Speaking ring, positive accent |
+| `red_b` | `#fb4934` | Danger text, notification badges |
+| `green_b` | `#b8bb26` | Online status indicator |
+
 ---
 
 ## Compatibility
