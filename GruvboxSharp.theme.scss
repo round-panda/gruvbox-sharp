@@ -18,12 +18,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 
-// =============================================================================
 // SCSS PALETTE
-// Gruvbox Dark Soft — all raw colour values defined once here.
-// Every CSS custom property below must reference these SCSS variables so that
-// a palette swap only requires editing this section.
-// =============================================================================
 
 // --- Backgrounds (dark → light) ----------------------------------------------
 $bg-hard:   #1d2021; // hardest / darkest surface (titlebar, userarea)
@@ -55,7 +50,6 @@ $green-b:   #b8bb26; // positive text, online status, success indicators
 $_bg-dark-rgb: #1e1914;
 
 
-// =============================================================================
 // :root — Discord CSS Custom Properties (canonical definitions)
 //
 // Discord's visual-refresh establishes its own CSS custom-property scope on
@@ -63,7 +57,6 @@ $_bg-dark-rgb: #1e1914;
 // The VR block below therefore re-declares every variable so our values win
 // in that scope too. !important usage in the VR block follows Catppuccin's
 // discipline — only on vars Discord actively forces in its own VR stylesheet.
-// =============================================================================
 :root {
 
   // --- Background surfaces ---------------------------------------------------
@@ -457,33 +450,8 @@ $_bg-dark-rgb: #1e1914;
   --premium-tier-2-pink-for-gradients:      #{$fg2};
 }
 
-
-// =============================================================================
 // Visual Refresh Overrides
-//
-// Discord's VR sets custom properties on .visual-refresh.theme-dark in its own
-// stylesheet, overriding :root for all VR-rendered components. Every variable
-// from :root is therefore re-declared here so our values win in that scope.
-//
-// !important discipline (matches Catppuccin exactly, plus Gruvbox-specific
-// additions for vars whose non-standard values Discord actively resets in VR):
-//
-//  Catppuccin !important vars (Discord forces these in its own VR sheet):
-//    --brand-500, --text-muted, --text-link, --text-strong,
-//    --message-reacted-background-default, --message-background-hover,
-//    --__header-bar-background, --background-secondary-alt, --background-accent,
-//    --background-surface-high/higher/highest, --background-base-low/lower/lowest,
-//    --border-subtle, --background-mod-subtle/strong,
-//    --card-background-default, --custom-status-bubble-background/color,
-//    --control-secondary-background-default/text-default,
-//    --modal-background, --channels-default, --channel-icon,
-//    --icon-muted, --interactive-icon-default, --interactive-text-default
-//
-//  Gruvbox-specific additions (aqua-b/green-b are far from Discord's defaults,
-//  so Discord's VR green/blurple wins without !important):
-//    --status-speaking, --status-positive, --status-positive-background,
-//    --background-feedback-positive, --icon-feedback-positive
-// =============================================================================
+
 .visual-refresh.theme-dark,
 .visual-refresh .theme-dark {
 
@@ -692,8 +660,6 @@ $_bg-dark-rgb: #1e1914;
   --button-outline-brand-border-active:    #{$blue-b};
 
   // --- Status colours --------------------------------------------------------
-  // Gruvbox uses aqua-b for positive/speaking — !important needed because
-  // Discord's VR defaults to green and actively overrides in the VR scope.
   --status-positive:            #{$aqua-b} !important;
   --status-positive-background: #{$aqua-b} !important;
   --status-positive-text:       #{$bg-hard};
@@ -855,13 +821,7 @@ $_bg-dark-rgb: #1e1914;
 }
 
 
-// =============================================================================
 // Visual Refresh — Branded Element Text Override
-// VR components with brand/colour fills use --white internally for their text.
-// We scope --white to $fg0 (cream) inside those elements so text stays legible
-// on Gruvbox's medium-dark teal fills.
-// Status SVGs are excluded — they use --icon-status-* directly.
-// =============================================================================
 
 // Green / join fills need dark text (bright yellow-green background)
 .visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"],
@@ -941,10 +901,7 @@ $_bg-dark-rgb: #1e1914;
 }
 
 
-// =============================================================================
-// Legacy .theme-dark overrides
-// Variables that Discord's legacy dark theme resets to blurple/defaults.
-// =============================================================================
+// Legacy .theme- overrides
 .theme-dark {
   --background-mentioned:       #{rgba($yellow, 0.07)};
   --background-mentioned-hover: #{rgba($yellow, 0.12)};
@@ -959,10 +916,6 @@ $_bg-dark-rgb: #1e1914;
   --channels-default:           #{$fg4};
 }
 
-
-// =============================================================================
-// Light mode safety net
-// =============================================================================
 .theme-light {
   --background-primary:       #{$bg0-s};
   --background-secondary:     #{$bg0};
@@ -974,19 +927,14 @@ $_bg-dark-rgb: #1e1914;
   --deprecated-text-input-bg: #{$bg0};
 }
 
-
-// =============================================================================
-// Global reset — square corners everywhere
-// =============================================================================
+// square corners
 * {
   border-radius: 0 !important;
 }
 
 
-// =============================================================================
 // Typography
 // IBM Plex Mono for UI chrome; IBM Plex Sans for chat; code always monospace.
-// =============================================================================
 
 #app-mount {
   font-family: 'IBM Plex Mono', 'Courier New', monospace;
@@ -1027,9 +975,7 @@ pre,
 }
 
 
-// =============================================================================
 // Scrollbars (WebKit)
-// =============================================================================
 ::-webkit-scrollbar-thumb {
   background-color: #{$bg2} !important;
   border-radius: 0 !important;
@@ -1041,7 +987,6 @@ pre,
 }
 
 
-// =============================================================================
 // Avatar masks — Square avatar system
 //
 // 1. Removes the circular SVG mask globally
@@ -1050,7 +995,6 @@ pre,
 //    Mobile status (phone icon) is taller — uses a narrower notch starting higher.
 // 4. Different geometries per size: 32/40/80/120px.
 // Status badge ring uses bg-hard stroke so the dot floats on the surface.
-// =============================================================================
 
 foreignObject[mask] {
   mask: none !important;
@@ -1136,18 +1080,13 @@ foreignObject [class*="avatarStack_"] > * {
 }
 
 
-// =============================================================================
 // Voice — speaking indicator ring
-// box-shadow must be a direct rule; no CSS variable slot exists for it.
-// =============================================================================
 div[class*="speaking_"] {
   box-shadow: inset 0 0 0 2px #{$aqua-b} !important;
 }
 
 
-// =============================================================================
 // Guild / server list — square icons
-// =============================================================================
 [class*="folder"],
 [class*="folderEndButton"],
 [class*="folderPreview"],
@@ -1157,9 +1096,7 @@ div[class*="speaking_"] {
 }
 
 
-// =============================================================================
 // Panels — user area (mute/deafen controls, account row)
-// =============================================================================
 section[class*="panels_"] {
   flex-shrink: 0 !important;
   min-height: 52px !important;
@@ -1178,9 +1115,7 @@ li[class*="listItem_"] {
 }
 
 
-// =============================================================================
 // Embeds
-// =============================================================================
 div[class*="embed_"],
 div[class*="embedWrapper_"] {
   background-color: #{$bg1} !important;
@@ -1188,9 +1123,7 @@ div[class*="embedWrapper_"] {
 }
 
 
-// =============================================================================
 // Reactions
-// =============================================================================
 div[class*="reaction_"] {
   background-color: #{$bg1} !important;
   border: 1px solid #{$bg2} !important;
@@ -1202,9 +1135,7 @@ div[class*="reactionMe_"] {
 }
 
 
-// =============================================================================
 // Mentions — highlighted row + left accent bar
-// =============================================================================
 div[class*="mentioned_"] {
   background-color: #{rgba($yellow, 0.07)} !important;
 
@@ -1214,9 +1145,7 @@ div[class*="mentioned_"] {
 }
 
 
-// =============================================================================
 // Badges & pills
-// =============================================================================
 [class*="numberBadge_"],
 [class*="badge_"] {
   background-color: #{$red-b} !important;
@@ -1231,9 +1160,7 @@ div[class*="pill_"] rect {
 }
 
 
-// =============================================================================
 // Channel / DM selection highlight
-// =============================================================================
 [class*="selected_"][class*="channel_"],
 [class*="selected_"][class*="containerDefault_"],
 [class*="selected_"][class*="privateChannel_"] {
@@ -1246,9 +1173,7 @@ div[class*="pill_"] rect {
 }
 
 
-// =============================================================================
 // Guild icon hover / active / selected states
-// =============================================================================
 div[class*="guilds_"] [class*="wrapper_"]:is(:hover, [class*="selected_"], :active)
   div[class*="icon_"][class*="noIcon_"] {
   background-color: #{$blue-dark} !important;
@@ -1266,9 +1191,7 @@ div[class*="guilds_"] [class*="wrapper_"]:is([class*="selected_"], :active) > sv
 }
 
 
-// =============================================================================
 // Visual-refresh button overrides
-// =============================================================================
 :is(.visual-refresh.theme-dark, .visual-refresh .theme-dark) {
 
   // Danger
@@ -1303,25 +1226,19 @@ div[class*="guilds_"] [class*="wrapper_"]:is([class*="selected_"], :active) > sv
 }
 
 
-// =============================================================================
 // Overlay (context menus, dropdowns, modal backdrop)
-// =============================================================================
 div[class*="overlay_"] {
   background-color: #{$bg0} !important;
 }
 
 
-// =============================================================================
 // New messages bar (jump-to-present banner)
-// =============================================================================
 div[class*="newMessagesBar_"] {
   background-color: #{$blue-dark} !important;
 }
 
 
-// =============================================================================
 // BetterDiscord addon list
-// =============================================================================
 .bd-addon-list .bd-addon-card {
   border: 1px solid #{$bg2};
   background-color: #{$bg0-s};
