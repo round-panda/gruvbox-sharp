@@ -1003,7 +1003,9 @@ foreignObject[mask] {
 [class*="mask"] circle[fill="black"],
 [class*="svg"]  circle[fill="black"],
 [class*="mask"] circle[fill="white"],
-[class*="svg"]  circle[fill="white"] {
+[class*="svg"]  circle[fill="white"],
+[class*="mask"] rect[fill="black"],
+[class*="svg"]  rect[fill="black"] {
   display: none !important;
 }
 
