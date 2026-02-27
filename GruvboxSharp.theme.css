@@ -801,12 +801,12 @@ rect[mask*=status] {
 
 foreignObject[width="32"][height="32"]:has(~ g),
 foreignObject[width="40"][height="40"]:has(~ g) {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 62%, 62% 62%, 62% 100%, 0% 100%) !important;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 65% 65%, 65% 100%, 0% 100%) !important;
 }
 
 foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
 foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 46.875%, 62.5% 46.875%, 62.5% 100%, 0% 100%) !important;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 49%, 65% 49%, 65% 100%, 0% 100%) !important;
 }
 
 foreignObject[width="80"][height="80"][mask] ~ g rect {

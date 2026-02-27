@@ -1019,9 +1019,9 @@ foreignObject[width="40"][height="40"]:has(~ g) {
   clip-path: polygon(
     0%   0%,
     100% 0%,
-    100% 62%,
-    62%  62%,
-    62%  100%,
+    100% 65%,
+    65%  65%,
+    65%  100%,
     0%   100%
   ) !important;
 }
@@ -1032,9 +1032,9 @@ foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-o
   clip-path: polygon(
     0%      0%,
     100%    0%,
-    100%    46.875%,
-    62.5%   46.875%,
-    62.5%   100%,
+    100%    49%,
+    65%   49%,
+    65%   100%,
     0%      100%
   ) !important;
 }
