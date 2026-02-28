@@ -64,7 +64,7 @@ Download the file and place it in your Vencord themes directory, then enable it 
 
 | Client | Status |
 |---|---|
-| Vesktop | Tested |
+| Vesktop/Vencord Web | Tested |
 | BetterDiscord | Tested |
 | Vencord | Tested |
 | Stylus (browser) | Likely partial styling |
