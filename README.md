@@ -39,19 +39,6 @@ Download the file and place it in your Vencord themes directory, then enable it 
 
 ---
 
-## Customisation
-
-All palette values are CSS custom properties defined once in `:root`. To adjust a colour, override any `--grv-*` variable in Discord's Quick CSS editor — no need to edit the theme file directly.
-
-```css
-/* Example: swap the accent from yellow to a warm orange */
-:root {
-    --grv-yellow:   #d65d0e;
-    --grv-y-bright: #fe8019;
-}
-```
----
-
 ## Colour Palette
 
 | Token | Hex | Role |
