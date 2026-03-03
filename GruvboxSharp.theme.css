@@ -801,6 +801,7 @@ rect[mask*=status] {
   paint-order: stroke fill !important;
 }
 
+foreignObject[width="24"][height="24"]:has(~ g),
 foreignObject[width="32"][height="32"]:has(~ g),
 foreignObject[width="40"][height="40"]:has(~ g) {
   clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 65% 65%, 65% 100%, 0% 100%) !important;
