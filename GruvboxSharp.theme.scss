@@ -1015,7 +1015,7 @@ rect[mask*="status"] {
   paint-order: stroke fill !important;
 }
 
-// 24/32/40px — standard notch (38% × 38% cutout)
+// 20/24/32/40px — standard notch (38% × 38% cutout)
 foreignObject[width="20"][height="20"]:has(~ g),
 foreignObject[width="24"][height="24"]:has(~ g),
 foreignObject[width="32"][height="32"]:has(~ g),
