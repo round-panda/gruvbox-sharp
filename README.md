@@ -27,7 +27,7 @@ A BetterDiscord / Vencord theme built on the [Gruvbox](https://github.com/morhet
 ### Vencord (Online Themes)
 
 1. Open Discord -> Settings -> Vencord -> Themes -> Online Themes
-2. Paste the following URL and press Enter:
+2. Paste the following URL and save:
 
 ```
 https://raw.githubusercontent.com/round-panda/gruvbox-sharp/main/GruvboxSharp.theme.css
