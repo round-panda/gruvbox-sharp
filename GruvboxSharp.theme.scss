@@ -1,8 +1,8 @@
 /**
  * @name          Gruvbox Sharp
- * @version       3.2
+ * @version       4.0
  * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
- *                typography. Monospace UI chrome, IBM Plex Sans for chat.
+ *                typography. Monospace UI, IBM Plex Sans chat.
  *                Compatible with BetterDiscord and Vencord.
  *                Requires Discord's built-in Dark Mode to be enabled.
  * @author        round-panda
@@ -12,448 +12,55 @@
 
 // -----------------------------------------------------------------------------
 // Google Fonts
-// IBM Plex Mono  → UI chrome, headers, sidebars
-// IBM Plex Sans  → chat messages, user input, account cards
+// IBM Plex Mono: UI e.g. headers, sidebars
+// IBM Plex Sans: chat messages, user input, account cards
 // -----------------------------------------------------------------------------
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
-
 // SCSS PALETTE
 
-// --- Backgrounds (dark → light) ----------------------------------------------
+// --- Backgrounds (dark to light) ----------------------------------------------
 $bg-hard:   #1d2021; // hardest / darkest surface (titlebar, userarea)
-$bg0-s:     #32302f; // soft bg0 — primary chat / main panel background
-$bg0:       #282828; // standard bg0 — secondary panels, input bg
+$bg0-s:     #32302f; // soft bg0: primary chat / main panel background
+$bg0:       #282828; // standard bg0: secondary panels, input bg
 $bg1:       #3c3836; // slightly raised cards, embeds, sidebars
 $bg2:       #504945; // borders, selected states, secondary controls
 $bg3:       #665c54; // muted icons, disabled borders
 $bg4:       #7c6f64; // markdown syntax highlight, faint UI chrome
 
 // --- Foregrounds -------------------------------------------------------------
-$fg0:       #f9f5d7; // brightest text — headers, active interactive
-$fg1:       #ebdbb2; // normal text — messages, labels
-$fg2:       #d5c4a1; // subtle text — secondary descriptions
-$fg4:       #a89984; // muted text — timestamps, channel names, placeholders
+$fg0:       #f9f5d7; // brightest text: headers, active interactive
+$fg1:       #ebdbb2; // normal text: messages, labels
+$fg2:       #d5c4a1; // subtle text: secondary descriptions
+$fg4:       #a89984; // muted text: timestamps, channel names, placeholders
 
 // --- Accent colours ----------------------------------------------------------
 $yellow:    #d79921; // mention foreground, mention bar
-$y-bright:  #fabd2f; // warning text, idle status, premium yellow
-$blue-b:    #83a598; // primary accent — links, brand, reactions
+$yellow-b:  #fabd2f; // warning text, idle status, premium yellow
+$blue-b:    #83a598; // primary accent: links, brand, reactions
 $blue-l:    #a4c3bb; // brand hover / lighter brand shade
-$blue-dark: #076678; // dark brand — button fills, pill indicator
+$blue-dark: #076678; // dark brand: button fills, pill indicator
 $aqua-b:    #8ec07c; // speaking ring, voice chrome, guild-boost colours
 $red:       #cc241d; // danger button base
 $red-b:     #fb4934; // danger hover / error text / badges
 $green-b:   #b8bb26; // positive text, online status, success indicators
+$purple-b:  #d3869b; // hljs keyword/variable/regexp roles
+$orange-b:  #fe8019; // hljs number/literal/meta roles
 
-// Derived — message-hover tint (sits between bg-hard and bg0-s)
-$_bg-dark-rgb: #1e1914;
+// Hand-tuned warm-dark tint for message-hover (between bg-hard and bg0-s;
+// not a formula-derived shade, chosen to read warmer than a plain darken()).
+$bg-msg-hover: #1e1914;
+
+// Hover shade for the "connected" control (green + 5% lightness).
+// Named once so every connected-state hover/active reuses the same computed value.
+$green-hover: lighten($green-b, 5%);
 
 
-// :root — Discord CSS Custom Properties (canonical definitions)
-//
-// Discord's visual-refresh establishes its own CSS custom-property scope on
-// .visual-refresh.theme-dark, overriding :root for all VR-rendered components.
-// The VR block below therefore re-declares every variable so our values win
-// in that scope too. !important usage in the VR block follows Catppuccin's
-// discipline — only on vars Discord actively forces in its own VR stylesheet.
-:root {
-
-  // --- Background surfaces ---------------------------------------------------
-  --background-primary:           #{$bg0-s};   // chat panel, main content
-  --background-secondary:         #{$bg0};     // sidebar, member list
-  --background-secondary-alt:     #{$bg1};     // active sidebar item bg
-  --background-tertiary:          #{$bg-hard}; // titlebar, server list strip
-  --background-floating:          #{$bg1};     // tooltips, dropdowns, popouts
-  --background-accent:            #{$bg2};     // scroll track, accent surfaces
-  --background-modifier-hover:    #{rgba($bg2, 0.30)};
-  --background-modifier-active:   #{rgba($bg2, 0.50)};
-  --background-modifier-selected: #{rgba($bg2, 0.60)};
-  --background-modifier-accent:   #{$bg2};
-
-  // Mention + message tints
-  --background-mentioned:         #{rgba($yellow, 0.07)};
-  --background-mentioned-hover:   #{rgba($yellow, 0.12)};
-  --background-mentioned-focus:   #{rgba($yellow, 0.15)};
-  --background-message-hover:     #{rgba($_bg-dark-rgb, 0.08)};
-
-  // --- Semantic / layout backgrounds ----------------------------------------
-  --app-frame-background:        #{$bg-hard};
-  --home-background:             #{$bg0-s};
-  --chat-background:             #{$bg0-s};
-  --chat-background-default:     #{$bg0-s};
-  --chat-border:                 #{$bg-hard};
-  --chat-text-muted:             #{$fg4};
-  --userarea-background:         #{$bg-hard};
-  --activity-card-background:    #{$bg0-s};
-  --__header-bar-background:     #{$bg1};
-  --bg-surface-raised:           #{$bg1};
-  --background-gradient-highest: #{$bg0-s};
-
-  // Visual-refresh surface hierarchy
-  --background-surface-high:    #{$bg0-s};
-  --background-surface-higher:  #{$bg1};
-  --background-surface-highest: #{$bg2};
-
-  // Visual-refresh base hierarchy
-  --background-base-lowest: #{$bg-hard};
-  --background-base-lower:  #{$bg0};
-  --background-base-low:    #{$bg0-s};
-
-  // Mod overlays
-  --background-mod-muted:  #{rgba($bg2, 0.05)};
-  --background-mod-normal: #{rgba($bg2, 0.15)};
-  --background-mod-subtle: #{rgba($bg2, 0.25)};
-  --background-mod-strong: #{rgba($bg2, 0.45)};
-
-  // Cards & bubbles
-  --card-background-default:               #{$bg1};
-  --custom-channel-members-bg:             #{$bg0};
-  --custom-status-bubble-background:       #{$bg-hard};
-  --custom-status-bubble-background-color: #{$bg0};
-
-  // --- Borders ---------------------------------------------------------------
-  --border-subtle:                         #{$bg0-s};
-  --border-muted:                          #{$bg1};
-  --border-normal:                         #{$bg-hard};
-  --border-strong:                         #{$bg0};
-  --border-color:                          #{$bg2};
-  --deprecated-text-input-border:          #{$bg2};
-  --deprecated-text-input-border-hover:    #{$bg3};
-  --deprecated-text-input-border-disabled: #{$bg1};
-  --deprecated-text-input-prefix:          #{$fg2};
-
-  // --- Text ------------------------------------------------------------------
-  --header-primary:   #{$fg0};
-  --header-secondary: #{$fg4};
-  --text-normal:      #{$fg1};
-  --text-muted:       #{$fg4};
-  --text-link:        #{$blue-b};
-  --text-positive:    #{$green-b};
-  --text-warning:     #{$y-bright};
-  --text-danger:      #{$red-b};
-  --text-default:     #{$fg1};
-  --text-strong:      #{$fg0};
-  --text-subtle:      #{$fg2};
-  --text-brand:       #{$blue-b};
-
-  --text-feedback-positive: #{$green-b};
-  --text-feedback-critical: #{$red-b};
-  --text-feedback-warning:  #{$y-bright};
-  --text-feedback-info:     #{$blue-b};
-
-  --text-status-online:  #{$green-b};
-  --text-status-idle:    #{$y-bright};
-  --text-status-dnd:     #{$red-b};
-  --text-status-offline: #{$fg4};
-
-  // --- Interactive states ----------------------------------------------------
-  --interactive-normal: #{$fg4};
-  --interactive-hover:  #{$fg2};
-  --interactive-active: #{$fg0};
-  --interactive-muted:  #{$bg3};
-
-  --interactive-icon-default:        #{$fg1};
-  --interactive-icon-hover:          #{$fg1};
-  --interactive-icon-active:         #{$fg1};
-  --interactive-text-default:        #{$fg1};
-  --interactive-text-hover:          #{$fg1};
-  --interactive-text-active:         #{$fg1};
-  --interactive-background-hover:    #{rgba($bg2, 0.15)};
-  --interactive-background-selected: #{rgba($bg2, 0.20)};
-  --interactive-background-active:   #{rgba($fg1, 0.17)};
-
-  // --- Channel / input areas -------------------------------------------------
-  --channels-default:              #{$fg4};
-  --channels-voice-default:        #{$fg4};
-  --channel-icon:                  #{$fg4};
-  --channel-text-area-placeholder: #{rgba($fg1, 0.50)};
-  --channeltextarea-background:    #{$bg0};
-  --voice-color:                   #{$aqua-b};
-  --status-speaking:               #{$aqua-b};
-
-  // --- Brand colour ramp -----------------------------------------------------
-  --brand-experiment:         #{$blue-dark};
-  --brand-experiment-560:     #{$blue-dark};
-  --brand-experiment-600:     #{$blue-b};
-  --control-brand-foreground:     #{$blue-b};
-  --control-brand-foreground-new: #{$blue-b};
-
-  // Full solid ramp — interpolated between $blue-dark (#076678) → $blue-l (#a4c3bb)
-  --brand-100: #e8f2f0;
-  --brand-130: #def0ed;
-  --brand-160: #d1ebe7;
-  --brand-200: #c2e4de;
-  --brand-230: #b3dcd6;
-  --brand-260: #a4d3cc;
-  --brand-300: #96ccc4;
-  --brand-330: #8fc4bc;
-  --brand-360: #89bcb4;
-  --brand-400: #87b9b1;
-  --brand-430: #85b4ac;
-  --brand-460: #84afa7;
-  --brand-500: #{$blue-b};
-  --brand-530: #{$blue-b};
-  --brand-560: #{$blue-dark};
-  --brand-600: #{$blue-b};
-  --brand-630: #63837b;
-  --brand-660: #547970;
-  --brand-700: #456f66;
-  --brand-730: #3c6259;
-  --brand-760: #335650;
-  --brand-800: #2a4a44;
-  --brand-830: #21403a;
-  --brand-860: #193630;
-  --brand-900: #112c26;
-
-  // Alpha variants ($blue-b = #83a598 = rgb(131,165,152))
-  --brand-05a: #{rgba($blue-b, 0.05)};
-  --brand-10a: #{rgba($blue-b, 0.10)};
-  --brand-15a: #{rgba($blue-b, 0.15)};
-  --brand-20a: #{rgba($blue-b, 0.20)};
-  --brand-25a: #{rgba($blue-b, 0.25)};
-  --brand-30a: #{rgba($blue-b, 0.30)};
-  --brand-35a: #{rgba($blue-b, 0.35)};
-  --brand-40a: #{rgba($blue-b, 0.40)};
-  --brand-45a: #{rgba($blue-b, 0.45)};
-  --brand-50a: #{rgba($blue-b, 0.50)};
-  --brand-55a: #{rgba($blue-b, 0.55)};
-  --brand-60a: #{rgba($blue-b, 0.60)};
-  --brand-65a: #{rgba($blue-b, 0.65)};
-  --brand-70a: #{rgba($blue-b, 0.70)};
-  --brand-75a: #{rgba($blue-b, 0.75)};
-  --brand-80a: #{rgba($blue-b, 0.80)};
-  --brand-85a: #{rgba($blue-b, 0.85)};
-  --brand-90a: #{rgba($blue-b, 0.90)};
-  --brand-95a: #{rgba($blue-b, 0.95)};
-
-  // "Blurple" slots repurposed to teal
-  --opacity-blurple-8:  #{rgba($blue-b, 0.08)};
-  --opacity-blurple-16: #{rgba($blue-b, 0.16)};
-  --opacity-blurple-24: #{rgba($blue-b, 0.24)};
-  --opacity-blurple-32: #{rgba($blue-b, 0.32)};
-  --opacity-blurple-60: #{rgba($blue-b, 0.60)};
-  --blurple-50:         #{$blue-dark};
-  --blurple-60:         #{$blue-l};
-
-  // --- Controls --------------------------------------------------------------
-  --control-primary-background-default: #{$blue-dark};
-  --control-primary-background-hover:   #{$blue-b};
-  --control-primary-background-active:  #{$blue-b};
-
-  --control-secondary-background-default: #{$bg2};
-  --control-secondary-background-hover:   #{$bg3};
-  --control-secondary-background-active:  #{$bg3};
-  --control-secondary-border-default:     #{$bg2};
-  --control-secondary-text-default:       #{$fg1};
-  --control-secondary-text-hover:         #{$fg1};
-
-  --control-critical-primary-background-default:   #{$red};
-  --control-critical-primary-background-hover:     #{$red-b};
-  --control-critical-primary-background-active:    #{$red-b};
-  --control-critical-primary-text-default:         #{$bg-hard};
-  --control-critical-primary-text-hover:           #{$bg-hard};
-  --control-critical-secondary-background-default: transparent;
-  --control-critical-secondary-background-hover:   #{rgba($red-b, 0.15)};
-  --control-critical-secondary-background-active:  #{rgba($red-b, 0.20)};
-  --control-critical-secondary-border-default:     #{$red-b};
-  --control-critical-secondary-border-hover:       #{$red-b};
-  --control-critical-secondary-border-active:      #{$red-b};
-  --control-critical-secondary-text-default:       #{$fg1};
-  --control-critical-secondary-text-hover:         #{$bg-hard};
-  --control-critical-secondary-text-active:        #{$bg-hard};
-
-  --control-connected-background-default: #{$green-b};
-  --control-connected-background-hover:   #{lighten($green-b, 5%)};
-  --control-connected-background-active:  #{$green-b};
-  --control-connected-border-default:     #{$green-b};
-  --control-connected-border-hover:       #{lighten($green-b, 5%)};
-  --control-connected-border-active:      #{lighten($green-b, 5%)};
-
-  --button-outline-primary-text:           #{$fg1};
-  --button-outline-brand-text:             #{$fg1};
-  --button-outline-brand-background-hover: #{rgba($blue-b, 0.30)};
-  --button-outline-brand-border-active:    #{$blue-b};
-
-  // --- Status colours --------------------------------------------------------
-  --status-positive:            #{$aqua-b};
-  --status-positive-background: #{$aqua-b};
-  --status-positive-text:       #{$bg-hard};
-  --status-warning:             #{$y-bright};
-  --status-warning-background:  #{$y-bright};
-  --status-warning-text:        #{$bg-hard};
-  --status-danger:              #{$red-b};
-
-  --icon-status-online:  #{$green-b};
-  --icon-status-idle:    #{$y-bright};
-  --icon-status-dnd:     #{$red-b};
-  --icon-status-offline: #{$fg4};
-
-  // --- Feedback backgrounds & icons ------------------------------------------
-  --background-feedback-positive:     #{rgba($green-b, 0.15)};
-  --background-feedback-warning:      #{rgba($y-bright, 0.15)};
-  --background-feedback-critical:     #{rgba($red-b, 0.15)};
-  --background-feedback-info:         #{rgba($blue-b, 0.15)};
-  --background-feedback-notification: #{$red-b};
-  --badge-notification-background:    #{$red-b};
-
-  --icon-feedback-positive:     #{$aqua-b};
-  --icon-feedback-warning:      #{$y-bright};
-  --icon-feedback-critical:     #{$red-b};
-  --icon-feedback-info:         #{$blue-b};
-  --icon-feedback-notification: #{$red-b};
-
-  // --- Notice banners --------------------------------------------------------
-  --notice-background-critical: #{$red-b};
-  --notice-background-info:     #{$blue-b};
-  --notice-background-positive: #{$green-b};
-  --notice-background-warning:  #{$y-bright};
-  --notice-text-critical:       #{$bg-hard};
-  --notice-text-info:           #{$bg-hard};
-  --notice-text-positive:       #{$bg-hard};
-  --notice-text-warning:        #{$bg-hard};
-
-  // --- Info callout boxes ----------------------------------------------------
-  --info-positive-background: #{rgba($green-b, 0.15)};
-  --info-positive-text:       #{$fg1};
-  --info-warning-background:  #{rgba($y-bright, 0.15)};
-  --info-warning-text:        #{$fg1};
-  --info-danger-background:   #{rgba($red-b, 0.15)};
-  --info-danger-text:         #{$fg0};
-  --info-help-background:     #{rgba($blue-b, 0.15)};
-  --info-help-foreground:     #{$blue-b};
-  --info-help-text:           #{$fg1};
-
-  // --- Scrollbars ------------------------------------------------------------
-  --scrollbar-thin-thumb:                 #{$bg2};
-  --scrollbar-thin-track:                 transparent;
-  --scrollbar-auto-thumb:                 #{$bg2};
-  --scrollbar-auto-track:                 #{$bg-hard};
-  --scrollbar-auto-scrollbar-color-thumb: #{$bg2};
-  --scrollbar-auto-scrollbar-color-track: #{$bg-hard};
-
-  // --- Elevation (shadows) ---------------------------------------------------
-  --elevation-low:    0 1px 0 #{rgba($bg-hard, 0.30)}, 0 2px 0 #{rgba($bg-hard, 0.10)};
-  --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.24);
-  --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.36);
-  --elevation-stroke: 0 0 0 1px #{rgba($bg-hard, 0.20)};
-
-  // --- Mentions & messages ---------------------------------------------------
-  --mention-foreground:                   #{$yellow};
-  --mention-background:                   #{rgba($yellow, 0.30)};
-  --message-mentioned-background-default: #{rgba($yellow, 0.07)};
-  --message-mentioned-background-hover:   #{rgba($yellow, 0.05)};
-  --message-automod-background-default:   #{rgba($red, 0.05)};
-  --message-automod-background-hover:     #{rgba($red, 0.10)};
-  --message-highlight-background-default: #{rgba($yellow, 0.08)};
-  --message-highlight-background-hover:   #{rgba($yellow, 0.06)};
-  --message-reacted-background-default:   #{rgba($blue-b, 0.30)};
-  --message-reacted-text-default:         #{$blue-b};
-  --message-background-hover:             #{rgba($_bg-dark-rgb, 0.08)};
-
-  // --- Code blocks -----------------------------------------------------------
-  --background-code: #{$bg-hard};
-
-  // --- Spoilers --------------------------------------------------------------
-  --spoiler-revealed-background:        #{$bg1};
-  --spoiler-hidden-background:          #{$bg2};
-  --__spoiler-background-color--hidden: #{$bg2};
-  --__spoiler-warning-background-color: #{$bg3};
-
-  // --- Inputs ----------------------------------------------------------------
-  --input-background-default:       #{$bg-hard};
-  --input-text-default:             #{$fg1};
-  --input-placeholder-text-default: #{rgba($fg1, 0.50)};
-  --input-border-default:           #{$bg2};
-
-  // --- Icons -----------------------------------------------------------------
-  --icon-muted:       #{$bg3};
-  --icon-voice-muted: #{$red-b};
-  --icon-default:     #{$fg1};
-  --icon-strong:      #{$fg0};
-  --icon-subtle:      #{$fg2};
-
-  // --- Profile overlay -------------------------------------------------------
-  --user-profile-overlay-background:       #{$bg0-s};
-  --user-profile-overlay-background-hover: #{$bg1};
-
-  // --- Modals ----------------------------------------------------------------
-  --modal-background:        #{$bg0-s};
-  --modal-footer-background: #{$bg0-s};
-
-  // --- Misc ------------------------------------------------------------------
-  --__adaptive-focus-ring-color:   #{$blue-b};
-  --textbox-markdown-syntax:       #{$bg4};
-  --logo-primary:                  #{$fg0};
-  --checkbox-border-default:       #{$bg3};
-  --checkbox-icon-active:          #{$bg-hard};
-  --radio-thumb-background-active: #{$bg-hard};
-  --plum-23:                       #{$bg0-s};
-  --badge-text-brand:              #{$bg-hard};
-
-  // --- Deprecated (still read by some parts of Discord) ---------------------
-  --deprecated-panel-background:               #{$bg1};
-  --deprecated-card-bg:                        #{$bg0};
-  --deprecated-card-editable-bg:               #{$bg0};
-  --deprecated-store-bg:                       #{$bg1};
-  --deprecated-quickswitcher-input-background: #{$bg0};
-  --deprecated-quickswitcher-input-placeholder: #{rgba($fg1, 0.30)};
-  --deprecated-text-input-bg:                  #{$bg0};
-
-  // --- Primitive colour aliases ----------------------------------------------
-  --white:     #{$fg1};
-  --white-500: #{$fg1};
-  --black-500: #{$bg-hard};
-
-  --green-360:  #{$green-b};
-  --green-300:  #{$green-b};
-  --yellow-360: #{$y-bright};
-  --yellow-300: #{$y-bright};
-  --red-400:    #{$red-b};
-  --red-430:    #{$red-b};
-  --red-500:    #{$red};
-  --blue-500:   #{$blue-b};
-  --blue-530:   #{$blue-b};
-
-  --primary-100: #{$fg2};
-  --primary-200: #{$fg4};
-  --primary-300: #{$fg2};
-  --primary-400: #{$fg2};
-  --primary-630: #{$bg1};
-  --primary-700: #{$bg2};
-  --primary-800: #{$bg-hard};
-
-  // --- Third-party platform colours ------------------------------------------
-  --twitch:      #{$fg2};
-  --playstation: #{$blue-b};
-  --spotify:     #{$green-b};
-
-  // --- Premium / guild boost decorations ------------------------------------
-  --guild-boosting-pink:   #{$aqua-b};
-  --guild-boosting-blue:   #{$blue-b};
-  --guild-boosting-purple: #{$fg2};
-
-  --premium-perk-yellow:                    #{$y-bright};
-  --premium-perk-purple:                    #{$fg2};
-  --premium-perk-dark-blue:                 #{$blue-b};
-  --premium-perk-light-blue:                #{$aqua-b};
-  --premium-perk-blue:                      #{$blue-b};
-  --premium-perk-green:                     #{$green-b};
-  --premium-perk-pink:                      #{$fg2};
-  --premium-perk-orange:                    #{$y-bright};
-  --premium-tier-0-blue:                    #{$blue-b};
-  --premium-tier-0-purple:                  #{$fg2};
-  --premium-tier-1-blue-for-gradients:      #{$aqua-b};
-  --premium-tier-1-dark-blue-for-gradients: #{$blue-b};
-  --premium-tier-2-purple-for-gradients:    #{$fg2};
-  --premium-tier-2-purple-for-gradients-2:  #{$fg4};
-  --premium-tier-2-pink-for-gradients:      #{$fg2};
-}
+$vr: '.visual-refresh.theme-dark, .visual-refresh .theme-dark';
 
 // Visual Refresh Overrides
 
-.visual-refresh.theme-dark,
-.visual-refresh .theme-dark {
+#{$vr} {
 
   // --- Surface hierarchy (VR layout engine) ----------------------------------
   --__header-bar-background:    #{$bg1}     !important;
@@ -467,17 +74,9 @@ $_bg-dark-rgb: #1e1914;
   --background-gradient-highest: #{$bg0-s};
 
   // --- Core background surfaces ----------------------------------------------
-  --background-primary:         #{$bg0-s};
-  --background-secondary:       #{$bg0};
   --background-secondary-alt:   #{$bg1}     !important;
-  --background-tertiary:        #{$bg-hard};
-  --background-floating:        #{$bg1};
   --background-accent:          #{$bg2}     !important;
 
-  --background-modifier-hover:    #{rgba($bg2, 0.30)};
-  --background-modifier-active:   #{rgba($bg2, 0.50)};
-  --background-modifier-selected: #{rgba($bg2, 0.60)};
-  --background-modifier-accent:   #{$bg2};
   --background-mod-muted:         #{rgba($bg2, 0.05)};
   --background-mod-normal:        #{rgba($bg2, 0.15)};
   --background-mod-subtle:        #{rgba($bg2, 0.25)} !important;
@@ -490,8 +89,6 @@ $_bg-dark-rgb: #1e1914;
   --chat-background-default:  #{$bg0-s};
   --chat-border:              #{$bg-hard};
   --chat-text-muted:          #{$fg4};
-  --userarea-background:      #{$bg-hard};
-  --activity-card-background: #{$bg0-s};
 
   // --- Cards & bubbles -------------------------------------------------------
   --card-background-default:               #{$bg1}     !important;
@@ -504,21 +101,10 @@ $_bg-dark-rgb: #1e1914;
   --border-muted:  #{$bg1};
   --border-normal: #{$bg-hard};
   --border-strong: #{$bg0};
-  --border-color:  #{$bg2};
-  --deprecated-text-input-border:          #{$bg2};
-  --deprecated-text-input-border-hover:    #{$bg3};
-  --deprecated-text-input-border-disabled: #{$bg1};
-  --deprecated-text-input-prefix:          #{$fg2};
 
   // --- Text ------------------------------------------------------------------
-  --header-primary:   #{$fg0};
-  --header-secondary: #{$fg4};
-  --text-normal:      #{$fg1};
   --text-muted:       #{$fg4}    !important;
   --text-link:        #{$blue-b} !important;
-  --text-positive:    #{$green-b};
-  --text-warning:     #{$y-bright};
-  --text-danger:      #{$red-b};
   --text-default:     #{$fg1};
   --text-strong:      #{$fg0}    !important;
   --text-subtle:      #{$fg2};
@@ -526,18 +112,15 @@ $_bg-dark-rgb: #1e1914;
 
   --text-feedback-positive: #{$green-b};
   --text-feedback-critical: #{$red-b};
-  --text-feedback-warning:  #{$y-bright};
+  --text-feedback-warning:  #{$yellow-b};
   --text-feedback-info:     #{$blue-b};
 
   --text-status-online:  #{$green-b};
-  --text-status-idle:    #{$y-bright};
+  --text-status-idle:    #{$yellow-b};
   --text-status-dnd:     #{$red-b};
   --text-status-offline: #{$fg4};
 
   // --- Interactive states ----------------------------------------------------
-  --interactive-normal: #{$fg4};
-  --interactive-hover:  #{$fg2};
-  --interactive-active: #{$fg0};
   --interactive-muted:  #{$bg3};
 
   --interactive-icon-default:        #{$fg1} !important;
@@ -552,17 +135,11 @@ $_bg-dark-rgb: #1e1914;
 
   // --- Channel / input areas -------------------------------------------------
   --channels-default:              #{$fg4}   !important;
-  --channels-voice-default:        #{$fg4};
   --channel-icon:                  #{$fg4}   !important;
   --channel-text-area-placeholder: #{rgba($fg1, 0.50)};
   --channeltextarea-background:    #{$bg0};
-  --voice-color:                   #{$aqua-b};
-  --status-speaking:               #{$aqua-b} !important; // Gruvbox-specific: far from Discord's default
 
   // --- Brand colour ramp -----------------------------------------------------
-  --brand-experiment:         #{$blue-dark};
-  --brand-experiment-560:     #{$blue-dark};
-  --brand-experiment-600:     #{$blue-b};
   --control-brand-foreground:     #{$blue-b};
   --control-brand-foreground-new: #{$blue-b};
 
@@ -648,11 +225,11 @@ $_bg-dark-rgb: #1e1914;
   --control-critical-secondary-text-active:        #{$bg-hard};
 
   --control-connected-background-default: #{$green-b};
-  --control-connected-background-hover:   #{lighten($green-b, 5%)};
+  --control-connected-background-hover:   #{$green-hover};
   --control-connected-background-active:  #{$green-b};
   --control-connected-border-default:     #{$green-b};
-  --control-connected-border-hover:       #{lighten($green-b, 5%)};
-  --control-connected-border-active:      #{lighten($green-b, 5%)};
+  --control-connected-border-hover:       #{$green-hover};
+  --control-connected-border-active:      #{$green-hover};
 
   --button-outline-primary-text:           #{$fg1};
   --button-outline-brand-text:             #{$fg1};
@@ -660,29 +237,29 @@ $_bg-dark-rgb: #1e1914;
   --button-outline-brand-border-active:    #{$blue-b};
 
   // --- Status colours --------------------------------------------------------
-  --status-positive:            #{$aqua-b} !important;
-  --status-positive-background: #{$aqua-b} !important;
+  --status-positive:            #{$green-b};
+  --status-positive-background: #{$green-b};
   --status-positive-text:       #{$bg-hard};
-  --status-warning:             #{$y-bright};
-  --status-warning-background:  #{$y-bright};
+  --status-warning:             #{$yellow-b};
+  --status-warning-background:  #{$yellow-b};
   --status-warning-text:        #{$bg-hard};
   --status-danger:              #{$red-b};
 
   --icon-status-online:  #{$green-b};
-  --icon-status-idle:    #{$y-bright};
+  --icon-status-idle:    #{$yellow-b};
   --icon-status-dnd:     #{$red-b};
   --icon-status-offline: #{$fg4};
 
   // --- Feedback backgrounds & icons ------------------------------------------
-  --background-feedback-positive:     #{rgba($green-b, 0.15)} !important; // Gruvbox-specific
-  --background-feedback-warning:      #{rgba($y-bright, 0.15)};
+  --background-feedback-positive:     #{rgba($green-b, 0.15)};
+  --background-feedback-warning:      #{rgba($yellow-b, 0.15)};
   --background-feedback-critical:     #{rgba($red-b, 0.15)};
   --background-feedback-info:         #{rgba($blue-b, 0.15)};
   --background-feedback-notification: #{$red-b};
   --badge-notification-background:    #{$red-b};
 
-  --icon-feedback-positive:     #{$aqua-b} !important; // Gruvbox-specific
-  --icon-feedback-warning:      #{$y-bright};
+  --icon-feedback-positive:     #{$green-b};
+  --icon-feedback-warning:      #{$yellow-b};
   --icon-feedback-critical:     #{$red-b};
   --icon-feedback-info:         #{$blue-b};
   --icon-feedback-notification: #{$red-b};
@@ -691,16 +268,13 @@ $_bg-dark-rgb: #1e1914;
   --notice-background-critical: #{$red-b};
   --notice-background-info:     #{$blue-b};
   --notice-background-positive: #{$green-b};
-  --notice-background-warning:  #{$y-bright};
+  --notice-background-warning:  #{$yellow-b};
   --notice-text-critical:       #{$bg-hard};
   --notice-text-info:           #{$bg-hard};
   --notice-text-positive:       #{$bg-hard};
   --notice-text-warning:        #{$bg-hard};
 
   // --- Mentions & messages ---------------------------------------------------
-  --background-mentioned:         #{rgba($yellow, 0.07)};
-  --background-mentioned-hover:   #{rgba($yellow, 0.12)};
-  --background-mentioned-focus:   #{rgba($yellow, 0.15)};
   --mention-foreground:           #{$yellow};
   --mention-background:           #{rgba($yellow, 0.30)};
   --message-mentioned-background-default: #{rgba($yellow, 0.07)};
@@ -711,7 +285,7 @@ $_bg-dark-rgb: #1e1914;
   --message-highlight-background-hover:   #{rgba($yellow, 0.06)};
   --message-reacted-background-default:   #{rgba($blue-b, 0.30)} !important;
   --message-reacted-text-default:         #{$blue-b};
-  --message-background-hover:             #{rgba($_bg-dark-rgb, 0.08)} !important;
+  --message-background-hover:             #{rgba($bg-msg-hover, 0.15)} !important;
 
   // --- Code & spoilers -------------------------------------------------------
   --background-code:             #{$bg-hard};
@@ -741,12 +315,6 @@ $_bg-dark-rgb: #1e1914;
   --scrollbar-auto-scrollbar-color-thumb: #{$bg2};
   --scrollbar-auto-scrollbar-color-track: #{$bg-hard};
 
-  // --- Elevation (shadows) ---------------------------------------------------
-  --elevation-low:    0 1px 0 #{rgba($bg-hard, 0.30)}, 0 2px 0 #{rgba($bg-hard, 0.10)};
-  --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.24);
-  --elevation-high:   0 8px 16px rgba(0, 0, 0, 0.36);
-  --elevation-stroke: 0 0 0 1px #{rgba($bg-hard, 0.20)};
-
   // --- Profile, modals, misc -------------------------------------------------
   --user-profile-overlay-background:       #{$bg0-s};
   --user-profile-overlay-background-hover: #{$bg1};
@@ -761,15 +329,6 @@ $_bg-dark-rgb: #1e1914;
   --plum-23:                       #{$bg0-s};
   --badge-text-brand:              #{$bg-hard};
 
-  // --- Deprecated ------------------------------------------------------------
-  --deprecated-panel-background:               #{$bg1};
-  --deprecated-card-bg:                        #{$bg0};
-  --deprecated-card-editable-bg:               #{$bg0};
-  --deprecated-store-bg:                       #{$bg1};
-  --deprecated-quickswitcher-input-background: #{$bg0};
-  --deprecated-quickswitcher-input-placeholder: #{rgba($fg1, 0.30)};
-  --deprecated-text-input-bg:                  #{$bg0};
-
   // --- Primitive colour aliases ----------------------------------------------
   --white:     #{$fg1};
   --white-500: #{$fg1};
@@ -777,12 +336,12 @@ $_bg-dark-rgb: #1e1914;
 
   --green-360:  #{$green-b};
   --green-300:  #{$green-b};
-  --yellow-360: #{$y-bright};
-  --yellow-300: #{$y-bright};
+  --yellow-360: #{$yellow-b};
+  --yellow-300: #{$yellow-b};
   --red-400:    #{$red-b};
-  --red-430:    #{$red-b};
+  --red-430:    #{mix($red-b, $red, 50%)};
   --red-500:    #{$red};
-  --blue-500:   #{$blue-b};
+  --blue-500:   #{$blue-dark};
   --blue-530:   #{$blue-b};
 
   --primary-100: #{$fg2};
@@ -803,14 +362,14 @@ $_bg-dark-rgb: #1e1914;
   --guild-boosting-blue:   #{$blue-b};
   --guild-boosting-purple: #{$fg2};
 
-  --premium-perk-yellow:                    #{$y-bright};
+  --premium-perk-yellow:                    #{$yellow-b};
   --premium-perk-purple:                    #{$fg2};
   --premium-perk-dark-blue:                 #{$blue-b};
   --premium-perk-light-blue:                #{$aqua-b};
   --premium-perk-blue:                      #{$blue-b};
   --premium-perk-green:                     #{$green-b};
   --premium-perk-pink:                      #{$fg2};
-  --premium-perk-orange:                    #{$y-bright};
+  --premium-perk-orange:                    #{$yellow-b};
   --premium-tier-0-blue:                    #{$blue-b};
   --premium-tier-0-purple:                  #{$fg2};
   --premium-tier-1-blue-for-gradients:      #{$aqua-b};
@@ -820,19 +379,20 @@ $_bg-dark-rgb: #1e1914;
   --premium-tier-2-pink-for-gradients:      #{$fg2};
 }
 
-
-// Visual Refresh — Branded Element Text Override
+// Visual Refresh: Branded Element Text Override
 
 // Green / join fills need dark text (bright yellow-green background)
-.visual-refresh.theme-dark button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"],
-.visual-refresh .theme-dark  button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"],
-.visual-refresh.theme-dark button[class*="colorable_"][class*="join_"],
-.visual-refresh .theme-dark  button[class*="colorable_"][class*="join_"] {
-  color: #{$bg-hard} !important;
+#{$vr} {
+  :is(
+    button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"],
+    button[class*="colorable_"][class*="join_"]
+  ) {
+    color: #{$bg-hard} !important;
+  }
 }
 
 // Brand fill and all other VR elements that carry internal --white text
-:is(.visual-refresh.theme-dark, .visual-refresh .theme-dark) {
+#{$vr} {
   :is(
     div[class^="item_"][class*="addFriend_"],
     div[class^="numberBadge_"][style*="background-color: var(--background-feedback-notification);"],
@@ -844,8 +404,13 @@ $_bg-dark-rgb: #1e1914;
     div[class^="icon_"][class*="noIcon_"],
     button[class^="container_"] > div[class^="icon_"] > svg,
     div[class^="newBadge_"],
-    button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"],
+    button[class*="button_"][class*="lookFilled_"][class*="colorRed_"],
+    button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"],
     button[class*="button_"][class*="lookFilled_"][class*="colorLink_"],
+    button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"],
+    button[class*="colorable_"][class*="join_"],
+    svg[class^="status_"],
+    svg[class^="dots_"],
     div[class*="textBadge_"][class*="base_"],
     svg[class^="descriptionIcon_"],
     div[class^="uploadDropModal_"],
@@ -863,75 +428,89 @@ $_bg-dark-rgb: #1e1914;
     [class*="colorStreamerMode_"],
     [class*="colorSpotify_"],
     [class*="colorPremium_"],
-    [class*="colorPlayStation_"]
+    [class*="colorPlayStation_"],
+    .interactive:hover
   ) {
     --white:     #{$fg0};
     --white-500: #{$fg0};
   }
 }
 
-// Text selection
-.visual-refresh.theme-dark ::selection,
-.visual-refresh .theme-dark  ::selection {
-  background-color: #{rgba($blue-b, 0.60)};
+#{$vr} {
+
+  // Text selection
+  ::selection {
+    background-color: #{rgba($blue-b, 0.60)};
+  }
+
+  // Vencord primary button
+  button.vc-btn-primary {
+    color: #{$fg0} !important;
+    background-color: #{$blue-dark} !important;
+
+    &:hover, &:active { background-color: #{$blue-b} !important; }
+  }
+
+  // Vencord positive button (green fill to dark text)
+  button.vc-btn-positive {
+    color: #{$bg-hard} !important;
+  }
+
+  // Primary buttons (non-icon variant)
+  button[class^="button_"][class*=" primary_"] {
+    color: #{$fg0} !important;
+    background-color: #{$blue-dark} !important;
+
+    &:hover, &:active { background-color: #{$blue-b} !important; }
+  }
+
+  // Toggle switches (Settings, notification prefs, etc.)
+  label[class^="container_"] > div[data-mana-component="switch"] {
+    background-color: #{$bg3} !important;
+    border: unset !important;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #{$bg2} !important;
+    }
+
+    > svg > rect {
+      fill: #{$fg1};
+      transition: fill 0.2s;
+    }
+
+    &:has(+ span > input:checked) {
+      background-color: #{$blue-b} !important;
+
+      &:hover {
+        background-color: #{$blue-dark} !important;
+      }
+
+      > svg > rect {
+        fill: #{$bg-hard};
+      }
+    }
+  }
+
+  // Vencord switch component
+  div.vc-switch-container {
+    --primary-400: #{$bg3};
+
+    svg.vc-switch-slider > rect {
+      fill: #{$fg1};
+      transition: fill 0.2s;
+    }
+
+    &.vc-switch-checked > svg.vc-switch-slider > rect {
+      fill: #{$bg-hard};
+    }
+  }
 }
 
-// Vencord primary button
-.visual-refresh.theme-dark button.vc-btn-primary,
-.visual-refresh .theme-dark  button.vc-btn-primary {
-  color: #{$fg0} !important;
-  background-color: #{$blue-dark} !important;
-
-  &:hover, &:active { background-color: #{$blue-b} !important; }
-}
-
-// Vencord positive button (green fill → dark text)
-.visual-refresh.theme-dark button.vc-btn-positive,
-.visual-refresh .theme-dark  button.vc-btn-positive {
-  color: #{$bg-hard} !important;
-}
-
-// Primary buttons (non-icon variant)
-.visual-refresh.theme-dark button[class^="button_"][class*=" primary_"],
-.visual-refresh .theme-dark  button[class^="button_"][class*=" primary_"] {
-  color: #{$fg0} !important;
-  background-color: #{$blue-dark} !important;
-
-  &:hover, &:active { background-color: #{$blue-b} !important; }
-}
-
-
-// Legacy .theme- overrides
-.theme-dark {
-  --background-mentioned:       #{rgba($yellow, 0.07)};
-  --background-mentioned-hover: #{rgba($yellow, 0.12)};
-  --background-message-hover:   #{rgba($_bg-dark-rgb, 0.08)};
-  --text-normal:                #{$fg1};
-  --text-link:                  #{$blue-b};
-  --header-primary:             #{$fg0};
-  --header-secondary:           #{$fg4};
-  --interactive-normal:         #{$fg4};
-  --interactive-hover:          #{$fg2};
-  --interactive-active:         #{$fg0};
-  --channels-default:           #{$fg4};
-}
-
-.theme-light {
-  --background-primary:       #{$bg0-s};
-  --background-secondary:     #{$bg0};
-  --background-tertiary:      #{$bg-hard};
-  --background-floating:      #{$bg1};
-  --header-primary:           #{$fg0};
-  --header-secondary:         #{$fg4};
-  --text-normal:              #{$fg1};
-  --deprecated-text-input-bg: #{$bg0};
-}
-
-// square corners
+// Square Corners
 * {
   border-radius: 0 !important;
 }
-
 
 // Typography
 // IBM Plex Mono for UI chrome; IBM Plex Sans for chat; code always monospace.
@@ -974,6 +553,60 @@ pre,
   border: 1px solid #{$bg2} !important;
 }
 
+// Code block syntax highlighting (highlight.js)
+#{$vr} {
+  &.hljs                   { color: #{$fg1}; background: #{$bg-hard}; }
+  .hljs-keyword            { color: #{$purple-b}; }
+  .hljs-built_in           { color: #{$red-b}; }
+  .hljs-type               { color: #{$yellow-b}; }
+  .hljs-literal            { color: #{$orange-b}; }
+  .hljs-number             { color: #{$orange-b}; }
+  .hljs-operator           { color: #{$aqua-b}; }
+  .hljs-punctuation        { color: #{$fg2}; }
+  .hljs-property           { color: #{$aqua-b}; }
+  .hljs-regexp             { color: #{$purple-b}; }
+  .hljs-string             { color: #{$green-b}; }
+  .hljs-char.escape_       { color: #{$green-b}; }
+  .hljs-subst              { color: #{$fg4}; }
+  .hljs-symbol             { color: #{$purple-b}; }
+  .hljs-variable           { color: #{$purple-b}; }
+  .hljs-variable.language_ { color: #{$purple-b}; }
+  .hljs-variable.constant_ { color: #{$orange-b}; }
+  .hljs-title              { color: #{$blue-b}; }
+  .hljs-title.class_       { color: #{$yellow-b}; }
+  .hljs-title.function_    { color: #{$blue-b}; }
+  .hljs-params             { color: #{$fg1}; }
+  .hljs-comment            { color: #{$fg4}; }
+  .hljs-doctag             { color: #{$red-b}; }
+  .hljs-meta               { color: #{$orange-b}; }
+  .hljs-section            { color: #{$blue-b}; }
+  .hljs-tag                { color: #{$aqua-b}; }
+  .hljs-name               { color: #{$purple-b}; }
+  .hljs-attr               { color: #{$blue-b}; }
+  .hljs-attribute          { color: #{$green-b}; }
+  .hljs-bullet             { color: #{$aqua-b}; }
+  .hljs-code               { color: #{$green-b}; }
+  .hljs-emphasis           { color: #{$red-b}; font-style: italic; }
+  .hljs-strong             { color: #{$red-b}; font-weight: bold; }
+  .hljs-formula            { color: #{$aqua-b}; }
+  .hljs-link               { color: #{$blue-l}; font-style: italic; }
+  .hljs-quote              { color: #{$green-b}; font-style: italic; }
+  .hljs-selector-tag       { color: #{$yellow-b}; }
+  .hljs-selector-id        { color: #{$blue-b}; }
+  .hljs-selector-class     { color: #{$aqua-b}; }
+  .hljs-selector-attr      { color: #{$purple-b}; }
+  .hljs-selector-pseudo    { color: #{$aqua-b}; }
+  .hljs-template-tag       { color: #{$purple-b}; }
+  .hljs-template-variable  { color: #{$purple-b}; }
+  .hljs-addition {
+    color: #{$green-b};
+    background: #{rgba($green-b, 0.15)};
+  }
+  .hljs-deletion {
+    color: #{$red-b};
+    background: #{rgba($red-b, 0.15)};
+  }
+}
 
 // Scrollbars (WebKit)
 ::-webkit-scrollbar-thumb {
@@ -986,13 +619,12 @@ pre,
   border-radius: 0 !important;
 }
 
-
-// Avatar masks — Square avatar system
+// Avatar masks: Square avatar system
 //
 // 1. Removes the circular SVG mask globally
 // 2. Hides the SVG circle elements used for the round cutout
 // 3. clip-path polygons: square avatar + bottom-right notch for the status dot.
-//    Mobile status (phone icon) is taller — uses a narrower notch starting higher.
+//    Mobile status (phone icon) is taller: uses a narrower notch starting higher.
 // 4. Different geometries per size: 32/40/80/120px.
 // Status badge ring uses bg-hard stroke so the dot floats on the surface.
 
@@ -1015,7 +647,7 @@ rect[mask*="status"] {
   paint-order: stroke fill !important;
 }
 
-// 20/24/32/40px — standard notch (38% × 38% cutout)
+// 20/24/32/40px: standard notch (38% × 38% cutout)
 foreignObject[width="20"][height="20"]:has(~ g),
 foreignObject[width="24"][height="24"]:has(~ g),
 foreignObject[width="32"][height="32"]:has(~ g),
@@ -1030,7 +662,7 @@ foreignObject[width="40"][height="40"]:has(~ g) {
   ) !important;
 }
 
-// 32/40px — mobile status (phone icon is taller, notch starts higher)
+// 32/40px: mobile status (phone icon is taller, notch starts higher)
 foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
 foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
   clip-path: polygon(
@@ -1043,7 +675,7 @@ foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-o
   ) !important;
 }
 
-// 80px — profile popout header
+// 80px: profile popout header
 foreignObject[width="80"][height="80"][mask] ~ g rect {
   transform: translate(16px, 16px) !important;
 }
@@ -1059,7 +691,7 @@ foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-o
   ) !important;
 }
 
-// 120px — user profile modal
+// 120px: user profile modal
 foreignObject[width="120"][height="120"][mask] ~ g rect {
   transform: translate(25px, 25px) !important;
 }
@@ -1075,7 +707,7 @@ foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status
   ) !important;
 }
 
-// Avatar stacks (thread overlap) — no clip, no rounding
+// Avatar stacks (thread overlap): no clip, no rounding
 foreignObject [class*="avatarStack_"],
 foreignObject [class*="avatarStack_"]::after,
 foreignObject [class*="avatarStack_"] > * {
@@ -1083,14 +715,7 @@ foreignObject [class*="avatarStack_"] > * {
   border-radius: 0 !important;
 }
 
-
-// Voice — speaking indicator ring
-div[class*="speaking_"] {
-  box-shadow: inset 0 0 0 2px #{$aqua-b} !important;
-}
-
-
-// Guild / server list — square icons
+// Guild / server list: square icons
 [class*="folder"],
 [class*="folderEndButton"],
 [class*="folderPreview"],
@@ -1099,8 +724,7 @@ div[class*="speaking_"] {
   clip-path: inset(0) !important;
 }
 
-
-// Panels — user area (mute/deafen controls, account row)
+// Panels: user area (mute/deafen controls, account row)
 section[class*="panels_"] {
   flex-shrink: 0 !important;
   min-height: 52px !important;
@@ -1118,14 +742,12 @@ li[class*="listItem_"] {
   overflow: visible !important;
 }
 
-
 // Embeds
 div[class*="embed_"],
 div[class*="embedWrapper_"] {
   background-color: #{$bg1} !important;
   border-left: 3px solid #{$blue-b} !important;
 }
-
 
 // Reactions
 div[class*="reaction_"] {
@@ -1138,8 +760,7 @@ div[class*="reactionMe_"] {
   border: 1px solid #{$blue-b} !important;
 }
 
-
-// Mentions — highlighted row + left accent bar
+// Mentions: highlighted row + left accent bar
 div[class*="mentioned_"] {
   background-color: #{rgba($yellow, 0.07)} !important;
 
@@ -1148,9 +769,8 @@ div[class*="mentioned_"] {
   }
 }
 
-
 // Visual-refresh button overrides
-:is(.visual-refresh.theme-dark, .visual-refresh .theme-dark) {
+#{$vr} {
 
   // Danger
   button[class*="button_"][class*="lookFilled_"][class*="colorRed_"] {
@@ -1183,18 +803,15 @@ div[class*="mentioned_"] {
   }
 }
 
-
 // Overlay (context menus, dropdowns, modal backdrop)
 div[class*="overlay_"] {
   background-color: #{$bg0} !important;
 }
 
-
 // New messages bar (jump-to-present banner)
 div[class*="newMessagesBar_"] {
   background-color: #{$blue-dark} !important;
 }
-
 
 // BetterDiscord addon list
 .bd-addon-list .bd-addon-card {

@@ -11,3 +11,5 @@ Thumbs.db
 *.bak
 
 *.css.map
+
+compile.py

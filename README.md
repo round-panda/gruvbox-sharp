@@ -48,35 +48,25 @@ Download the file and place it in your Vencord themes directory, then enable it 
 | `bg0` | `#282828` | Sidebar, input background |
 | `bg1` | `#3c3836` | Elevated surfaces: popouts, modals, header |
 | `bg2` | `#504945` | Borders, selected state |
+| `bg3` | `#665c54` | Muted icons, disabled borders |
 | `fg0` | `#f9f5d7` | Headings, active text |
 | `fg1` | `#ebdbb2` | Normal body text |
+| `fg2` | `#d5c4a1` | Secondary/subtle text |
 | `fg4` | `#a89984` | Muted / channel names |
-| `yellow` | `#d79921` | Brand accent (replaces blurple) |
-| `y_bright` | `#fabd2f` | Accent hover |
-| `blue_b` | `#83a598` | Links |
-| `aqua_b` | `#8ec07c` | Speaking ring, positive accent |
+| `yellow` | `#d79921` | Mention foreground, mention bar |
+| `yellow_b` | `#fabd2f` | Warning text, idle status |
+| `blue_b` | `#83a598` | Brand accent (replaces blurple), links, reactions |
+| `blue_dark` | `#076678` | Button fills, pill indicators |
+| `aqua_b` | `#8ec07c` | Speaking ring, voice chrome |
+| `red` | `#cc241d` | Danger button base |
 | `red_b` | `#fb4934` | Danger text, notification badges |
-| `green_b` | `#b8bb26` | Online status indicator |
+| `purple_b` | `#d3869b` | Syntax highlight: keywords/variables |
+| `green_b` | `#b8bb26` | Online status, positive/success indicators |
 
 ---
 
 ## Compatibility
 
-| Client | Status |
-|---|---|
-| Vesktop/Vencord Web | Tested |
-| BetterDiscord | Tested |
-| Vencord | Tested |
-| Stylus (browser) | Likely partial styling |
+Only tested for Vesktop.
 
 Discord updates its internal CSS class names frequently. If something breaks, please open an issue.
-
----
-
-## Reporting Issues
-
-Please use the [issue tracker](https://github.com/round-panda/retro-discord-sharp/issues). Include:
-- Your Discord version (Help -> About)
-- Your BetterDiscord / Vencord / Vesktop version
-- A screenshot of the broken element
-- The class name of the element if possible (Ctrl + Shift + I)
