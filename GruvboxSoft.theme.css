@@ -1,10 +1,7 @@
 /**
- * @name          Gruvbox Sharp
- * @version       4.1
- * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
- *                typography. IBM Plex Mono UI chrome, IBM Plex Sans chat.
- *                Compatible with BetterDiscord and Vencord.
- *                Requires Discord's built-in Dark Mode to be enabled.
+ * @name          Gruvbox Soft
+ * @version       0.1
+ * @description   Soft version of Gruvbox Sharp
  * @author        round-panda
  * @authorLink    https://github.com/round-panda
  * @source        https://github.com/round-panda/gruvbox-sharp
@@ -591,70 +588,4 @@ div[class*="newMessagesBar_"] {
   border: 1px solid #504945;
   background-color: #32302f;
   margin-bottom: 18px;
-}
-
-* {
-  border-radius: 0 !important;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 0 !important;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 0 !important;
-}
-
-foreignObject[mask] {
-  mask: none !important;
-}
-
-[class*="mask"] circle[fill="black"],
-[class*="svg"] circle[fill="black"],
-[class*="mask"] circle[fill="white"],
-[class*="svg"] circle[fill="white"],
-[class*="mask"] rect[fill="black"],
-[class*="svg"] rect[fill="black"] {
-  display: none !important;
-}
-
-rect[mask*="status"] {
-  stroke: #1d2021 !important;
-  stroke-width: 10px !important;
-  paint-order: stroke fill !important;
-}
-
-foreignObject[width="20"][height="20"]:has(~ g),
-foreignObject[width="24"][height="24"]:has(~ g),
-foreignObject[width="32"][height="32"]:has(~ g),
-foreignObject[width="40"][height="40"]:has(~ g) {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 65% 65%, 65% 100%, 0% 100%) !important;
-}
-
-foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
-foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 49%, 65% 49%, 65% 100%, 0% 100%) !important;
-}
-
-foreignObject[width="80"][height="80"][mask] ~ g rect {
-  transform: translate(16px, 16px) !important;
-}
-
-foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 95% 90%, 95% 100%, 0% 100%) !important;
-}
-
-foreignObject[width="120"][height="120"][mask] ~ g rect {
-  transform: translate(25px, 25px) !important;
-}
-
-foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 88.7%, 95% 88.7%, 95% 100%, 0% 100%) !important;
-}
-
-foreignObject [class*="avatarStack_"],
-foreignObject [class*="avatarStack_"]::after,
-foreignObject [class*="avatarStack_"] > * {
-  clip-path: none !important;
-  border-radius: 0 !important;
 }

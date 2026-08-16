@@ -1,17 +1,14 @@
 /**
- * @name          Gruvbox Sharp
- * @version       4.1
- * @description   Gruvbox Dark Soft palette with sharp corners and IBM Plex
- *                typography. IBM Plex Mono UI chrome, IBM Plex Sans chat.
- *                Compatible with BetterDiscord and Vencord.
- *                Requires Discord's built-in Dark Mode to be enabled.
+ * @name          Gruvbox Soft
+ * @version       0.1
+ * @description   Soft version of Gruvbox Sharp
  * @author        round-panda
  * @authorLink    https://github.com/round-panda
  * @source        https://github.com/round-panda/gruvbox-sharp
  */
 
 // Google Fonts
-// IBM Plex Mono: headers, sidebars
+// IBM Plex Mono: UI e.g. headers, sidebars
 // IBM Plex Sans: chat messages, user input, account cards
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
@@ -622,118 +619,4 @@ div[class*="newMessagesBar_"] {
   border: 1px solid #{$bg2};
   background-color: #{$bg0-s};
   margin-bottom: 18px;
-}
-
-// SHARP CORNERS
-// -----------------------------------------------------------------------------
-// Everything below this line is what makes the theme "Sharp" (square avatars,
-// square guild icons, zero border-radius everywhere). To make a soft-cornered
-// variant, delete this block down to the end of the file
-
-* {
-  border-radius: 0 !important;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 0 !important;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 0 !important;
-}
-
-// Avatar masks: Square avatar system
-//
-// 1. Removes the circular SVG mask globally
-// 2. Hides the SVG circle elements used for the round cutout
-// 3. clip-path polygons: square avatar + bottom-right notch for the status dot.
-//    Mobile status (phone icon) is taller: uses a narrower notch starting higher.
-// 4. Different geometries per size: 32/40/80/120px.
-// Status badge ring uses bg-hard stroke so the dot floats on the surface.
-
-foreignObject[mask] {
-  mask: none !important;
-}
-
-[class*="mask"] circle[fill="black"],
-[class*="svg"]  circle[fill="black"],
-[class*="mask"] circle[fill="white"],
-[class*="svg"]  circle[fill="white"],
-[class*="mask"] rect[fill="black"],
-[class*="svg"]  rect[fill="black"] {
-  display: none !important;
-}
-
-rect[mask*="status"] {
-  stroke: #{$bg-hard} !important;
-  stroke-width: 10px !important;
-  paint-order: stroke fill !important;
-}
-
-// 20/24/32/40px: standard notch (38% × 38% cutout)
-foreignObject[width="20"][height="20"]:has(~ g),
-foreignObject[width="24"][height="24"]:has(~ g),
-foreignObject[width="32"][height="32"]:has(~ g),
-foreignObject[width="40"][height="40"]:has(~ g) {
-  clip-path: polygon(
-    0%   0%,
-    100% 0%,
-    100% 65%,
-    65%  65%,
-    65%  100%,
-    0%   100%
-  ) !important;
-}
-
-// 32/40px: mobile status (phone icon is taller, notch starts higher)
-foreignObject[width="32"][height="32"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]),
-foreignObject[width="40"][height="40"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-  clip-path: polygon(
-    0%      0%,
-    100%    0%,
-    100%    49%,
-    65%   49%,
-    65%   100%,
-    0%      100%
-  ) !important;
-}
-
-// 80px: profile popout header
-foreignObject[width="80"][height="80"][mask] ~ g rect {
-  transform: translate(16px, 16px) !important;
-}
-
-foreignObject[width="80"][height="80"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-  clip-path: polygon(
-    0%   0%,
-    100% 0%,
-    100% 90%,
-    95%  90%,
-    95%  100%,
-    0%   100%
-  ) !important;
-}
-
-// 120px: user profile modal
-foreignObject[width="120"][height="120"][mask] ~ g rect {
-  transform: translate(25px, 25px) !important;
-}
-
-foreignObject[width="120"][height="120"]:has(~ g rect[mask="url(#svg-mask-status-online-mobile)"]) {
-  clip-path: polygon(
-    0%     0%,
-    100%   0%,
-    100%   88.7%,
-    95%    88.7%,
-    95%    100%,
-    0%     100%
-  ) !important;
-}
-
-// Avatar stacks (thread overlap): no clip, no rounding
-foreignObject [class*="avatarStack_"],
-foreignObject [class*="avatarStack_"]::after,
-foreignObject [class*="avatarStack_"] > * {
-  clip-path: none !important;
-  border-radius: 0 !important;
 }
