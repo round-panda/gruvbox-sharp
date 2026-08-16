@@ -197,7 +197,7 @@
   --spoiler-hidden-background:   #504945;
   --__spoiler-background-color--hidden: #504945;
   --__spoiler-warning-background-color: #665c54;
-  --input-background-default:       #1d2021;
+  --input-background-default:       #282828;
   --input-text-default:             #ebdbb2;
   --input-placeholder-text-default: rgba(235, 219, 178, 0.5);
   --input-border-default:           #504945;
@@ -266,11 +266,11 @@
   --premium-tier-2-pink-for-gradients:      #d5c4a1;
 }
 
-.visual-refresh.theme-dark :is( button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="colorable_"][class*="join_"]   ), .visual-refresh .theme-dark :is( button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="colorable_"][class*="join_"]   ) {
+.visual-refresh.theme-dark :is( button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="colorable_"][class*="join_"]    ), .visual-refresh .theme-dark :is( button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="colorable_"][class*="join_"]    ) {
   color: #1d2021 !important;
 }
 
-.visual-refresh.theme-dark :is( div[class^="item_"][class*="addFriend_"], div[class^="numberBadge_"][style*="background-color: var(--background-feedback-notification);"], div[class^="numberBadge_"][style*="background-color: var(--badge-notification-background);"], div[class*="iconBadge_"][class*="isCurrentUserConnected_"], span[class*="botTag_"], span[class^="unreadPill_"], div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"], div[class^="icon_"][class*="noIcon_"], button[class^="container_"] > div[class^="icon_"] > svg, div[class^="newBadge_"], button[class*="button_"][class*="lookFilled_"][class*="colorRed_"], button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="button_"][class*="lookFilled_"][class*="colorLink_"], button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"], button[class*="colorable_"][class*="join_"], svg[class^="status_"], svg[class^="dots_"], div[class*="textBadge_"][class*="base_"], svg[class^="descriptionIcon_"], div[class^="uploadDropModal_"], svg[class^="stepIcon_"], svg[class^="activeIcon_"], div[class*="tooltipBrand_"], div[class*="tooltipGreen_"], span[class*="planOptionDiscount_"], div[class*="memberCount_"], svg[class*="flowerStar_"] + div[class*="childContainer_"], div[class*="streamerModeEnabledBtn_"], div[class*="nowPlaying_"], div[class^="pageControlContainer_"],     [class*="notice_"][class*="colorBrand_"],     [class*="colorStreamerMode_"],     [class*="colorSpotify_"],     [class*="colorPremium_"],     [class*="colorPlayStation_"], .interactive:hover   ), .visual-refresh .theme-dark :is( div[class^="item_"][class*="addFriend_"], div[class^="numberBadge_"][style*="background-color: var(--background-feedback-notification);"], div[class^="numberBadge_"][style*="background-color: var(--badge-notification-background);"], div[class*="iconBadge_"][class*="isCurrentUserConnected_"], span[class*="botTag_"], span[class^="unreadPill_"], div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"], div[class^="icon_"][class*="noIcon_"], button[class^="container_"] > div[class^="icon_"] > svg, div[class^="newBadge_"], button[class*="button_"][class*="lookFilled_"][class*="colorRed_"], button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="button_"][class*="lookFilled_"][class*="colorLink_"], button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"], button[class*="colorable_"][class*="join_"], svg[class^="status_"], svg[class^="dots_"], div[class*="textBadge_"][class*="base_"], svg[class^="descriptionIcon_"], div[class^="uploadDropModal_"], svg[class^="stepIcon_"], svg[class^="activeIcon_"], div[class*="tooltipBrand_"], div[class*="tooltipGreen_"], span[class*="planOptionDiscount_"], div[class*="memberCount_"], svg[class*="flowerStar_"] + div[class*="childContainer_"], div[class*="streamerModeEnabledBtn_"], div[class*="nowPlaying_"], div[class^="pageControlContainer_"],     [class*="notice_"][class*="colorBrand_"],     [class*="colorStreamerMode_"],     [class*="colorSpotify_"],     [class*="colorPremium_"],     [class*="colorPlayStation_"], .interactive:hover   ) {
+.visual-refresh.theme-dark :is( div[class^="item_"][class*="addFriend_"], div[class^="numberBadge_"][style*="background-color: var(--background-feedback-notification);"], div[class^="numberBadge_"][style*="background-color: var(--badge-notification-background);"], div[class*="iconBadge_"][class*="isCurrentUserConnected_"], span[class*="botTag_"], span[class^="unreadPill_"], div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"], div[class^="icon_"][class*="noIcon_"], button[class^="container_"] > div[class^="icon_"] > svg, div[class^="newBadge_"], button[class*="button_"][class*="lookFilled_"][class*="colorRed_"], button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="button_"][class*="lookFilled_"][class*="colorLink_"], button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"], button[class*="colorable_"][class*="join_"], svg[class^="status_"], svg[class^="dots_"], div[class*="textBadge_"][class*="base_"], svg[class^="descriptionIcon_"], div[class^="uploadDropModal_"], svg[class^="stepIcon_"], svg[class^="activeIcon_"], div[class*="tooltipBrand_"], div[class*="tooltipGreen_"], span[class*="planOptionDiscount_"], div[class*="memberCount_"], svg[class*="flowerStar_"] + div[class*="childContainer_"], div[class*="streamerModeEnabledBtn_"], div[class*="nowPlaying_"], div[class^="pageControlContainer_"],      [class*="notice_"][class*="colorBrand_"],      [class*="colorStreamerMode_"],      [class*="colorSpotify_"],      [class*="colorPremium_"],      [class*="colorPlayStation_"], .interactive:hover    ), .visual-refresh .theme-dark :is( div[class^="item_"][class*="addFriend_"], div[class^="numberBadge_"][style*="background-color: var(--background-feedback-notification);"], div[class^="numberBadge_"][style*="background-color: var(--badge-notification-background);"], div[class*="iconBadge_"][class*="isCurrentUserConnected_"], span[class*="botTag_"], span[class^="unreadPill_"], div[class^="listItem_"] div[class^="wrapper_"] [class*="selected_"], div[class^="icon_"][class*="noIcon_"], button[class^="container_"] > div[class^="icon_"] > svg, div[class^="newBadge_"], button[class*="button_"][class*="lookFilled_"][class*="colorRed_"], button[class*="button_"][class*="lookFilled_"][class*="colorGreen_"], button[class*="button_"][class*="lookFilled_"][class*="colorLink_"], button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"], button[class*="colorable_"][class*="join_"], svg[class^="status_"], svg[class^="dots_"], div[class*="textBadge_"][class*="base_"], svg[class^="descriptionIcon_"], div[class^="uploadDropModal_"], svg[class^="stepIcon_"], svg[class^="activeIcon_"], div[class*="tooltipBrand_"], div[class*="tooltipGreen_"], span[class*="planOptionDiscount_"], div[class*="memberCount_"], svg[class*="flowerStar_"] + div[class*="childContainer_"], div[class*="streamerModeEnabledBtn_"], div[class*="nowPlaying_"], div[class^="pageControlContainer_"],      [class*="notice_"][class*="colorBrand_"],      [class*="colorStreamerMode_"],      [class*="colorSpotify_"],      [class*="colorPremium_"],      [class*="colorPlayStation_"], .interactive:hover    ) {
   --white:     #f9f5d7;
   --white-500: #f9f5d7;
 }
@@ -564,6 +564,19 @@ pre,
 .visual-refresh.theme-dark .hljs-deletion, .visual-refresh .theme-dark .hljs-deletion {
   color: #fb4934;
   background: rgba(251, 73, 52, 0.15);
+}
+
+:is(.visual-refresh.theme-dark, .visual-refresh .theme-dark) button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"] {
+  background-color: #32302f !important;
+  color: #f9f5d7 !important;
+}
+
+:is(.visual-refresh.theme-dark, .visual-refresh .theme-dark) button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"]:hover {
+  background-color: #83a598 !important;
+}
+
+section[class*="panels_"] {
+  background-color: #1d2021 !important;
 }
 
 [class^="privateChannels_"] button:has([class^="buttonChildrenWrapper_"]) {

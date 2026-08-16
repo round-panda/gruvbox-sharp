@@ -288,7 +288,7 @@ $vr: '.visual-refresh.theme-dark, .visual-refresh .theme-dark';
   --__spoiler-warning-background-color: #{$bg3};
 
   // --- Inputs ----------------------------------------------------------------
-  --input-background-default:       #{$bg-hard};
+  --input-background-default:       #{$bg0};
   --input-text-default:             #{$fg1};
   --input-placeholder-text-default: #{rgba($fg1, 0.50)};
   --input-border-default:           #{$bg2};
@@ -594,6 +594,22 @@ pre,
     color: #{$red-b};
     background: #{rgba($red-b, 0.15)};
   }
+}
+
+// Visual-refresh button overrides
+:is(.visual-refresh.theme-dark, .visual-refresh .theme-dark) {
+
+  // For the discord activity icons above profile when in call ("Share your screen", "Start an activity", etc.)
+  button[class*="button_"][class*="lookFilled_"][class*="colorBrand_"] {
+    background-color: #{$bg0_s} !important;
+    color: #{$fg0} !important;
+    &:hover { background-color: #{$blue-b} !important; }
+  }
+}
+
+// Affects the background of the section above profile when in call
+section[class*="panels_"] {
+  background-color: #{$bg-hard} !important;
 }
 
 // Makes the "Find or start a conversation" button darker
