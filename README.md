@@ -10,19 +10,21 @@ A BetterDiscord / Vencord theme built on the [Gruvbox](https://github.com/morhet
 
 ![Gruvbox Sharp preview](preview.png)
 
+A soft version of this Gruvbox theme is also offered at `https://raw.githubusercontent.com/round-panda/gruvbox-sharp/main/GruvboxSoft.theme.css`; the same instructions below apply, but to the aforementioned file.
+
 ---
 
 ## Installation
 
 ### BetterDiscord
 
-1. **Enable Dark Mode first** — Settings -> Appearance -> Theme -> Dark
-2. Download [`GruvboxDarkSharp.theme.css`](https://betterdiscord.app/Download?id=ADDON_ID_HERE)
+1. **Enable Dark Mode** — Settings -> Appearance -> Theme -> Dark
+2. Download `GruvboxSharp.theme.css`
 3. Move the file to your BetterDiscord themes folder:
    - **Windows:** `%AppData%\BetterDiscord\themes\`
    - **macOS:** `~/Library/Application Support/BetterDiscord/themes/`
    - **Linux:** `~/.config/BetterDiscord/themes/`
-4. Open Discord -> Settings -> Themes -> Enable **GruvboxDarkSharp**
+4. Open Discord -> Settings -> Themes -> Enable **GruvboxSharp**
 
 ### Vencord (Online Themes)
 
