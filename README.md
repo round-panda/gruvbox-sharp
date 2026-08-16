@@ -8,9 +8,11 @@ A BetterDiscord / Vencord theme built on the [Gruvbox](https://github.com/morhet
 
 ## Preview
 
-![Gruvbox Sharp preview](preview.png)
+![Gruvbox Sharp preview](preview_sharp.png)
 
 A soft version of this Gruvbox theme is also offered at `https://raw.githubusercontent.com/round-panda/gruvbox-sharp/main/GruvboxSoft.theme.css`; the same instructions below apply, but to the aforementioned file.
+
+![Gruvbox Soft preview](preview_soft.png)
 
 ---
 
